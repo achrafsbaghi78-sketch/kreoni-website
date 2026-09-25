@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+<defs>
+  <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#050505"/><stop offset=".55" stop-color="#111"/><stop offset="1" stop-color="#070707"/></linearGradient>
+  <linearGradient id="g" x1="0" x2="1"><stop stop-color="#f2d27d"/><stop offset=".5" stop-color="#d5a33b"/><stop offset="1" stop-color="#9d6815"/></linearGradient>
+  <radialGradient id="gl"><stop stop-color="#d5a33b" stop-opacity=".25"/><stop offset="1" stop-color="#d5a33b" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<circle cx="860" cy="310" r="290" fill="url(#gl)"/>
+<circle cx="860" cy="315" r="190" fill="#090909" stroke="url(#g)" stroke-width="7"/>
+<path d="M780 180h50v100l96-100h64l-101 107 109 143h-67l-79-104-22 23v81h-50z" fill="#101010" stroke="#d5a33b" stroke-width="3"/>
+<path d="M758 390c76-136 163-186 230-200-48 41-103 104-151 196-23 44-43 77-69 97 13-30 11-60-10-93z" fill="url(#g)"/>
+<text x="85" y="215" fill="#f1d07a" font-family="Arial,sans-serif" font-size="30" letter-spacing="8">KREONI</text>
+<text x="85" y="300" fill="#fff" font-family="Arial,sans-serif" font-size="60" font-weight="700">Create • Print</text>
+<text x="85" y="370" fill="#fff" font-family="Arial,sans-serif" font-size="60" font-weight="700">• Personalize</text>
+<text x="85" y="435" fill="#aaa" font-family="Arial,sans-serif" font-size="24">Textile personnalisé • DTF • Branding</text>
+<text x="85" y="480" fill="#d5a33b" font-family="Arial,sans-serif" font-size="24">Livraison partout au Maroc</text>
+</svg>
