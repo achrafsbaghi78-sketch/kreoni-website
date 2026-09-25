@@ -6,10 +6,10 @@ Official website source for **KREONI | Personnalisation & Print**.
 - Static HTML
 - CSS
 - Vanilla JavaScript
-- Ready for Vercel deployment
+- Vercel-ready
 
-## Status
-Version 1 — launch website.
+## Security
+Security headers are configured in `vercel.json`. This static version does not process passwords or payment data.
 
 ## Brand
 Create • Print • Personalize
