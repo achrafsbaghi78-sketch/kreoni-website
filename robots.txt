@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://kreoni-website-achrafsbaghi7-3611.vercel.app/sitemap.xml
