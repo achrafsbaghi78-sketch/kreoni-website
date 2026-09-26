@@ -100,7 +100,7 @@
         <p>Une sélection pensée pour la personnalisation, les cadeaux, les équipes et les petites marques.</p>
       </div>
       <div class="product-grid">
-        <article class="card product-card"><img src="assets/tshirt.svg" alt="Exemple de T-shirt personnalisé KREONI"><div class="card-body"><h3>T-shirts personnalisés</h3><p>Design, logo, prénom ou visuel créatif, à l’unité ou en petite série.</p><a href="#configurateur">Configurer mon T-shirt →</a></div></article>
+        <article class="card product-card"><img src="assets/tshirt-pro.webp" alt="T-shirt premium personnalisé KREONI"><div class="card-body"><h3>T-shirts personnalisés</h3><p>Choisissez un modèle DTF KREONI ou envoyez votre propre design, photo ou idée.</p><a href="#configurateur">Configurer mon T-shirt →</a></div></article>
         <article class="card product-card"><img src="assets/hoodie.svg" alt="Exemple de hoodie personnalisé KREONI"><div class="card-body"><h3>Hoodies & sweats</h3><p>Personnalisation premium pour particuliers, associations, clubs et marques.</p><a href="#contact">Demander un prix →</a></div></article>
         <article class="card product-card"><img src="assets/tote.svg" alt="Exemple de tote bag personnalisé KREONI"><div class="card-body"><h3>Tote bags & accessoires</h3><p>Produits personnalisés pour cadeaux, événements et communication.</p><a href="#contact">Demander un prix →</a></div></article>
         <article class="card product-card"><img src="assets/polo-b2b.svg" alt="Exemple de textile professionnel KREONI"><div class="card-body"><h3>Textile professionnel</h3><p>T-shirts, polos et tenues personnalisées pour votre équipe ou entreprise.</p><a href="#b2b">Voir l’offre B2B →</a></div></article>
@@ -178,14 +178,22 @@
                 <option value="Devant + dos">Devant + dos</option>
               </select>
             </label>
-            <label class="field">
-              <span>Votre design</span>
-              <select id="designStatus" name="designStatus">
-                <option value="J’ai déjà mon design">J’ai déjà mon design</option>
-                <option value="J’ai une idée / inspiration">J’ai une idée / inspiration</option>
-                <option value="J’ai besoin d’aide pour le design">J’ai besoin d’aide pour le design</option>
-              </select>
-            </label>
+            <div class="visual-choice">
+              <span class="visual-choice-title">Choisissez votre visuel</span>
+              <label class="visual-option">
+                <input type="radio" name="designSource" value="Modèle DTF KREONI" checked>
+                <span><strong>Modèles DTF KREONI</strong><small>Nous vous partageons les modèles disponibles sur WhatsApp.</small></span>
+              </label>
+              <label class="visual-option">
+                <input type="radio" name="designSource" value="Mon propre design">
+                <span><strong>Mon propre design</strong><small>Envoyez-nous votre image, logo ou fichier directement sur WhatsApp.</small></span>
+              </label>
+              <label class="visual-option">
+                <input type="radio" name="designSource" value="J’ai une idée">
+                <span><strong>J’ai une idée</strong><small>Expliquez-nous votre idée et nous vous aidons à la préparer.</small></span>
+              </label>
+              <a class="models-link" href="https://wa.me/212664521613?text=Bonjour%20KREONI%2C%20je%20souhaite%20voir%20les%20mod%C3%A8les%20DTF%20disponibles." target="_blank" rel="noopener noreferrer">Voir les modèles DTF disponibles →</a>
+            </div>
           </div>
 
           <label class="field">
@@ -204,7 +212,7 @@
           </div>
 
           <button class="btn btn-gold config-submit" type="button" id="sendTshirtConfig">Demander le prix sur WhatsApp</button>
-          <p class="config-help" id="configHelp">Si vous avez un logo ou une image, joignez-la dans WhatsApp après l’ouverture de la conversation.</p>
+          <p class="config-help" id="configHelp">Les modèles DTF vous seront partagés sur WhatsApp. Vous pouvez aussi envoyer votre propre design, photo ou logo.</p>
         </form>
       </div>
     </div>
