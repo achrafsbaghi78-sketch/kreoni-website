@@ -1,1 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 760"><defs><linearGradient id="b" x1="0" x2="1"><stop stop-color="#101010"/><stop offset="1" stop-color="#202020"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="18" stdDeviation="22" flood-opacity=".45"/></filter></defs><rect width="900" height="760" rx="38" fill="#ece5d7"/><ellipse cx="450" cy="656" rx="260" ry="42" fill="#000" opacity=".1"/><g filter="url(#s)"><path d="M329 171c42-73 200-73 242 0l64 53 82 61-72 101-69-39v288H324V347l-69 39-72-101 82-61z" fill="url(#b)"/><path d="M350 185c29-97 171-97 200 0-32 49-168 49-200 0z" fill="#171717" stroke="#333" stroke-width="5"/><path d="M398 245l-27 109M502 245l27 109" stroke="#d5a33b" stroke-width="6"/><rect x="369" y="505" width="162" height="75" rx="30" fill="#151515" stroke="#333"/><g transform="translate(408 315) scale(.16)"><path d="M0 0h170v250L370 0h205L365 260l225 310H380L250 385l-80 85v100H0z" fill="#e7e7e7"/><path d="M-20 470C150 170 355 65 565 20c-125 103-250 245-360 455-55 106-110 180-170 225 26-70 9-145-55-230z" fill="#d5a33b"/></g></g><text x="48" y="66" font-family="Arial" font-size="24" letter-spacing="4" fill="#8a611b">KREONI / HOODIE</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="t">
+<title id="t">Hoodie noir premium personnalisé KREONI</title>
+<defs>
+  <radialGradient id="bg" cx="50%" cy="35%" r="75%"><stop offset="0" stop-color="#fffdf8"/><stop offset=".65" stop-color="#efe8dc"/><stop offset="1" stop-color="#ddd1bc"/></radialGradient>
+  <linearGradient id="fabric" x1=".15" y1=".05" x2=".9" y2=".95"><stop stop-color="#242424"/><stop offset=".38" stop-color="#0b0b0b"/><stop offset=".72" stop-color="#161616"/><stop offset="1" stop-color="#050505"/></linearGradient>
+  <linearGradient id="hood" x1=".2" y1="0" x2=".8" y2="1"><stop stop-color="#313131"/><stop offset=".5" stop-color="#111"/><stop offset="1" stop-color="#050505"/></linearGradient>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f1d17b"/><stop offset=".5" stop-color="#d4a43c"/><stop offset="1" stop-color="#9a6716"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="28" stdDeviation="24" flood-color="#000" flood-opacity=".28"/></filter>
+  <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+  <pattern id="grain" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".8" fill="#fff" opacity=".035"/><circle cx="7" cy="6" r=".7" fill="#fff" opacity=".025"/></pattern>
+</defs>
+<rect width="1200" height="900" rx="44" fill="url(#bg)"/>
+<ellipse cx="600" cy="790" rx="335" ry="50" fill="#765f3a" opacity=".13" filter="url(#soft)"/>
+<g filter="url(#shadow)">
+  <path d="M430 190c42-78 298-78 340 0l104 75 118 78-90 132-102-61v325H400V414l-102 61-90-132 118-78z" fill="url(#fabric)"/>
+  <path d="M430 198c30-126 310-126 340 0-37 67-303 67-340 0z" fill="url(#hood)" stroke="#353535" stroke-width="8"/>
+  <path d="M496 214l-39 160M704 214l39 160" stroke="#c7c7c7" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="455" cy="378" r="10" fill="url(#gold)"/><circle cx="745" cy="378" r="10" fill="url(#gold)"/>
+  <path d="M492 568c54-37 162-37 216 0l22 99H470z" fill="#0a0a0a" stroke="#2c2c2c" stroke-width="5"/>
+  <path d="M400 414c55 26 106 39 153 39M800 414c-55 26-106 39-153 39" fill="none" stroke="#333" stroke-width="5" opacity=".7"/>
+  <rect x="400" y="414" width="400" height="325" fill="url(#grain)" opacity=".75"/>
+  <g transform="translate(640 355)">
+    <path d="M0 0h38v58l44-58h47L81 60l52 74H86l-29-43-19 20v23H0z" fill="#f4f4f4"/>
+    <path d="M-11 111C28 43 74 17 126 5c-31 24-61 58-88 109-13 25-26 43-41 53 8-16 5-36-8-56z" fill="url(#gold)"/>
+    <text x="68" y="165" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-weight="700" letter-spacing="4" fill="#f1f1f1">KREONI</text>
+  </g>
+</g>
+<text x="54" y="70" font-family="Arial,sans-serif" font-size="22" letter-spacing="5" fill="#9b6b17">KREONI / HOODIE PREMIUM</text>
+</svg>
