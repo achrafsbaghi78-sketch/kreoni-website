@@ -26,7 +26,6 @@ if(tshirtForm){
   const recap=document.getElementById('configRecap');
   const qty=document.getElementById('tshirtQty');
   const placement=document.getElementById('printPlacement');
-  const designStatus=document.getElementById('designStatus');
   const customText=document.getElementById('customText');
   const notes=document.getElementById('configNotes');
   const help=document.getElementById('configHelp');
@@ -76,12 +75,14 @@ if(tshirtForm){
       'Taille : '+size,
       'Quantité : '+q,
       'Impression : '+placement.value,
-      'Design : '+designStatus.value,
+      'Visuel : '+(selected('designSource')?.value||'Non précisé'),
       textValue?'Texte / prénom : '+textValue:'',
       noteValue?'Détails : '+noteValue:'',
       '',
       'Merci de me confirmer le prix, la disponibilité et le délai.',
-      designStatus.value==='J’ai déjà mon design'?'Je vais joindre mon design dans cette conversation WhatsApp.':''
+      selected('designSource')?.value==='Modèle DTF KREONI'?'Merci de me partager les modèles DTF KREONI disponibles.':'',
+      selected('designSource')?.value==='Mon propre design'?'Je vais joindre mon design / image dans cette conversation WhatsApp.':'',
+      selected('designSource')?.value==='J’ai une idée'?'Je vous explique mon idée pour que vous puissiez me guider.':''
     ].filter(Boolean).join('\n');
     window.open('https://wa.me/212664521613?text='+encodeURIComponent(msg),'_blank','noopener,noreferrer');
     help.textContent='WhatsApp est ouvert avec votre configuration. Ajoutez votre design/photo si nécessaire.';
