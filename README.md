@@ -13,3 +13,7 @@ Security headers are configured in `vercel.json`. This static version does not p
 
 ## Brand
 Create • Print • Personalize
+
+
+## Git deployment
+Connected to Vercel. Pushes to `main` trigger production deployments.
