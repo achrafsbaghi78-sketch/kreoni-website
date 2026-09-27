@@ -310,3 +310,25 @@ if(tshirtForm){
   prev?.addEventListener('click',toggleScene);
   next?.addEventListener('click',toggleScene);
 })();
+
+
+/* === Hero dots sync === */
+(() => {
+  const scene=document.getElementById('heroScene');
+  const dot1=document.getElementById('heroDotOne');
+  const dot2=document.getElementById('heroDotTwo');
+  const prev=document.getElementById('scenePrev');
+  const next=document.getElementById('sceneNext');
+  if(!scene||!dot1||!dot2)return;
+  const sync=()=>{
+    const alt=scene.classList.contains('scene-alt');
+    dot1.classList.toggle('active',!alt);
+    dot2.classList.toggle('active',alt);
+  };
+  const setAlt=(alt)=>{scene.classList.toggle('scene-alt',alt);sync()};
+  dot1.addEventListener('click',()=>setAlt(false));
+  dot2.addEventListener('click',()=>setAlt(true));
+  prev?.addEventListener('click',()=>requestAnimationFrame(sync));
+  next?.addEventListener('click',()=>requestAnimationFrame(sync));
+  sync();
+})();
