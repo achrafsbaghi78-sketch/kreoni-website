@@ -184,3 +184,93 @@ repeating-linear-gradient(90deg,transparent 0 140px,rgba(255,255,255,.025) 141px
   .how-step{padding-right:0}
   .how-step>span{display:none}
 }
+
+
+/* === KREONI MOTION LAYER: keeps the existing site, adds premium interactions === */
+body.motion-ready{overflow-x:hidden}
+.kreoni-progress{position:fixed;left:0;top:0;height:2px;width:0;background:linear-gradient(90deg,#b98022,#f0cf78);z-index:9999;pointer-events:none;box-shadow:0 0 16px rgba(240,207,120,.35)}
+.kreoni-cursor,.kreoni-cursor-dot{position:fixed;left:0;top:0;pointer-events:none;z-index:9998;border-radius:50%;mix-blend-mode:difference;opacity:0;transition:opacity .2s ease}
+.kreoni-cursor{width:38px;height:38px;border:1.5px solid #fff;transform:translate(-50%,-50%);transition:width .22s ease,height .22s ease,background .22s ease,opacity .2s ease}
+.kreoni-cursor-dot{width:5px;height:5px;background:#fff;transform:translate(-50%,-50%)}
+body.cursor-active .kreoni-cursor,body.cursor-active .kreoni-cursor-dot{opacity:1}
+body.cursor-link .kreoni-cursor{width:58px;height:58px;background:rgba(255,255,255,.12)}
+
+.kreoni-loader{position:fixed;inset:0;z-index:10000;background:#080808;display:grid;place-items:center;transition:opacity .55s cubic-bezier(.22,.61,.36,1),visibility .55s}
+.kreoni-loader.is-done{opacity:0;visibility:hidden}
+.kreoni-loader-inner{display:grid;justify-items:center;gap:12px;transform:translateY(10px);animation:kreoniLoaderIn .55s ease forwards}
+.kreoni-loader-inner img{width:78px;height:78px;filter:drop-shadow(0 12px 35px rgba(213,163,59,.28))}
+.kreoni-loader-inner strong{color:#fff;letter-spacing:.22em;font-size:1.15rem}
+.kreoni-loader-line{width:130px;height:1px;background:#242424;overflow:hidden}
+.kreoni-loader-line:after{content:"";display:block;height:100%;width:45%;background:linear-gradient(90deg,#b98022,#f0cf78);animation:kreoniLoad 1s ease-in-out infinite}
+@keyframes kreoniLoaderIn{to{transform:translateY(0)}}
+@keyframes kreoniLoad{0%{transform:translateX(-120%)}100%{transform:translateX(320%)}}
+
+.site-header{transition:transform .42s cubic-bezier(.22,.61,.36,1),background .3s ease,box-shadow .3s ease}
+.site-header.is-scrolled{background:rgba(8,8,8,.88);backdrop-filter:blur(18px);box-shadow:0 12px 35px rgba(0,0,0,.14)}
+.site-header.is-hidden{transform:translateY(-105%)}
+.brand-logo{transition:transform .45s cubic-bezier(.22,.61,.36,1),filter .45s ease}
+.brand:hover .brand-logo{transform:rotate(-8deg) scale(1.08);filter:drop-shadow(0 8px 18px rgba(213,163,59,.25))}
+
+.hero-copy>*{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1)}
+.motion-ready.hero-loaded .hero-copy>*{opacity:1;transform:none}
+.motion-ready.hero-loaded .hero-copy>*:nth-child(1){transition-delay:.08s}
+.motion-ready.hero-loaded .hero-copy>*:nth-child(2){transition-delay:.16s}
+.motion-ready.hero-loaded .hero-copy>*:nth-child(3){transition-delay:.26s}
+.motion-ready.hero-loaded .hero-copy>*:nth-child(4){transition-delay:.36s}
+.hero-scene{perspective:1200px}
+.scene-tshirt,.scene-hoodie,.scene-tote,.scene-brand{will-change:transform;transition:filter .25s ease}
+.scene-tshirt{animation:kreoniFloatA 6s ease-in-out infinite}
+.scene-hoodie{animation:kreoniFloatB 7s ease-in-out infinite}
+.scene-tote{animation:kreoniFloatC 5.4s ease-in-out infinite}
+.scene-brand{animation:kreoniFloatB 6.5s ease-in-out infinite reverse}
+@keyframes kreoniFloatA{0%,100%{translate:0 0}50%{translate:0 -10px}}
+@keyframes kreoniFloatB{0%,100%{translate:0 0}50%{translate:0 8px}}
+@keyframes kreoniFloatC{0%,100%{translate:0 0}50%{translate:0 -7px}}
+
+.motion-reveal{opacity:0;transform:translateY(38px) scale(.985);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1);will-change:transform,opacity}
+.motion-reveal.is-visible{opacity:1;transform:none}
+.motion-stagger>*{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+.motion-stagger.is-visible>*{opacity:1;transform:none}
+.motion-stagger.is-visible>*:nth-child(1){transition-delay:.04s}
+.motion-stagger.is-visible>*:nth-child(2){transition-delay:.10s}
+.motion-stagger.is-visible>*:nth-child(3){transition-delay:.16s}
+.motion-stagger.is-visible>*:nth-child(4){transition-delay:.22s}
+.motion-stagger.is-visible>*:nth-child(5){transition-delay:.28s}
+.motion-stagger.is-visible>*:nth-child(6){transition-delay:.34s}
+
+.store-card,.config-preview,.b2b-box{transform-style:preserve-3d;will-change:transform}
+.store-card{transition:box-shadow .35s ease,border-color .35s ease,transform .2s ease}
+.store-card:hover{border-color:#d9be87;box-shadow:0 28px 70px rgba(34,25,10,.12)}
+.store-card img{transition:transform .6s cubic-bezier(.22,.61,.36,1),filter .35s ease}
+.store-card:hover img{transform:scale(1.06)}
+.store-copy a,.btn,.nav-cta,.models-link{position:relative;overflow:hidden}
+.store-copy a:after,.btn:after,.nav-cta:after,.models-link:after{content:"";position:absolute;inset:-2px;background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.32),transparent 62%);transform:translateX(-140%);transition:transform .65s ease;pointer-events:none}
+.store-copy a:hover:after,.btn:hover:after,.nav-cta:hover:after,.models-link:hover:after{transform:translateX(140%)}
+
+.config-preview{transition:transform .22s ease,box-shadow .35s ease}
+.config-preview:hover{box-shadow:0 34px 80px rgba(0,0,0,.18)}
+.shirt-stage{overflow:hidden}
+.shirt-svg{transition:transform .55s cubic-bezier(.22,.61,.36,1)}
+.config-preview:hover .shirt-svg{transform:scale(1.035)}
+
+.how-icon{transition:transform .45s cubic-bezier(.22,.61,.36,1),background .35s ease,color .35s ease}
+.how-step:hover .how-icon{transform:translateY(-5px) rotate(-5deg);background:#111;color:#f0cf78}
+.tags span{transition:transform .3s ease,border-color .3s ease,background .3s ease}
+.tags span:hover{transform:translateY(-3px);border-color:#caa04b;background:#fff8e9}
+details{transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease}
+details[open]{border-color:#d4b16b;box-shadow:0 14px 34px rgba(50,37,12,.08);transform:translateX(4px)}
+
+.contact-section,.configurator-section,#b2b,#livraison,#faq{position:relative;overflow:hidden}
+.section::before,.products-showcase::before,.configurator-section::before,.contact-section::before{content:"";position:absolute;left:0;top:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(213,163,59,.55),transparent);transform:scaleX(0);transform-origin:left;transition:transform 1.15s cubic-bezier(.22,.61,.36,1)}
+.section.line-visible::before,.products-showcase.line-visible::before,.configurator-section.line-visible::before,.contact-section.line-visible::before{transform:scaleX(1)}
+
+.magnetic{transition:transform .18s ease}
+.hero-ambient{will-change:transform;transition:transform .12s linear}
+
+@media (pointer:fine) and (min-width:1024px){body.motion-ready{cursor:none}body.motion-ready a,body.motion-ready button,body.motion-ready input,body.motion-ready select,body.motion-ready textarea,body.motion-ready summary{cursor:none}}
+@media(max-width:900px){.kreoni-cursor,.kreoni-cursor-dot{display:none}.scene-tshirt,.scene-hoodie,.scene-tote,.scene-brand{animation-duration:8s}}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .motion-reveal,.motion-stagger>*,.hero-copy>*{opacity:1!important;transform:none!important}
+  .kreoni-loader,.kreoni-cursor,.kreoni-cursor-dot,.kreoni-progress{display:none!important}
+}
