@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="t">
+<title id="t">Textile professionnel B2B KREONI</title>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8f4ec"/><stop offset=".65" stop-color="#e7ddcc"/><stop offset="1" stop-color="#d4c3a9"/></linearGradient>
+  <linearGradient id="black" x1=".1" y1="0" x2=".9" y2="1"><stop stop-color="#292929"/><stop offset=".4" stop-color="#111"/><stop offset="1" stop-color="#050505"/></linearGradient>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f1d17b"/><stop offset=".55" stop-color="#d4a43c"/><stop offset="1" stop-color="#936010"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="180%" height="180%"><feDropShadow dx="0" dy="24" stdDeviation="22" flood-color="#000" flood-opacity=".25"/></filter>
+</defs>
+<rect width="1200" height="900" rx="44" fill="url(#bg)"/>
+<rect x="756" y="200" width="290" height="410" rx="18" fill="#bb8e58" opacity=".28"/>
+<rect x="804" y="244" width="290" height="410" rx="18" fill="#a87942" opacity=".22"/>
+<g filter="url(#shadow)">
+  <g transform="translate(210 505)">
+    <rect width="610" height="104" rx="24" fill="#111"/>
+    <rect y="78" width="610" height="104" rx="24" fill="#fafafa"/>
+    <rect y="156" width="610" height="104" rx="24" fill="#171717"/>
+    <rect y="234" width="610" height="104" rx="24" fill="#f4f0e9"/>
+    <path d="M0 46c140 20 455 20 610 0M0 124c140 20 455 20 610 0M0 202c140 20 455 20 610 0M0 280c140 20 455 20 610 0" fill="none" stroke="#aaa" stroke-width="2" opacity=".3"/>
+  </g>
+  <g transform="translate(545 290)">
+    <path d="M48 130c0-100 72-164 166-164 104 0 178 72 178 179v102H48z" fill="url(#black)"/>
+    <path d="M48 247c54-34 129-50 213-50 68 0 129 10 181 33-30 58-87 93-176 93-104 0-177-27-218-76z" fill="#080808"/>
+    <path d="M198 45h39v59l46-59h48l-49 62 54 74h-49l-31-44-19 20v24h-39z" fill="#f3f3f3"/>
+    <path d="M187 166c39-69 86-95 139-106-32 25-63 60-91 112-13 25-27 43-42 54 8-17 5-37-6-60z" fill="url(#gold)"/>
+    <text x="253" y="214" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="700" letter-spacing="4" fill="#f1f1f1">KREONI</text>
+  </g>
+  <g transform="translate(850 425)">
+    <rect width="220" height="190" rx="20" fill="#cda16d"/>
+    <path d="M0 36h220" stroke="#a67842" stroke-width="6"/><path d="M110 0v190" stroke="#b98a53" stroke-width="5"/>
+    <path d="M65 70h34v52l40-52h42l-44 54 48 66h-43l-26-37-17 18v19H65z" fill="#151515"/>
+    <path d="M55 165c34-59 75-82 121-91-27 22-55 52-79 98-12 22-23 37-36 47 6-15 4-31-6-54z" fill="url(#gold)"/>
+  </g>
+</g>
+<text x="54" y="70" font-family="Arial,sans-serif" font-size="22" letter-spacing="5" fill="#8f621d">KREONI / B2B PROFESSIONNEL</text>
+<text x="54" y="108" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#171717">Textile d'équipe • petites séries • événements</text>
+</svg>
