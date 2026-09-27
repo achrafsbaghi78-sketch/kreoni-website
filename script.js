@@ -284,3 +284,29 @@ if(tshirtForm){
     targets.forEach(t => navIO.observe(t));
   }
 })();
+
+
+/* === Homepage interaction v2 === */
+(() => {
+  const searchToggle=document.getElementById('siteSearchToggle');
+  const searchPanel=document.getElementById('siteSearchPanel');
+  const searchClose=document.getElementById('siteSearchClose');
+  const setSearch=(open)=>{
+    if(!searchPanel)return;
+    searchPanel.classList.toggle('open',open);
+    searchPanel.setAttribute('aria-hidden',String(!open));
+    document.body.style.overflow=open?'hidden':'';
+  };
+  searchToggle?.addEventListener('click',()=>setSearch(true));
+  searchClose?.addEventListener('click',()=>setSearch(false));
+  searchPanel?.addEventListener('click',e=>{if(e.target===searchPanel)setSearch(false)});
+  searchPanel?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setSearch(false)));
+  window.addEventListener('keydown',e=>{if(e.key==='Escape')setSearch(false)});
+
+  const scene=document.getElementById('heroScene');
+  const prev=document.getElementById('scenePrev');
+  const next=document.getElementById('sceneNext');
+  const toggleScene=()=>scene?.classList.toggle('scene-alt');
+  prev?.addEventListener('click',toggleScene);
+  next?.addEventListener('click',toggleScene);
+})();
