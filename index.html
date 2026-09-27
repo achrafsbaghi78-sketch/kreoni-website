@@ -54,7 +54,7 @@
     <span>▣ Livraison partout au Maroc</span>
     <span>◇ Qualité professionnelle DTF</span>
     <span>♧ Personnalisation 100% sur mesure</span>
-    <a href="#b2b">Pour les professionnels ? <strong>Demander un devis →</strong></a>
+    <span class="service-links"><a href="#faq">FAQ</a><i></i><a href="#contact">Contact</a><i></i><a href="https://www.instagram.com/kreoni.ma/" target="_blank" rel="noopener noreferrer">Instagram</a></span>
   </div>
 </div>
 <header class="site-header">
@@ -71,12 +71,25 @@
       <a href="#b2b">Professionnels</a>
       <a href="#personnalisation">À propos</a>
       <a href="#contact">Contact</a>
-      <span class="nav-search" aria-hidden="true">⌕</span>
-      <span class="nav-cart" aria-hidden="true">🛒<em>0</em></span>
+      <button class="nav-search" id="siteSearchToggle" type="button" aria-label="Rechercher sur le site">⌕</button>
       <a class="nav-cta" href="https://wa.me/212664521613?text=Bonjour%20KREONI%2C%20je%20souhaite%20passer%20une%20commande." target="_blank" rel="noopener noreferrer">◉ Commander</a>
     </nav>
   </div>
 </header>
+<div class="site-search-panel" id="siteSearchPanel" aria-hidden="true">
+  <div class="site-search-box">
+    <button class="site-search-close" id="siteSearchClose" type="button" aria-label="Fermer">×</button>
+    <small>RECHERCHE RAPIDE</small>
+    <h2>Que souhaitez-vous personnaliser ?</h2>
+    <div class="site-search-links">
+      <a href="#configurateur">T-shirt personnalisé</a>
+      <a href="#produits">Hoodie & sweat</a>
+      <a href="#produits">Tote bag</a>
+      <a href="#b2b">Commande entreprise / B2B</a>
+      <a href="#faq">Questions fréquentes</a>
+    </div>
+  </div>
+</div>
 
 <main id="top">
   <section class="hero">
@@ -92,7 +105,9 @@
         </div>
       </div>
 
-      <div class="hero-scene" aria-label="Produits personnalisés KREONI">
+      <div class="hero-scene" id="heroScene" aria-label="Produits personnalisés KREONI">
+        <button class="scene-arrow scene-arrow-left" id="scenePrev" type="button" aria-label="Visuel précédent">‹</button>
+        <button class="scene-arrow scene-arrow-right" id="sceneNext" type="button" aria-label="Visuel suivant">›</button>
         <div class="scene-glow"></div>
         <div class="scene-rack"></div>
         <img class="scene-tshirt" src="assets/tshirt-pro.webp" alt="T-shirt personnalisé KREONI">
@@ -100,6 +115,7 @@
         <img class="scene-tote" src="assets/tote.svg" alt="Tote bag personnalisé KREONI">
         <div class="scene-stack" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
         <div class="scene-neon" aria-hidden="true">GOOD<br>IDEAS<br>ONLY.</div>
+        <div class="scene-support"><strong>Support WhatsApp</strong><span>Commande • devis • suivi</span></div>
       </div>
     </div>
 
@@ -108,6 +124,7 @@
       <div><span>◇</span><strong>Qualité professionnelle<br>DTF</strong></div>
       <div><span>♧</span><strong>Personnalisation<br>100% sur mesure</strong></div>
       <div><span>♙</span><strong>Particuliers<br>& Professionnels</strong></div>
+      <div><span>◉</span><strong>Support réactif<br>sur WhatsApp</strong></div>
     </div>
   </section>
 
