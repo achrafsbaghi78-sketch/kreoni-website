@@ -56,63 +56,85 @@
     </a>
     <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
     <nav class="nav" aria-label="Navigation principale">
-      <a href="#top">Accueil</a>
+      <a class="active" href="#top">Accueil</a>
       <a href="#produits">Produits</a>
       <a href="#configurateur">DTF & Personnalisation</a>
       <a href="#b2b">Professionnels</a>
-      <a href="#personnalisation">Comment ça marche</a>
+      <a href="#personnalisation">À propos</a>
       <a href="#contact">Contact</a>
-      <a class="nav-cta" href="https://wa.me/212664521613?text=Bonjour%20KREONI%2C%20je%20souhaite%20passer%20une%20commande." target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <span class="nav-search" aria-hidden="true">⌕</span>
+      <a class="nav-cta" href="https://wa.me/212664521613?text=Bonjour%20KREONI%2C%20je%20souhaite%20passer%20une%20commande." target="_blank" rel="noopener noreferrer">◉ Commander</a>
     </nav>
   </div>
 </header>
 
 <main id="top">
   <section class="hero">
-    <div class="container hero-grid hero-commerce">
+    <div class="hero-ambient"></div>
+    <div class="container hero-layout">
       <div class="hero-copy">
-        <div class="hero-badge">✦ Personnalisation textile & DTF</div>
-        <h1>Vos idées<br>sur tous <span>vos supports.</span></h1>
-        <p class="lead">T-shirts, hoodies, tote bags et textile professionnel. Choisissez un modèle DTF KREONI, envoyez votre propre design ou partagez simplement votre idée.</p>
+        <div class="hero-badge">♛ Personnalisation textile & DTF</div>
+        <h1>Vos idées<br>sur tous<br><span>vos supports.</span></h1>
+        <p class="lead">T-shirts, hoodies, tote bags et plus encore.<br>Impression DTF de haute qualité, pour particuliers<br>et professionnels.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="#configurateur">Créer mon produit</a>
+          <a class="btn btn-gold hero-primary" href="#configurateur">✎ Créer mon produit →</a>
           <a class="btn btn-outline hero-models" href="https://wa.me/212664521613?text=Bonjour%20KREONI%2C%20je%20souhaite%20voir%20les%20mod%C3%A8les%20DTF%20disponibles." target="_blank" rel="noopener noreferrer">Voir les modèles DTF →</a>
         </div>
-        <div class="hero-mini">
-          <div><strong>DTF premium</strong><span>Couleurs nettes & durables</span></div>
-          <div><strong>Sur mesure</strong><span>Particuliers & professionnels</span></div>
+      </div>
+
+      <div class="hero-scene" aria-label="Exemples de produits KREONI">
+        <div class="scene-glow"></div>
+        <img class="scene-tshirt" src="assets/tshirt-pro.webp" alt="T-shirt personnalisé KREONI">
+        <img class="scene-hoodie" src="assets/hoodie.svg" alt="Hoodie personnalisé KREONI">
+        <img class="scene-tote" src="assets/tote.svg" alt="Tote bag personnalisé KREONI">
+        <div class="scene-brand">
+          <img src="assets/brand-mark.svg" alt="">
+          <strong>KREONI</strong>
+          <small>Create • Print • Personalize</small>
         </div>
       </div>
-      <div class="hero-product">
-        <div class="hero-product-glow"></div>
-        <img src="assets/tshirt-pro.webp" alt="T-shirt personnalisé KREONI">
-        <div class="hero-product-tag"><span>Produit vedette</span><strong>T-shirt personnalisé</strong></div>
-      </div>
     </div>
-    <div class="container trust-strip">
-      <div class="trust-item"><span>✦</span><div><strong>Qualité premium</strong><small>Impression DTF durable</small></div></div>
-      <div class="trust-item"><span>◈</span><div><strong>Tous textiles</strong><small>T-shirts, hoodies, tote bags...</small></div></div>
-      <div class="trust-item"><span>▦</span><div><strong>Petites & grandes séries</strong><small>Particuliers et entreprises</small></div></div>
-      <div class="trust-item"><span>↗</span><div><strong>Livraison au Maroc</strong><small>Partout au Royaume</small></div></div>
+
+    <div class="container hero-features">
+      <div><span>▣</span><strong>Livraison dans tout le Maroc</strong></div>
+      <div><span>◇</span><strong>Qualité professionnelle DTF</strong></div>
+      <div><span>♧</span><strong>Personnalisation 100% sur mesure</strong></div>
+      <div><span>♙</span><strong>Particuliers & Professionnels</strong></div>
     </div>
   </section>
 
-  <section class="section" id="produits">
+  <section class="products-showcase" id="produits">
     <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">NOS PRODUITS</p>
-        <h2>Choisissez votre support.</h2>
-        <p>Des produits simples à personnaliser, pour vos idées, vos cadeaux, vos équipes ou votre marque.</p>
+      <div class="store-grid">
+        <article class="store-card">
+          <div class="store-copy"><h3>T-shirt<br>Personnalisé</h3><p>À partir de vos idées ou de nos modèles DTF.</p><a href="#configurateur">Configurer →</a></div>
+          <img src="assets/tshirt-pro.webp" alt="T-shirt personnalisé KREONI">
+        </article>
+        <article class="store-card">
+          <div class="store-copy"><h3>Hoodie<br>Personnalisé</h3><p>Confort, style et impression durable.</p><a href="#configurateur">Configurer →</a></div>
+          <img src="assets/hoodie.svg" alt="Hoodie personnalisé KREONI">
+        </article>
+        <article class="store-card">
+          <div class="store-copy"><h3>Tote Bag<br>Personnalisé</h3><p>Pratique, tendance et idéal pour votre marque.</p><a href="#contact">Configurer →</a></div>
+          <img src="assets/tote.svg" alt="Tote bag personnalisé KREONI">
+        </article>
+        <article class="store-card">
+          <div class="store-copy"><h3>B2B<br>Professionnels</h3><p>Solutions sur mesure pour entreprises et événements.</p><a href="#b2b">Demander un devis →</a></div>
+          <img src="assets/polo-b2b.svg" alt="Textile professionnel KREONI">
+        </article>
       </div>
-      <div class="product-grid">
-        <article class="card product-card"><img src="assets/tshirt-pro.webp" alt="T-shirt premium personnalisé KREONI"><div class="card-body"><h3>T-shirts personnalisés</h3><p>Choisissez un modèle DTF KREONI ou envoyez votre propre design, photo ou idée.</p><a href="#configurateur">Configurer mon T-shirt →</a></div></article>
-        <article class="card product-card"><img src="assets/hoodie.svg" alt="Exemple de hoodie personnalisé KREONI"><div class="card-body"><h3>Hoodies & sweats</h3><p>Personnalisation premium pour particuliers, associations, clubs et marques.</p><a href="#contact">Demander un prix →</a></div></article>
-        <article class="card product-card"><img src="assets/tote.svg" alt="Exemple de tote bag personnalisé KREONI"><div class="card-body"><h3>Tote bags & accessoires</h3><p>Produits personnalisés pour cadeaux, événements et communication.</p><a href="#contact">Demander un prix →</a></div></article>
-        <article class="card product-card"><img src="assets/polo-b2b.svg" alt="Exemple de textile professionnel KREONI"><div class="card-body"><h3>Textile professionnel</h3><p>T-shirts, polos et tenues personnalisées pour votre équipe ou entreprise.</p><a href="#b2b">Voir l’offre B2B →</a></div></article>
+
+      <div class="how-section" id="personnalisation">
+        <h2>Comment ça marche ?</h2>
+        <div class="how-grid">
+          <div class="how-step"><div class="how-icon">♧</div><strong>1. Choisissez<br>votre produit</strong><p>T-shirt, hoodie, tote bag...</p><span>›</span></div>
+          <div class="how-step"><div class="how-icon">✎</div><strong>2. Personnalisez</strong><p>Nos modèles DTF,<br>votre design ou votre idée.</p><span>›</span></div>
+          <div class="how-step"><div class="how-icon">✓</div><strong>3. Validation</strong><p>Nous confirmons le design<br>et le prix avec vous.</p><span>›</span></div>
+          <div class="how-step"><div class="how-icon">▣</div><strong>4. Production & livraison</strong><p>Partout au Maroc.</p></div>
+        </div>
       </div>
     </div>
   </section>
-
 
   <section class="section configurator-section" id="configurateur">
     <div class="container">
@@ -220,21 +242,6 @@
           <p class="config-help" id="configHelp">Les modèles DTF vous seront partagés sur WhatsApp. Vous pouvez aussi envoyer votre propre design, photo ou logo.</p>
         </form>
       </div>
-    </div>
-  </section>
-
-  <section class="section dark process-section" id="personnalisation">
-    <div class="container">
-      <div class="process-head">
-        <div><p class="eyebrow">COMMENT ÇA MARCHE ?</p><h2>Simple, rapide, personnalisé.</h2></div>
-        <p class="muted">Du choix du produit jusqu’à la livraison, KREONI vous accompagne étape par étape.</p>
-      </div>
-      <ol class="process-grid">
-        <li><span>01</span><div class="process-icon">◻</div><strong>Choisissez</strong><p>T-shirt, hoodie, tote bag ou textile pro.</p></li>
-        <li><span>02</span><div class="process-icon">✎</div><strong>Personnalisez</strong><p>Modèle DTF, votre design ou simplement votre idée.</p></li>
-        <li><span>03</span><div class="process-icon">✓</div><strong>Validez</strong><p>Nous confirmons le rendu, le prix et les détails.</p></li>
-        <li><span>04</span><div class="process-icon">↗</div><strong>Production & livraison</strong><p>Contrôle qualité puis expédition partout au Maroc.</p></li>
-      </ol>
     </div>
   </section>
 
