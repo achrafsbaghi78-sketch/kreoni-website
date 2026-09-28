@@ -332,3 +332,56 @@ if(tshirtForm){
   next?.addEventListener('click',()=>requestAnimationFrame(sync));
   sync();
 })();
+
+
+/* === MOBILE NAV POLISH + SMART HERO === */
+(() => {
+  const menu=document.querySelector('.menu-toggle');
+  const nav=document.querySelector('.nav');
+  const setNavState=()=>{
+    const open=nav?.classList.contains('open');
+    document.body.classList.toggle('nav-open',!!open);
+    if(menu) menu.textContent=open?'×':'☰';
+  };
+  menu?.addEventListener('click',()=>requestAnimationFrame(setNavState));
+  nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>requestAnimationFrame(setNavState)));
+  window.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&nav?.classList.contains('open')){
+      nav.classList.remove('open');
+      menu?.setAttribute('aria-expanded','false');
+      setNavState();
+    }
+  });
+  window.addEventListener('resize',()=>{
+    if(innerWidth>900&&nav?.classList.contains('open')){
+      nav.classList.remove('open');
+      menu?.setAttribute('aria-expanded','false');
+      setNavState();
+    }
+  });
+
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const scene=document.getElementById('heroScene');
+  const dot1=document.getElementById('heroDotOne');
+  const dot2=document.getElementById('heroDotTwo');
+  if(!reduce&&scene&&dot1&&dot2){
+    let timer=0;
+    const rotate=()=>{
+      scene.classList.toggle('scene-alt');
+      const alt=scene.classList.contains('scene-alt');
+      dot1.classList.toggle('active',!alt);
+      dot2.classList.toggle('active',alt);
+    };
+    const start=()=>{
+      clearInterval(timer);
+      if(document.visibilityState==='visible')timer=setInterval(rotate,6500);
+    };
+    const stop=()=>clearInterval(timer);
+    scene.addEventListener('mouseenter',stop);
+    scene.addEventListener('mouseleave',start);
+    document.addEventListener('visibilitychange',()=>document.visibilityState==='visible'?start():stop());
+    dot1.addEventListener('click',start);
+    dot2.addEventListener('click',start);
+    start();
+  }
+})();
