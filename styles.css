@@ -1778,3 +1778,48 @@ img{max-width:100%}
 .mockup-stage[data-product="cap"] .design-zone{
   border-radius:18px;
 }
+
+
+/* === REALISTIC MOCKUP PASS === */
+.mockup-stage{
+  background:
+    radial-gradient(circle at 50% 28%,rgba(255,255,255,1) 0%,rgba(249,246,241,.98) 34%,rgba(230,220,207,.98) 74%,#d5c6b1 100%);
+}
+.product-mockup{
+  inset:4% 4% 3%;
+  width:92%;
+  height:93%;
+  filter:drop-shadow(0 26px 24px rgba(51,39,25,.20));
+}
+.mockup-stage[data-product="tote"] .product-mockup{
+  inset:5% 8% 4%;
+  width:84%;
+  height:91%;
+}
+.mockup-stage[data-product="cap"] .product-mockup{
+  inset:5% 2% 5%;
+  width:96%;
+  height:90%;
+}
+.design-zone{
+  border-width:1px;
+  border-color:rgba(190,129,26,.52);
+  box-shadow:0 0 0 1px rgba(255,255,255,.10) inset;
+}
+.design-zone.has-design{
+  border-color:rgba(239,189,97,.30);
+  background:transparent;
+}
+.mockup-stage[data-product="tshirt"] .design-zone,
+.mockup-stage[data-product="hoodie"] .design-zone{
+  border-radius:4px;
+}
+.mockup-stage[data-product="tote"] .design-zone{
+  border-radius:3px;
+}
+.mockup-stage[data-product="cap"] .design-zone{
+  border-radius:28px 28px 12px 12px / 22px 22px 10px 10px;
+}
+.print-zone-label{
+  opacity:.74;
+}
