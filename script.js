@@ -422,34 +422,127 @@ if(tshirtForm){
 
   const shapes = {
     tshirt: () => `
-      <path data-fill d="M190 125l76-46c18 28 82 28 100 0l76 46 101 66-68 109-72-43v264H197V257l-72 43-68-109z" fill="#111"/>
-      <path d="M266 79c8 39 92 39 100 0" fill="none" stroke="rgba(255,255,255,.26)" stroke-width="15" stroke-linecap="round"/>
-      <path d="M197 510h206" stroke="rgba(255,255,255,.12)" stroke-width="4"/>
+      <ellipse cx="300" cy="527" rx="170" ry="24" fill="rgba(0,0,0,.12)"/>
+      <path data-fill d="M214 126
+        C231 116 249 104 266 92
+        C278 115 322 123 347 93
+        C366 104 386 116 405 128
+        L510 188
+        C525 197 530 215 520 230
+        L466 315
+        C459 326 444 329 433 321
+        L397 295
+        L397 503
+        C397 520 387 531 371 533
+        L229 533
+        C213 531 203 520 203 503
+        L203 295
+        L167 321
+        C156 329 141 326 134 315
+        L80 230
+        C70 215 75 197 90 188
+        Z" fill="#111"/>
+      <path d="M260 94 C270 138 332 145 349 94" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="17" stroke-linecap="round"/>
+      <path d="M261 96 C273 126 327 130 347 96" fill="none" stroke="rgba(0,0,0,.22)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M213 143 C190 165 173 185 157 214" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="4"/>
+      <path d="M405 143 C428 165 445 185 461 214" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="4"/>
+      <path d="M207 279 C238 300 270 309 300 309 C330 309 362 300 393 279" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="4"/>
+      <path d="M205 512 H395" stroke="rgba(255,255,255,.12)" stroke-width="5"/>
+      <path d="M232 138 C218 240 224 390 240 507" fill="none" stroke="rgba(255,255,255,.035)" stroke-width="17"/>
+      <path d="M368 138 C382 240 376 390 360 507" fill="none" stroke="rgba(0,0,0,.07)" stroke-width="19"/>
+      <path d="M96 194 C126 214 154 237 178 268" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="7"/>
+      <path d="M504 194 C474 214 446 237 422 268" fill="none" stroke="rgba(0,0,0,.08)" stroke-width="7"/>
     `,
     hoodie: () => `
-      <path data-fill d="M185 190l77-50c18 22 90 22 108 0l77 50 92 66-68 105-71-43v229H200V318l-71 43-68-105z" fill="#111"/>
-      <path data-fill d="M242 151c18-94 130-94 148 0-17 61-131 61-148 0z" fill="#111" stroke="rgba(255,255,255,.16)" stroke-width="6"/>
-      <path d="M278 172l-22 108M354 172l22 108" stroke="rgba(255,255,255,.55)" stroke-width="5" stroke-linecap="round"/>
-      <path d="M257 435c31-25 87-25 118 0l12 73H245z" fill="rgba(0,0,0,.16)" stroke="rgba(255,255,255,.12)" stroke-width="4"/>
+      <ellipse cx="300" cy="535" rx="176" ry="24" fill="rgba(0,0,0,.13)"/>
+      <path data-fill d="M220 178
+        C235 164 251 151 267 141
+        C280 153 320 156 337 141
+        C355 151 372 165 388 179
+        L494 234
+        C512 244 517 263 507 279
+        L459 356
+        C451 368 437 372 425 364
+        L396 345
+        L396 506
+        C396 526 382 538 362 540
+        L238 540
+        C218 538 204 526 204 506
+        L204 345
+        L175 364
+        C163 372 149 368 141 356
+        L93 279
+        C83 263 88 244 106 234
+        Z" fill="#111"/>
+      <path data-fill d="M240 177
+        C231 130 251 84 300 73
+        C349 84 369 130 360 177
+        C344 198 325 209 300 211
+        C275 209 256 198 240 177 Z" fill="#111"/>
+      <path d="M253 168 C270 185 286 193 300 194 C314 193 330 185 347 168" fill="none" stroke="rgba(255,255,255,.13)" stroke-width="5"/>
+      <path d="M275 182 L261 279 M325 182 L339 279" stroke="rgba(235,235,235,.82)" stroke-width="4.5" stroke-linecap="round"/>
+      <circle cx="259" cy="282" r="6" fill="rgba(235,235,235,.85)"/>
+      <circle cx="341" cy="282" r="6" fill="rgba(235,235,235,.85)"/>
+      <path d="M245 408
+        C266 391 334 391 355 408
+        L372 489
+        H228 Z" fill="rgba(0,0,0,.13)" stroke="rgba(255,255,255,.10)" stroke-width="4"/>
+      <path d="M205 498 H395" stroke="rgba(255,255,255,.11)" stroke-width="12"/>
+      <path d="M221 203 C210 300 218 410 231 498" fill="none" stroke="rgba(255,255,255,.035)" stroke-width="18"/>
+      <path d="M379 203 C390 300 382 410 369 498" fill="none" stroke="rgba(0,0,0,.08)" stroke-width="20"/>
+      <path d="M106 246 C136 268 158 293 179 327" fill="none" stroke="rgba(255,255,255,.055)" stroke-width="7"/>
+      <path d="M494 246 C464 268 442 293 421 327" fill="none" stroke="rgba(0,0,0,.08)" stroke-width="7"/>
     `,
     tote: () => `
-      <path data-fill d="M178 220h244l46 300H132z" fill="#d6c09d" stroke="rgba(0,0,0,.14)" stroke-width="6"/>
-      <path d="M220 226c0-128 160-128 160 0" fill="none" stroke="var(--product-color)" stroke-width="22" stroke-linecap="round"/>
-      <path d="M178 220h244" stroke="rgba(0,0,0,.16)" stroke-width="6"/>
+      <ellipse cx="300" cy="525" rx="145" ry="22" fill="rgba(0,0,0,.12)"/>
+      <path data-fill d="M171 222
+        C170 210 180 201 192 201
+        H408
+        C420 201 430 210 429 222
+        L450 499
+        C451 515 440 526 424 526
+        H176
+        C160 526 149 515 150 499 Z" fill="#d6c09d"/>
+      <path d="M212 211
+        C212 125 250 88 300 88
+        C350 88 388 125 388 211" fill="none" stroke="var(--product-color)" stroke-width="24" stroke-linecap="round"/>
+      <path d="M212 211 C212 125 250 88 300 88 C350 88 388 125 388 211" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M170 231 H430" stroke="rgba(0,0,0,.13)" stroke-width="5"/>
+      <path d="M184 245 L171 494 M416 245 L429 494" stroke="rgba(0,0,0,.07)" stroke-width="4"/>
+      <path d="M196 230 V204 M404 230 V204" stroke="rgba(0,0,0,.15)" stroke-width="7" stroke-linecap="round"/>
+      <path d="M177 505 H423" stroke="rgba(0,0,0,.10)" stroke-width="5"/>
+      <path d="M197 234 C205 323 206 412 194 498" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="18"/>
+      <path d="M403 234 C395 323 394 412 406 498" fill="none" stroke="rgba(0,0,0,.05)" stroke-width="18"/>
     `,
     cap: () => `
-      <path data-fill d="M155 315c0-118 83-191 190-191 121 0 201 86 201 205v95H155z" fill="#111"/>
-      <path data-fill d="M156 423c64-42 151-61 248-61 77 0 146 13 204 42-35 71-104 113-207 113-118 0-201-34-245-94z" fill="#111"/>
-      <path d="M344 132v239" stroke="rgba(255,255,255,.12)" stroke-width="4"/>
-      <path d="M211 214c74-41 190-45 279-8" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="4"/>
+      <ellipse cx="308" cy="488" rx="188" ry="26" fill="rgba(0,0,0,.12)"/>
+      <path data-fill d="M161 342
+        C161 219 227 129 325 119
+        C422 129 486 216 486 340
+        C454 372 413 393 364 402
+        C304 413 239 398 194 371
+        C181 363 170 353 161 342 Z" fill="#111"/>
+      <path data-fill d="M181 360
+        C243 336 328 335 401 350
+        C469 364 523 389 560 426
+        C532 468 468 488 381 486
+        C293 484 216 448 181 399 Z" fill="#111"/>
+      <path d="M325 124 V395" stroke="rgba(255,255,255,.13)" stroke-width="4"/>
+      <path d="M325 126 C270 135 226 171 202 224" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="4"/>
+      <path d="M325 126 C380 135 425 170 451 222" fill="none" stroke="rgba(0,0,0,.12)" stroke-width="4"/>
+      <path d="M197 282 C269 248 390 247 465 282" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="4"/>
+      <path d="M190 361 C261 340 350 340 414 354" fill="none" stroke="rgba(0,0,0,.15)" stroke-width="5"/>
+      <path d="M201 386 C290 416 418 433 523 423" fill="none" stroke="rgba(255,255,255,.055)" stroke-width="5"/>
+      <circle cx="325" cy="121" r="12" fill="var(--product-color)" stroke="rgba(255,255,255,.13)" stroke-width="3"/>
+      <path d="M183 362 C209 279 235 194 292 141" fill="none" stroke="rgba(255,255,255,.025)" stroke-width="23"/>
     `
   };
 
   const zones = {
-    tshirt:{left:39,top:34,width:22,height:29},
-    hoodie:{left:38,top:35,width:24,height:27},
-    tote:{left:34,top:38,width:32,height:31},
-    cap:{left:40,top:44,width:20,height:16}
+    tshirt:{left:39,top:34,width:22,height:28},
+    hoodie:{left:38,top:35,width:24,height:26},
+    tote:{left:34,top:39,width:32,height:30},
+    cap:{left:39,top:43,width:22,height:15}
   };
 
   const selected = name => form.querySelector('input[name="'+name+'"]:checked');
