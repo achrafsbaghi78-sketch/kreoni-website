@@ -1750,3 +1750,31 @@ img{max-width:100%}
   .customizer-preview-top{align-items:flex-start;flex-direction:column;gap:8px}
   .preview-hints{justify-content:flex-start;gap:10px}
 }
+
+
+/* === CUSTOMIZER PREVIEW HOTFIX === */
+.design-placeholder[hidden],
+#uploadedDesignPreview[hidden]{
+  display:none!important;
+}
+.design-placeholder{
+  backdrop-filter:none!important;
+}
+.design-zone{
+  background:rgba(255,255,255,.035);
+}
+.design-zone.has-design{
+  background:transparent;
+  border-color:rgba(239,189,97,.62);
+}
+.design-zone.has-design .design-placeholder{
+  display:none!important;
+}
+.design-zone img{
+  image-rendering:auto;
+  filter:none!important;
+  opacity:1!important;
+}
+.mockup-stage[data-product="cap"] .design-zone{
+  border-radius:18px;
+}
