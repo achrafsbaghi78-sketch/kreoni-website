@@ -385,3 +385,225 @@ if(tshirtForm){
     start();
   }
 })();
+
+
+/* === KREONI LIVE CUSTOMIZER V1 === */
+(() => {
+  const form = document.getElementById('kreoniCustomizer');
+  if (!form) return;
+
+  const stage = document.getElementById('mockupStage');
+  const svg = document.getElementById('productMockup');
+  const zone = document.getElementById('designZone');
+  const upload = document.getElementById('designUpload');
+  const uploadState = document.getElementById('uploadState');
+  const previewImg = document.getElementById('uploadedDesignPreview');
+  const placeholder = document.getElementById('designPlaceholder');
+  const scaleInput = document.getElementById('designScale');
+  const controls = document.getElementById('designControls');
+  const recap = document.getElementById('customizerRecap');
+  const previewTitle = document.getElementById('customPreviewTitle');
+  const previewSummary = document.getElementById('customPreviewSummary');
+  const qty = document.getElementById('customQty');
+  const sizeBlock = document.getElementById('customSizeBlock');
+  const placement = document.getElementById('customPlacement');
+  const notes = document.getElementById('customNotes');
+  const help = document.getElementById('customizerHelp');
+
+  let scale = 1;
+  let offsetX = 0;
+  let offsetY = 0;
+  let dragging = false;
+  let dragStartX = 0;
+  let dragStartY = 0;
+  let originX = 0;
+  let originY = 0;
+  let uploadedName = '';
+
+  const shapes = {
+    tshirt: () => `
+      <path data-fill d="M190 125l76-46c18 28 82 28 100 0l76 46 101 66-68 109-72-43v264H197V257l-72 43-68-109z" fill="#111"/>
+      <path d="M266 79c8 39 92 39 100 0" fill="none" stroke="rgba(255,255,255,.26)" stroke-width="15" stroke-linecap="round"/>
+      <path d="M197 510h206" stroke="rgba(255,255,255,.12)" stroke-width="4"/>
+    `,
+    hoodie: () => `
+      <path data-fill d="M185 190l77-50c18 22 90 22 108 0l77 50 92 66-68 105-71-43v229H200V318l-71 43-68-105z" fill="#111"/>
+      <path data-fill d="M242 151c18-94 130-94 148 0-17 61-131 61-148 0z" fill="#111" stroke="rgba(255,255,255,.16)" stroke-width="6"/>
+      <path d="M278 172l-22 108M354 172l22 108" stroke="rgba(255,255,255,.55)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M257 435c31-25 87-25 118 0l12 73H245z" fill="rgba(0,0,0,.16)" stroke="rgba(255,255,255,.12)" stroke-width="4"/>
+    `,
+    tote: () => `
+      <path data-fill d="M178 220h244l46 300H132z" fill="#d6c09d" stroke="rgba(0,0,0,.14)" stroke-width="6"/>
+      <path d="M220 226c0-128 160-128 160 0" fill="none" stroke="var(--product-color)" stroke-width="22" stroke-linecap="round"/>
+      <path d="M178 220h244" stroke="rgba(0,0,0,.16)" stroke-width="6"/>
+    `,
+    cap: () => `
+      <path data-fill d="M155 315c0-118 83-191 190-191 121 0 201 86 201 205v95H155z" fill="#111"/>
+      <path data-fill d="M156 423c64-42 151-61 248-61 77 0 146 13 204 42-35 71-104 113-207 113-118 0-201-34-245-94z" fill="#111"/>
+      <path d="M344 132v239" stroke="rgba(255,255,255,.12)" stroke-width="4"/>
+      <path d="M211 214c74-41 190-45 279-8" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="4"/>
+    `
+  };
+
+  const zones = {
+    tshirt:{left:38,top:33,width:24,height:32},
+    hoodie:{left:37,top:34,width:26,height:29},
+    tote:{left:31,top:37,width:38,height:35},
+    cap:{left:39,top:43,width:22,height:18}
+  };
+
+  const selected = name => form.querySelector('input[name="'+name+'"]:checked');
+  const getProductKey = () => selected('product')?.dataset.product || 'tshirt';
+
+  function clampQty(){
+    let v = parseInt(qty.value || '1',10);
+    if (!Number.isFinite(v) || v < 1) v = 1;
+    if (v > 100) v = 100;
+    qty.value = v;
+    return v;
+  }
+
+  function applyColor(){
+    const color = selected('mockupColor')?.dataset.color || '#111111';
+    stage.style.setProperty('--product-color',color);
+    svg.querySelectorAll('[data-fill]').forEach(el => el.setAttribute('fill', color));
+    const light = ['#f4f3ef','#d6c09d'].includes(color.toLowerCase());
+    svg.querySelectorAll('path[stroke*="255"]').forEach(el => {
+      if (light) el.setAttribute('stroke','rgba(0,0,0,.16)');
+    });
+  }
+
+  function setZone(product){
+    const z = zones[product] || zones.tshirt;
+    Object.assign(zone.style,{
+      left:z.left+'%',top:z.top+'%',width:z.width+'%',height:z.height+'%'
+    });
+  }
+
+  function renderProduct(){
+    const product = getProductKey();
+    stage.dataset.product = product;
+    svg.innerHTML = shapes[product]();
+    setZone(product);
+    applyColor();
+    const name = selected('product')?.value || 'T-shirt';
+    previewTitle.textContent = name + ' personnalisé';
+    sizeBlock.hidden = ['tote','cap'].includes(product);
+    resetDesign(false);
+    updateRecap();
+  }
+
+  function applyDesignTransform(){
+    previewImg.style.transform = 'translate('+offsetX+'px,'+offsetY+'px) scale('+scale+')';
+    scaleInput.value = Math.round(scale*100);
+  }
+
+  function resetDesign(resetScale=true){
+    offsetX = 0; offsetY = 0;
+    if (resetScale) scale = 1;
+    applyDesignTransform();
+  }
+
+  function updateRecap(){
+    const product = selected('product')?.value || 'T-shirt';
+    const key = getProductKey();
+    const color = selected('mockupColor')?.value || 'Noir';
+    const size = selected('customSize')?.value || 'M';
+    const q = clampQty();
+    const unit = q === 1 ? 'pièce' : 'pièces';
+    const sizePart = ['tote','cap'].includes(key) ? '' : ' • '+size;
+    const summary = color + sizePart + ' • ' + q + ' ' + unit;
+    recap.textContent = product + ' • ' + summary;
+    previewSummary.textContent = summary;
+  }
+
+  form.querySelectorAll('input[name="product"]').forEach(el => el.addEventListener('change',renderProduct));
+  form.querySelectorAll('input[name="mockupColor"]').forEach(el => el.addEventListener('change',()=>{applyColor();updateRecap()}));
+  form.querySelectorAll('input[name="customSize"]').forEach(el => el.addEventListener('change',updateRecap));
+  qty.addEventListener('input',updateRecap);
+
+  document.getElementById('customQtyMinus')?.addEventListener('click',()=>{qty.value=Math.max(1,clampQty()-1);updateRecap()});
+  document.getElementById('customQtyPlus')?.addEventListener('click',()=>{qty.value=Math.min(100,clampQty()+1);updateRecap()});
+
+  upload.addEventListener('change',() => {
+    const file = upload.files?.[0];
+    if (!file) return;
+    if (!/^image\/(png|jpeg|webp)$/.test(file.type)) {
+      uploadState.textContent = 'Format non pris en charge.';
+      return;
+    }
+    if (file.size > 10*1024*1024) {
+      uploadState.textContent = 'Fichier trop lourd — 10 Mo maximum.';
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      previewImg.src = reader.result;
+      previewImg.hidden = false;
+      placeholder.hidden = true;
+      uploadedName = file.name;
+      uploadState.textContent = file.name;
+      controls.classList.remove('is-disabled');
+      resetDesign(true);
+    };
+    reader.readAsDataURL(file);
+  });
+
+  scaleInput.addEventListener('input',()=>{
+    scale = Number(scaleInput.value)/100;
+    applyDesignTransform();
+  });
+  document.getElementById('designZoomOut')?.addEventListener('click',()=>{
+    scale=Math.max(.45,scale-.1);applyDesignTransform();
+  });
+  document.getElementById('designZoomIn')?.addEventListener('click',()=>{
+    scale=Math.min(1.8,scale+.1);applyDesignTransform();
+  });
+  document.getElementById('designReset')?.addEventListener('click',()=>resetDesign(true));
+  document.getElementById('designRemove')?.addEventListener('click',()=>{
+    upload.value='';uploadedName='';previewImg.removeAttribute('src');previewImg.hidden=true;
+    placeholder.hidden=false;uploadState.textContent='Cliquez ici pour choisir votre fichier';resetDesign(true);
+  });
+
+  zone.addEventListener('pointerdown',e=>{
+    if (previewImg.hidden) return;
+    dragging=true;zone.setPointerCapture(e.pointerId);
+    dragStartX=e.clientX;dragStartY=e.clientY;originX=offsetX;originY=offsetY;
+  });
+  zone.addEventListener('pointermove',e=>{
+    if(!dragging)return;
+    offsetX=originX+(e.clientX-dragStartX);
+    offsetY=originY+(e.clientY-dragStartY);
+    applyDesignTransform();
+  });
+  const stopDrag=e=>{dragging=false;try{zone.releasePointerCapture(e.pointerId)}catch(_){}};
+  zone.addEventListener('pointerup',stopDrag);
+  zone.addEventListener('pointercancel',stopDrag);
+
+  document.getElementById('sendCustomConfig')?.addEventListener('click',()=>{
+    const product = selected('product')?.value || 'T-shirt';
+    const key = getProductKey();
+    const color = selected('mockupColor')?.value || 'Noir';
+    const size = selected('customSize')?.value || 'M';
+    const q = clampQty();
+    const note = notes.value.trim();
+    const msg = [
+      'Bonjour KREONI, je souhaite un devis pour une personnalisation.',
+      '',
+      'Produit : '+product,
+      'Couleur : '+color,
+      !['tote','cap'].includes(key) ? 'Taille : '+size : '',
+      'Quantité : '+q,
+      'Emplacement : '+placement.value,
+      uploadedName ? 'Fichier préparé : '+uploadedName : 'Design : à envoyer sur WhatsApp',
+      note ? 'Détails : '+note : '',
+      '',
+      'J’ai préparé un aperçu sur votre configurateur. Je joins mon fichier ici pour validation du BAT.'
+    ].filter(Boolean).join('\n');
+    window.open('https://wa.me/212664521613?text='+encodeURIComponent(msg),'_blank','noopener,noreferrer');
+    help.textContent='WhatsApp est ouvert. Ajoutez votre fichier original dans la conversation pour finaliser la demande.';
+  });
+
+  controls.classList.add('is-disabled');
+  renderProduct();
+})();
