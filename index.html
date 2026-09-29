@@ -227,112 +227,126 @@
     </div>
   </section>
 
-  <section class="section configurator-section" id="configurateur">
+  <section class="section customizer-section" id="configurateur">
     <div class="container">
-      <div class="section-head">
-        <span class="section-chip">✦ PERSONNALISATION EN DIRECT</span>
-        <p class="eyebrow">CONFIGURATEUR T-SHIRT</p>
-        <h2>Préparez votre demande en quelques clics.</h2>
-        <p>Choisissez vos préférences. Le prix final sera confirmé selon le textile, le visuel, la quantité et la disponibilité.</p>
+      <div class="section-head customizer-head">
+        <span class="section-chip">✦ STUDIO KREONI</span>
+        <p class="eyebrow">APERÇU EN DIRECT</p>
+        <h2>Testez votre design avant de commander.</h2>
+        <p>Choisissez un support, importez votre image et placez-la directement sur le produit. Cet aperçu est indicatif avant validation finale du BAT.</p>
       </div>
 
-      <div class="configurator">
-        <div class="config-preview">
-          <div class="preview-top">
-            <span class="preview-badge">Aperçu</span>
-            <span id="previewSummary">Noir • M • 1 pièce</span>
-          </div>
-          <div class="shirt-stage">
-            <svg class="shirt-svg" viewBox="0 0 520 520" role="img" aria-label="Aperçu du T-shirt">
-              <path id="shirtBody" d="M166 92l58-34c12 20 60 20 72 0l58 34 91 59-62 101-61-37v235H198V215l-61 37-62-101z" fill="#111111"/>
-              <path d="M224 58c7 25 65 25 72 0" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="12" stroke-linecap="round"/>
-              <rect id="printZone" x="205" y="180" width="110" height="115" rx="10" fill="none" stroke="#d5a33b" stroke-width="3" stroke-dasharray="8 8"/>
-              <text id="previewText" x="260" y="240" text-anchor="middle" dominant-baseline="middle" fill="#d5a33b" font-size="22" font-weight="700" font-family="Arial,sans-serif">KREONI</text>
-            </svg>
-          </div>
-          <p class="preview-note">Aperçu indicatif. Le BAT final est validé avec KREONI avant production.</p>
-        </div>
-
-        <form class="config-form" id="tshirtConfigurator" onsubmit="return false">
-          <div class="config-block">
-            <div class="config-label"><span>01</span><div><strong>Couleur souhaitée</strong><small>Selon disponibilité du textile</small></div></div>
-            <div class="swatches" role="radiogroup" aria-label="Couleur du T-shirt">
-              <label class="swatch-option"><input type="radio" name="color" value="Noir" data-color="#111111" checked><span class="swatch black"></span><em>Noir</em></label>
-              <label class="swatch-option"><input type="radio" name="color" value="Blanc" data-color="#f7f7f7"><span class="swatch white"></span><em>Blanc</em></label>
-              <label class="swatch-option"><input type="radio" name="color" value="Beige" data-color="#d9c5a3"><span class="swatch beige"></span><em>Beige</em></label>
-              <label class="swatch-option"><input type="radio" name="color" value="Bleu marine" data-color="#17233d"><span class="swatch navy"></span><em>Marine</em></label>
-              <label class="swatch-option"><input type="radio" name="color" value="Bordeaux" data-color="#651f2b"><span class="swatch burgundy"></span><em>Bordeaux</em></label>
+      <div class="live-customizer">
+        <form class="customizer-panel" id="kreoniCustomizer" onsubmit="return false">
+          <div class="customizer-step">
+            <div class="customizer-step-title"><span>01</span><div><strong>Choisissez votre support</strong><small>Vous pourrez le changer à tout moment</small></div></div>
+            <div class="product-picker" role="radiogroup" aria-label="Choisir un support">
+              <label><input type="radio" name="product" value="T-shirt" data-product="tshirt" checked><span><b>◯</b>T-shirt</span></label>
+              <label><input type="radio" name="product" value="Hoodie" data-product="hoodie"><span><b>⌁</b>Hoodie</span></label>
+              <label><input type="radio" name="product" value="Tote bag" data-product="tote"><span><b>▢</b>Tote bag</span></label>
+              <label><input type="radio" name="product" value="Casquette" data-product="cap"><span><b>⌒</b>Casquette</span></label>
             </div>
           </div>
 
-          <div class="config-row">
-            <div class="config-block">
-              <div class="config-label"><span>02</span><div><strong>Taille</strong></div></div>
-              <div class="size-options">
-                <label><input type="radio" name="size" value="S"><span>S</span></label>
-                <label><input type="radio" name="size" value="M" checked><span>M</span></label>
-                <label><input type="radio" name="size" value="L"><span>L</span></label>
-                <label><input type="radio" name="size" value="XL"><span>XL</span></label>
-                <label><input type="radio" name="size" value="XXL"><span>XXL</span></label>
+          <div class="customizer-step">
+            <div class="customizer-step-title"><span>02</span><div><strong>Ajoutez votre design</strong><small>PNG, JPG ou WEBP • 10 Mo max</small></div></div>
+            <label class="design-upload" id="designUploadLabel">
+              <input id="designUpload" type="file" accept="image/png,image/jpeg,image/webp">
+              <span class="upload-icon">＋</span>
+              <span><strong>Importer mon image</strong><small id="uploadState">Cliquez ici pour choisir votre fichier</small></span>
+            </label>
+          </div>
+
+          <div class="customizer-step">
+            <div class="customizer-step-title"><span>03</span><div><strong>Couleur du support</strong><small>Aperçu indicatif</small></div></div>
+            <div class="custom-color-picker">
+              <label title="Noir"><input type="radio" name="mockupColor" value="Noir" data-color="#111111" checked><span style="--swatch:#111111"></span></label>
+              <label title="Blanc"><input type="radio" name="mockupColor" value="Blanc" data-color="#f4f3ef"><span style="--swatch:#f4f3ef"></span></label>
+              <label title="Beige"><input type="radio" name="mockupColor" value="Beige" data-color="#d6c09d"><span style="--swatch:#d6c09d"></span></label>
+              <label title="Marine"><input type="radio" name="mockupColor" value="Bleu marine" data-color="#17233d"><span style="--swatch:#17233d"></span></label>
+              <label title="Bordeaux"><input type="radio" name="mockupColor" value="Bordeaux" data-color="#651f2b"><span style="--swatch:#651f2b"></span></label>
+            </div>
+          </div>
+
+          <div class="customizer-row">
+            <div class="customizer-step compact-step" id="customSizeBlock">
+              <div class="customizer-step-title"><span>04</span><div><strong>Taille</strong></div></div>
+              <div class="size-options custom-sizes">
+                <label><input type="radio" name="customSize" value="S"><span>S</span></label>
+                <label><input type="radio" name="customSize" value="M" checked><span>M</span></label>
+                <label><input type="radio" name="customSize" value="L"><span>L</span></label>
+                <label><input type="radio" name="customSize" value="XL"><span>XL</span></label>
+                <label><input type="radio" name="customSize" value="XXL"><span>XXL</span></label>
               </div>
             </div>
 
-            <div class="config-block">
-              <div class="config-label"><span>03</span><div><strong>Quantité</strong></div></div>
-              <div class="qty-control">
-                <button type="button" id="qtyMinus" aria-label="Diminuer la quantité">−</button>
-                <input id="tshirtQty" name="quantity" type="number" min="1" max="100" value="1" inputmode="numeric">
-                <button type="button" id="qtyPlus" aria-label="Augmenter la quantité">+</button>
+            <div class="customizer-step compact-step">
+              <div class="customizer-step-title"><span>05</span><div><strong>Quantité</strong></div></div>
+              <div class="qty-control custom-qty">
+                <button type="button" id="customQtyMinus" aria-label="Diminuer la quantité">−</button>
+                <input id="customQty" type="number" min="1" max="100" value="1" inputmode="numeric">
+                <button type="button" id="customQtyPlus" aria-label="Augmenter la quantité">+</button>
               </div>
             </div>
           </div>
 
-          <div class="config-row">
+          <div class="customizer-step design-controls" id="designControls">
+            <div class="customizer-step-title"><span>06</span><div><strong>Ajustez votre design</strong><small>Glissez directement le visuel dans l’aperçu</small></div></div>
+            <div class="design-tools">
+              <button type="button" id="designZoomOut" aria-label="Réduire le design">−</button>
+              <input id="designScale" type="range" min="45" max="180" value="100" aria-label="Taille du design">
+              <button type="button" id="designZoomIn" aria-label="Agrandir le design">＋</button>
+              <button type="button" class="tool-reset" id="designReset">Réinitialiser</button>
+              <button type="button" class="tool-remove" id="designRemove">Supprimer</button>
+            </div>
+          </div>
+
+          <div class="customizer-row fields-row">
             <label class="field">
-              <span>Emplacement de l’impression</span>
-              <select id="printPlacement" name="placement">
-                <option value="Poitrine / petit logo">Poitrine / petit logo</option>
+              <span>Emplacement</span>
+              <select id="customPlacement">
                 <option value="Devant" selected>Devant</option>
+                <option value="Poitrine / petit logo">Poitrine / petit logo</option>
                 <option value="Dos">Dos</option>
-                <option value="Devant + dos">Devant + dos</option>
               </select>
             </label>
-            <div class="visual-choice">
-              <span class="visual-choice-title">Choisissez votre visuel</span>
-              <label class="visual-option">
-                <input type="radio" name="designSource" value="Modèle DTF KREONI" checked>
-                <span><strong>Modèles DTF KREONI</strong><small>Nous vous partageons les modèles disponibles sur WhatsApp.</small></span>
-              </label>
-              <label class="visual-option">
-                <input type="radio" name="designSource" value="Mon propre design">
-                <span><strong>Mon propre design</strong><small>Envoyez-nous votre image, logo ou fichier directement sur WhatsApp.</small></span>
-              </label>
-              <label class="visual-option">
-                <input type="radio" name="designSource" value="J’ai une idée">
-                <span><strong>J’ai une idée</strong><small>Expliquez-nous votre idée et nous vous aidons à la préparer.</small></span>
-              </label>
-              <a class="models-link" href="https://wa.me/212664521613?text=Bonjour%20KREONI%2C%20je%20souhaite%20voir%20les%20mod%C3%A8les%20DTF%20disponibles." target="_blank" rel="noopener noreferrer">Voir les modèles DTF disponibles →</a>
-            </div>
+            <label class="field">
+              <span>Détails <small>(optionnel)</small></span>
+              <input id="customNotes" type="text" maxlength="120" placeholder="Ex: cadeau, logo entreprise...">
+            </label>
           </div>
 
-          <label class="field">
-            <span>Texte / prénom à afficher <small>(optionnel — aperçu rapide)</small></span>
-            <input id="customText" name="customText" type="text" maxlength="18" placeholder="Ex: KREONI">
-          </label>
-
-          <label class="field">
-            <span>Détails de votre demande <small>(optionnel)</small></span>
-            <textarea id="configNotes" name="notes" rows="3" placeholder="Ex: impression grande au centre, cadeau d’anniversaire, logo de mon entreprise..."></textarea>
-          </label>
-
-          <div class="config-recap">
-            <div><small>Votre sélection</small><strong id="configRecap">T-shirt Noir • M • 1 pièce • Devant</strong></div>
+          <div class="customizer-recap">
+            <div><small>Votre configuration</small><strong id="customizerRecap">T-shirt • Noir • M • 1 pièce</strong></div>
             <span>Prix sur devis</span>
           </div>
 
-          <button class="btn btn-gold config-submit" type="button" id="sendTshirtConfig">Demander le prix sur WhatsApp</button>
-          <p class="config-help" id="configHelp">Les modèles DTF vous seront partagés sur WhatsApp. Vous pouvez aussi envoyer votre propre design, photo ou logo.</p>
+          <button class="btn btn-gold customizer-submit" type="button" id="sendCustomConfig">Continuer sur WhatsApp →</button>
+          <p class="customizer-help" id="customizerHelp">L’aperçu sert à visualiser le placement. Le rendu final est confirmé avec KREONI avant production.</p>
         </form>
+
+        <div class="customizer-preview" aria-live="polite">
+          <div class="customizer-preview-top">
+            <div><span class="preview-badge">APERÇU LIVE</span><strong id="customPreviewTitle">T-shirt personnalisé</strong></div>
+            <span id="customPreviewSummary">Noir • M • 1 pièce</span>
+          </div>
+
+          <div class="mockup-stage" id="mockupStage" data-product="tshirt">
+            <div class="stage-glow" aria-hidden="true"></div>
+            <svg class="product-mockup" id="productMockup" viewBox="0 0 600 600" role="img" aria-label="Aperçu du produit personnalisé"></svg>
+            <div class="design-zone" id="designZone">
+              <img id="uploadedDesignPreview" alt="Votre design sur le produit" draggable="false" hidden>
+              <div class="design-placeholder" id="designPlaceholder"><span>＋</span><strong>Votre design ici</strong><small>Importez une image pour commencer</small></div>
+            </div>
+            <span class="print-zone-label">ZONE D’IMPRESSION</span>
+          </div>
+
+          <div class="preview-hints">
+            <span>↔ Glissez le design</span>
+            <span>＋ / − Ajustez la taille</span>
+            <span>✓ BAT validé avant production</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
