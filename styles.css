@@ -1418,3 +1418,112 @@ img{max-width:100%}
     width:max-content;
   }
 }
+
+
+/* === INSPIRATIONS V3 FIX === */
+.collection-v3{
+  padding:68px 0 76px;
+}
+.collection-v3 .collection-head{
+  margin-bottom:24px;
+}
+.collection-grid-v3{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+.collection-grid-v3 .collection-card{
+  position:relative;
+  min-height:0;
+  aspect-ratio:1 / 1.08;
+  overflow:hidden;
+  border-radius:22px;
+  background:#eee9df;
+  box-shadow:0 16px 40px rgba(35,28,18,.08);
+}
+.collection-grid-v3 .collection-card::after{
+  content:"";
+  position:absolute;
+  inset:52% 0 0;
+  z-index:1;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.78));
+}
+.collection-grid-v3 .collection-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  transform:scale(1.005);
+  filter:none;
+  transition:transform .5s cubic-bezier(.22,.61,.36,1);
+}
+.collection-grid-v3 .collection-card:hover img{
+  transform:scale(1.035);
+  filter:none;
+}
+.collection-grid-v3 .collection-card>span{
+  position:absolute;
+  left:20px;
+  right:20px;
+  bottom:18px;
+  z-index:2;
+  display:grid;
+  gap:3px;
+  color:#fff;
+}
+.collection-grid-v3 .collection-card small{
+  font-size:.58rem;
+  letter-spacing:.14em;
+  color:#efc56e;
+  font-weight:800;
+}
+.collection-grid-v3 .collection-card strong{
+  font-size:1.28rem;
+  line-height:1.05;
+}
+.collection-grid-v3 .collection-card em{
+  margin-top:4px;
+  font-size:.68rem;
+  font-style:normal;
+  color:rgba(255,255,255,.72);
+  font-weight:600;
+}
+.collection-grid-v3 .collection-card>span::after{
+  content:"↗";
+  position:absolute;
+  right:0;
+  bottom:1px;
+  width:32px;
+  height:32px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(255,255,255,.32);
+  border-radius:50%;
+  background:rgba(8,8,8,.34);
+  color:#efc56e;
+}
+.collection-v3 .collection-note{
+  margin-top:16px;
+}
+
+@media(max-width:900px){
+  .collection-grid-v3{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .collection-grid-v3 .collection-card:last-child{
+    grid-column:1 / -1;
+    aspect-ratio:1.65 / 1;
+  }
+}
+@media(max-width:650px){
+  .collection-v3{padding:52px 0 60px}
+  .collection-grid-v3{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  .collection-grid-v3 .collection-card,
+  .collection-grid-v3 .collection-card:last-child{
+    grid-column:auto;
+    aspect-ratio:1 / 1.05;
+  }
+}
