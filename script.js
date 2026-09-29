@@ -446,10 +446,10 @@ if(tshirtForm){
   };
 
   const zones = {
-    tshirt:{left:38,top:33,width:24,height:32},
-    hoodie:{left:37,top:34,width:26,height:29},
-    tote:{left:31,top:37,width:38,height:35},
-    cap:{left:39,top:43,width:22,height:18}
+    tshirt:{left:39,top:34,width:22,height:29},
+    hoodie:{left:38,top:35,width:24,height:27},
+    tote:{left:34,top:38,width:32,height:31},
+    cap:{left:40,top:44,width:20,height:16}
   };
 
   const selected = name => form.querySelector('input[name="'+name+'"]:checked');
@@ -541,6 +541,7 @@ if(tshirtForm){
       previewImg.src = reader.result;
       previewImg.hidden = false;
       placeholder.hidden = true;
+      zone.classList.add('has-design');
       uploadedName = file.name;
       uploadState.textContent = file.name;
       controls.classList.remove('is-disabled');
@@ -562,7 +563,8 @@ if(tshirtForm){
   document.getElementById('designReset')?.addEventListener('click',()=>resetDesign(true));
   document.getElementById('designRemove')?.addEventListener('click',()=>{
     upload.value='';uploadedName='';previewImg.removeAttribute('src');previewImg.hidden=true;
-    placeholder.hidden=false;uploadState.textContent='Cliquez ici pour choisir votre fichier';resetDesign(true);
+    placeholder.hidden=false;zone.classList.remove('has-design');
+    uploadState.textContent='Cliquez ici pour choisir votre fichier';resetDesign(true);
   });
 
   zone.addEventListener('pointerdown',e=>{
