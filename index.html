@@ -268,9 +268,23 @@
             </div>
           </div>
 
+          <div class="customizer-step placement-step">
+            <div class="customizer-step-title"><span>04</span><div><strong>Position d’impression</strong><small>Choisissez exactement où imprimer votre design</small></div></div>
+            <div class="placement-picker" id="placementPicker">
+              <label data-for="tshirt hoodie tote cap"><input type="radio" name="customPlacement" value="Face" data-placement="front" checked><span><b>▣</b>Face</span></label>
+              <label data-for="tshirt hoodie tote"><input type="radio" name="customPlacement" value="Dos" data-placement="back"><span><b>▤</b>Dos</span></label>
+              <label data-for="tshirt hoodie"><input type="radio" name="customPlacement" value="Poitrine gauche" data-placement="chest-left"><span><b>◰</b>Poitrine G.</span></label>
+              <label data-for="tshirt hoodie"><input type="radio" name="customPlacement" value="Poitrine droite" data-placement="chest-right"><span><b>◱</b>Poitrine D.</span></label>
+              <label data-for="tshirt hoodie"><input type="radio" name="customPlacement" value="Manche gauche" data-placement="sleeve-left"><span><b>◁</b>Manche G.</span></label>
+              <label data-for="tshirt hoodie"><input type="radio" name="customPlacement" value="Manche droite" data-placement="sleeve-right"><span><b>▷</b>Manche D.</span></label>
+              <label data-for="cap"><input type="radio" name="customPlacement" value="Côté gauche" data-placement="side-left"><span><b>◁</b>Côté G.</span></label>
+              <label data-for="cap"><input type="radio" name="customPlacement" value="Côté droit" data-placement="side-right"><span><b>▷</b>Côté D.</span></label>
+            </div>
+          </div>
+
           <div class="customizer-row">
             <div class="customizer-step compact-step" id="customSizeBlock">
-              <div class="customizer-step-title"><span>04</span><div><strong>Taille</strong></div></div>
+              <div class="customizer-step-title"><span>05</span><div><strong>Taille</strong></div></div>
               <div class="size-options custom-sizes">
                 <label><input type="radio" name="customSize" value="S"><span>S</span></label>
                 <label><input type="radio" name="customSize" value="M" checked><span>M</span></label>
@@ -281,7 +295,7 @@
             </div>
 
             <div class="customizer-step compact-step">
-              <div class="customizer-step-title"><span>05</span><div><strong>Quantité</strong></div></div>
+              <div class="customizer-step-title"><span>06</span><div><strong>Quantité</strong></div></div>
               <div class="qty-control custom-qty">
                 <button type="button" id="customQtyMinus" aria-label="Diminuer la quantité">−</button>
                 <input id="customQty" type="number" min="1" max="100" value="1" inputmode="numeric">
@@ -291,30 +305,22 @@
           </div>
 
           <div class="customizer-step design-controls" id="designControls">
-            <div class="customizer-step-title"><span>06</span><div><strong>Ajustez votre design</strong><small>Glissez directement le visuel dans l’aperçu</small></div></div>
-            <div class="design-tools">
+            <div class="customizer-step-title"><span>07</span><div><strong>Ajustez votre design</strong><small>Déplacez, agrandissez ou tournez le visuel</small></div></div>
+            <div class="design-tools design-tools-v2">
               <button type="button" id="designZoomOut" aria-label="Réduire le design">−</button>
-              <input id="designScale" type="range" min="45" max="180" value="100" aria-label="Taille du design">
+              <input id="designScale" type="range" min="35" max="190" value="100" aria-label="Taille du design">
               <button type="button" id="designZoomIn" aria-label="Agrandir le design">＋</button>
+              <button type="button" id="designRotateLeft" aria-label="Tourner à gauche">↶</button>
+              <button type="button" id="designRotateRight" aria-label="Tourner à droite">↷</button>
               <button type="button" class="tool-reset" id="designReset">Réinitialiser</button>
               <button type="button" class="tool-remove" id="designRemove">Supprimer</button>
             </div>
           </div>
 
-          <div class="customizer-row fields-row">
-            <label class="field">
-              <span>Emplacement</span>
-              <select id="customPlacement">
-                <option value="Devant" selected>Devant</option>
-                <option value="Poitrine / petit logo">Poitrine / petit logo</option>
-                <option value="Dos">Dos</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Détails <small>(optionnel)</small></span>
-              <input id="customNotes" type="text" maxlength="120" placeholder="Ex: cadeau, logo entreprise...">
-            </label>
-          </div>
+          <label class="field custom-notes-field">
+            <span>Détails <small>(optionnel)</small></span>
+            <input id="customNotes" type="text" maxlength="120" placeholder="Ex: cadeau, logo entreprise, impression supplémentaire...">
+          </label>
 
           <div class="customizer-recap">
             <div><small>Votre configuration</small><strong id="customizerRecap">T-shirt • Noir • M • 1 pièce</strong></div>
@@ -341,9 +347,16 @@
             <span class="print-zone-label">ZONE D’IMPRESSION</span>
           </div>
 
+          <div class="product-view-switch" id="productViewSwitch" aria-label="Changer la vue du produit">
+            <button type="button" class="active" data-view="front"><span>▣</span>Face</button>
+            <button type="button" data-view="back"><span>▤</span>Dos</button>
+            <button type="button" data-view="side-left"><span>◁</span>Côté G.</button>
+            <button type="button" data-view="side-right"><span>▷</span>Côté D.</button>
+          </div>
           <div class="preview-hints">
             <span>↔ Glissez le design</span>
             <span>＋ / − Ajustez la taille</span>
+            <span>↶ ↷ Rotation</span>
             <span>✓ BAT validé avant production</span>
           </div>
         </div>
