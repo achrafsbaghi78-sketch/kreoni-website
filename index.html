@@ -325,15 +325,15 @@
           <p class="customizer-help" id="customizerHelp">L’aperçu sert à visualiser le placement. Le rendu final est confirmé avec KREONI avant production.</p>
         </form>
 
-        <div class="customizer-preview" aria-live="polite">
+        <div class="customizer-preview customizer-preview-v2" aria-live="polite">
           <div class="customizer-preview-top">
-            <div><span class="preview-badge">APERÇU LIVE</span><strong id="customPreviewTitle">T-shirt personnalisé</strong></div>
+            <div><span class="preview-badge"><i></i> APERÇU EN DIRECT</span><strong id="customPreviewTitle">T-shirt personnalisé</strong></div>
             <span id="customPreviewSummary">Noir • M • 1 pièce</span>
           </div>
 
-          <div class="mockup-stage" id="mockupStage" data-product="tshirt">
-            <div class="stage-glow" aria-hidden="true"></div>
-            <svg class="product-mockup" id="productMockup" viewBox="0 0 600 600" role="img" aria-label="Aperçu du produit personnalisé"></svg>
+          <div class="mockup-stage photo-mockup-stage" id="mockupStage" data-product="tshirt">
+            <img class="product-photo" id="productMockupPhoto" src="assets/tshirt-kreoni.avif" alt="Mockup réaliste T-shirt KREONI" draggable="false">
+            <div class="fabric-cover" id="fabricCover" aria-hidden="true"></div>
             <div class="design-zone" id="designZone">
               <img id="uploadedDesignPreview" alt="Votre design sur le produit" draggable="false" hidden>
               <div class="design-placeholder" id="designPlaceholder"><span>＋</span><strong>Votre design ici</strong><small>Importez une image pour commencer</small></div>
@@ -347,6 +347,21 @@
             <span>✓ BAT validé avant production</span>
           </div>
         </div>
+
+        <aside class="customizer-side" aria-label="Informations personnalisation">
+          <div class="customizer-side-card">
+            <span class="side-chip">KREONI STUDIO</span>
+            <h3>Votre design.<br>Votre style.</h3>
+            <p>Créez votre aperçu puis envoyez le fichier original sur WhatsApp pour validation finale.</p>
+          </div>
+          <div class="customizer-side-list">
+            <div><span>✦</span><p><strong>Impression DTF</strong><small>Rendu haute qualité</small></p></div>
+            <div><span>◈</span><p><strong>Couleurs durables</strong><small>Validation avant production</small></p></div>
+            <div><span>▣</span><p><strong>Livraison Maroc</strong><small>Particuliers & professionnels</small></p></div>
+          </div>
+          <button class="btn btn-gold customizer-side-cta" type="button" id="sideWhatsApp">Continuer sur WhatsApp →</button>
+          <small class="side-note">La couleur du produit affichée sert de mockup. La couleur finale choisie est confirmée avec KREONI avant production.</small>
+        </aside>
       </div>
     </div>
   </section>
