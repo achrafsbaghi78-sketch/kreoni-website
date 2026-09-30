@@ -2039,3 +2039,126 @@ img{max-width:100%}
   .photo-mockup-stage{min-height:470px}
   .customizer-side-card,.customizer-side-list{padding:16px}
 }
+
+
+/* === CUSTOMIZER V2 PLACEMENT === */
+.placement-picker{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:7px;
+}
+.placement-picker label.is-hidden{display:none}
+.placement-picker input{position:absolute;opacity:0;pointer-events:none}
+.placement-picker span{
+  min-height:54px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:8px 7px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:11px;
+  background:#111;
+  color:rgba(255,255,255,.65);
+  font-size:.61rem;
+  font-weight:700;
+  text-align:center;
+  cursor:pointer;
+  transition:.2s ease;
+}
+.placement-picker b{
+  color:#efbd61;
+  font-size:.9rem;
+  font-weight:600;
+}
+.placement-picker input:checked+span{
+  border-color:#efbd61;
+  color:#fff;
+  background:rgba(239,189,97,.1);
+  box-shadow:inset 0 0 0 1px rgba(239,189,97,.16);
+}
+.design-tools-v2{
+  grid-template-columns:38px minmax(75px,1fr) 38px 38px 38px auto auto;
+}
+.custom-notes-field{margin:0}
+.customizer-panel .custom-notes-field input{
+  background:#111;color:#fff;border-color:rgba(255,255,255,.12);
+}
+.product-view-switch{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+  margin-top:11px;
+}
+.product-view-switch button{
+  min-height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:11px;
+  background:#171717;
+  color:rgba(255,255,255,.58);
+  font-size:.62rem;
+  font-weight:800;
+  cursor:pointer;
+  transition:.2s ease;
+}
+.product-view-switch button span{color:#efbd61}
+.product-view-switch button.active{
+  background:#efbd61;
+  border-color:#efbd61;
+  color:#111;
+}
+.product-view-switch button.active span{color:#111}
+.product-photo{
+  transition:transform .38s ease,filter .38s ease,opacity .25s ease;
+}
+.mockup-stage[data-view="front"] .product-photo{transform:none}
+.mockup-stage[data-view="back"] .product-photo{transform:scaleX(-1)}
+.mockup-stage[data-view="side-left"] .product-photo{
+  transform:perspective(900px) rotateY(18deg) scale(.94);
+}
+.mockup-stage[data-view="side-right"] .product-photo{
+  transform:perspective(900px) rotateY(-18deg) scale(.94);
+}
+.mockup-stage[data-view="side-left"] .fabric-cover,
+.mockup-stage[data-view="side-right"] .fabric-cover{opacity:.86}
+.mockup-stage[data-view="back"] .fabric-cover{opacity:.97}
+
+.mockup-stage[data-placement="chest-left"] .design-zone{
+  left:51%!important;top:27%!important;width:16%!important;height:19%!important;
+}
+.mockup-stage[data-placement="chest-right"] .design-zone{
+  left:33%!important;top:27%!important;width:16%!important;height:19%!important;
+}
+.mockup-stage[data-placement="sleeve-left"] .design-zone{
+  left:16%!important;top:29%!important;width:15%!important;height:18%!important;
+}
+.mockup-stage[data-placement="sleeve-right"] .design-zone{
+  left:69%!important;top:29%!important;width:15%!important;height:18%!important;
+}
+.mockup-stage[data-placement="side-left"] .design-zone{
+  left:28%!important;top:30%!important;width:20%!important;height:22%!important;
+}
+.mockup-stage[data-placement="side-right"] .design-zone{
+  left:52%!important;top:30%!important;width:20%!important;height:22%!important;
+}
+.mockup-stage[data-placement="back"] .design-zone{
+  left:31%!important;top:23%!important;width:38%!important;height:52%!important;
+}
+.mockup-stage[data-product="hoodie"][data-placement="back"] .design-zone{
+  left:30%!important;top:24%!important;width:40%!important;height:51%!important;
+}
+.mockup-stage[data-product="tote"][data-placement="back"] .design-zone{
+  left:27%!important;top:34%!important;width:46%!important;height:44%!important;
+}
+
+@media(max-width:650px){
+  .placement-picker{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .design-tools-v2{grid-template-columns:38px 1fr 38px 38px 38px}
+  .design-tools-v2 .tool-reset,
+  .design-tools-v2 .tool-remove{grid-column:auto}
+  .product-view-switch{grid-template-columns:repeat(2,1fr)}
+}
