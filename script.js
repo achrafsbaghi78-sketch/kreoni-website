@@ -387,7 +387,7 @@ if(tshirtForm){
 })();
 
 
-/* === KREONI LIVE CUSTOMIZER V2 PHOTO === */
+/* === KREONI LIVE CUSTOMIZER V2 PHOTO + PLACEMENTS === */
 (() => {
   const form = document.getElementById('kreoniCustomizer');
   if (!form) return;
@@ -406,9 +406,10 @@ if(tshirtForm){
   const previewSummary = document.getElementById('customPreviewSummary');
   const qty = document.getElementById('customQty');
   const sizeBlock = document.getElementById('customSizeBlock');
-  const placement = document.getElementById('customPlacement');
   const notes = document.getElementById('customNotes');
   const help = document.getElementById('customizerHelp');
+  const placementPicker = document.getElementById('placementPicker');
+  const viewSwitch = document.getElementById('productViewSwitch');
 
   const products = {
     tshirt:{name:'T-shirt',src:'assets/tshirt-kreoni.avif',alt:'T-shirt réaliste KREONI'},
@@ -417,100 +418,131 @@ if(tshirtForm){
     cap:{name:'Casquette',src:'assets/cap-kreoni.avif',alt:'Casquette réaliste KREONI'}
   };
 
-  let scale = 1;
-  let offsetX = 0;
-  let offsetY = 0;
-  let dragging = false;
-  let dragStartX = 0;
-  let dragStartY = 0;
-  let originX = 0;
-  let originY = 0;
-  let uploadedName = '';
+  const defaultZones = {
+    tshirt:{left:31,top:23,width:38,height:52},
+    hoodie:{left:30,top:24,width:40,height:51},
+    tote:{left:27,top:34,width:46,height:44},
+    cap:{left:31,top:29,width:39,height:25}
+  };
+
+  const placementViews = {
+    front:'front',
+    back:'back',
+    'chest-left':'front',
+    'chest-right':'front',
+    'sleeve-left':'side-left',
+    'sleeve-right':'side-right',
+    'side-left':'side-left',
+    'side-right':'side-right'
+  };
+
+  let scale=1, rotation=0, offsetX=0, offsetY=0;
+  let dragging=false, dragStartX=0, dragStartY=0, originX=0, originY=0;
+  let uploadedName='';
 
   const selected = name => form.querySelector('input[name="'+name+'"]:checked');
   const getProductKey = () => selected('product')?.dataset.product || 'tshirt';
+  const getPlacement = () => selected('customPlacement')?.dataset.placement || 'front';
 
   function clampQty(){
-    let v = parseInt(qty.value || '1',10);
-    if (!Number.isFinite(v) || v < 1) v = 1;
-    if (v > 100) v = 100;
-    qty.value = v;
+    let v=parseInt(qty.value||'1',10);
+    if(!Number.isFinite(v)||v<1)v=1;
+    if(v>100)v=100;
+    qty.value=v;
     return v;
   }
 
+  function setView(view){
+    stage.dataset.view=view;
+    [...viewSwitch.querySelectorAll('button')].forEach(btn=>btn.classList.toggle('active',btn.dataset.view===view));
+  }
+
+  function applyPlacement(){
+    const placement=getPlacement();
+    stage.dataset.placement=placement;
+    const view=placementViews[placement]||'front';
+    setView(view);
+    resetDesign(false);
+    updateRecap();
+  }
+
+  function updatePlacementAvailability(){
+    const key=getProductKey();
+    const labels=[...placementPicker.querySelectorAll('label')];
+    labels.forEach(label=>{
+      const allowed=(label.dataset.for||'').split(/\s+/).includes(key);
+      label.classList.toggle('is-hidden',!allowed);
+      label.querySelector('input').disabled=!allowed;
+    });
+    const current=selected('customPlacement');
+    if(!current || current.disabled){
+      const first=labels.find(label=>!label.classList.contains('is-hidden'))?.querySelector('input');
+      if(first) first.checked=true;
+    }
+  }
+
   function applyColor(){
-    const color = selected('mockupColor')?.dataset.color || '#111111';
-    stage.style.setProperty('--selected-color',color);
     updateRecap();
   }
 
   function renderProduct(){
-    const key = getProductKey();
-    const product = products[key] || products.tshirt;
-    stage.dataset.product = key;
-    photo.src = product.src;
-    photo.alt = product.alt;
-    previewTitle.textContent = product.name + ' personnalisé';
-    sizeBlock.hidden = ['tote','cap'].includes(key);
+    const key=getProductKey();
+    const product=products[key]||products.tshirt;
+    stage.dataset.product=key;
+    photo.src=product.src;
+    photo.alt=product.alt;
+    previewTitle.textContent=product.name+' personnalisé';
+    sizeBlock.hidden=['tote','cap'].includes(key);
 
-    const preferred = key === 'tshirt' ? 'Blanc' : key === 'tote' ? 'Beige' : 'Noir';
-    const swatch = [...form.querySelectorAll('input[name="mockupColor"]')].find(el=>el.value===preferred);
-    if (swatch) swatch.checked = true;
+    const preferred=key==='tshirt'?'Blanc':key==='tote'?'Beige':'Noir';
+    const swatch=[...form.querySelectorAll('input[name="mockupColor"]')].find(el=>el.value===preferred);
+    if(swatch) swatch.checked=true;
 
-    resetDesign(false);
+    updatePlacementAvailability();
+    applyPlacement();
     applyColor();
-    updateRecap();
   }
 
   function applyDesignTransform(){
-    previewImg.style.transform = 'translate('+offsetX+'px,'+offsetY+'px) scale('+scale+')';
-    scaleInput.value = Math.round(scale*100);
+    previewImg.style.transform='translate('+offsetX+'px,'+offsetY+'px) rotate('+rotation+'deg) scale('+scale+')';
+    scaleInput.value=Math.round(scale*100);
   }
 
-  function resetDesign(resetScale=true){
-    offsetX = 0;
-    offsetY = 0;
-    if (resetScale) scale = 1;
+  function resetDesign(resetAll=true){
+    offsetX=0;offsetY=0;
+    if(resetAll){scale=1;rotation=0;}
     applyDesignTransform();
   }
 
   function updateRecap(){
-    const key = getProductKey();
-    const product = products[key]?.name || 'T-shirt';
-    const color = selected('mockupColor')?.value || 'Noir';
-    const size = selected('customSize')?.value || 'M';
-    const q = clampQty();
-    const unit = q === 1 ? 'pièce' : 'pièces';
-    const sizePart = ['tote','cap'].includes(key) ? '' : ' • '+size;
-    const summary = color + sizePart + ' • ' + q + ' ' + unit;
-    recap.textContent = product + ' • ' + summary;
-    previewSummary.textContent = summary;
+    const key=getProductKey();
+    const product=products[key]?.name||'T-shirt';
+    const color=selected('mockupColor')?.value||'Noir';
+    const size=selected('customSize')?.value||'M';
+    const q=clampQty();
+    const unit=q===1?'pièce':'pièces';
+    const placement=selected('customPlacement')?.value||'Face';
+    const sizePart=['tote','cap'].includes(key)?'':' • '+size;
+    const summary=color+sizePart+' • '+q+' '+unit;
+    recap.textContent=product+' • '+placement+' • '+summary;
+    previewSummary.textContent=placement+' • '+summary;
   }
 
-  form.querySelectorAll('input[name="product"]').forEach(el => el.addEventListener('change',renderProduct));
-  form.querySelectorAll('input[name="mockupColor"]').forEach(el => el.addEventListener('change',applyColor));
-  form.querySelectorAll('input[name="customSize"]').forEach(el => el.addEventListener('change',updateRecap));
+  form.querySelectorAll('input[name="product"]').forEach(el=>el.addEventListener('change',renderProduct));
+  form.querySelectorAll('input[name="mockupColor"]').forEach(el=>el.addEventListener('change',applyColor));
+  form.querySelectorAll('input[name="customSize"]').forEach(el=>el.addEventListener('change',updateRecap));
+  form.querySelectorAll('input[name="customPlacement"]').forEach(el=>el.addEventListener('change',applyPlacement));
   qty.addEventListener('input',updateRecap);
 
-  document.getElementById('customQtyMinus')?.addEventListener('click',()=>{
-    qty.value=Math.max(1,clampQty()-1);updateRecap();
-  });
-  document.getElementById('customQtyPlus')?.addEventListener('click',()=>{
-    qty.value=Math.min(100,clampQty()+1);updateRecap();
-  });
+  document.getElementById('customQtyMinus')?.addEventListener('click',()=>{qty.value=Math.max(1,clampQty()-1);updateRecap()});
+  document.getElementById('customQtyPlus')?.addEventListener('click',()=>{qty.value=Math.min(100,clampQty()+1);updateRecap()});
 
   upload.addEventListener('change',()=>{
-    const file = upload.files?.[0];
-    if (!file) return;
-    if (!/^image\/(png|jpeg|webp)$/.test(file.type)){
-      uploadState.textContent='Format non pris en charge.';
-      return;
-    }
-    if (file.size > 10*1024*1024){
-      uploadState.textContent='Fichier trop lourd — 10 Mo maximum.';
-      return;
-    }
-    const reader = new FileReader();
+    const file=upload.files?.[0];
+    if(!file)return;
+    if(!/^image\/(png|jpeg|webp)$/.test(file.type)){uploadState.textContent='Format non pris en charge.';return;}
+    if(file.size>10*1024*1024){uploadState.textContent='Fichier trop lourd — 10 Mo maximum.';return;}
+    const reader=new FileReader();
     reader.onload=()=>{
       previewImg.src=reader.result;
       previewImg.hidden=false;
@@ -524,35 +556,23 @@ if(tshirtForm){
     reader.readAsDataURL(file);
   });
 
-  scaleInput.addEventListener('input',()=>{
-    scale=Number(scaleInput.value)/100;applyDesignTransform();
-  });
-  document.getElementById('designZoomOut')?.addEventListener('click',()=>{
-    scale=Math.max(.45,scale-.1);applyDesignTransform();
-  });
-  document.getElementById('designZoomIn')?.addEventListener('click',()=>{
-    scale=Math.min(1.8,scale+.1);applyDesignTransform();
-  });
+  scaleInput.addEventListener('input',()=>{scale=Number(scaleInput.value)/100;applyDesignTransform()});
+  document.getElementById('designZoomOut')?.addEventListener('click',()=>{scale=Math.max(.35,scale-.1);applyDesignTransform()});
+  document.getElementById('designZoomIn')?.addEventListener('click',()=>{scale=Math.min(1.9,scale+.1);applyDesignTransform()});
+  document.getElementById('designRotateLeft')?.addEventListener('click',()=>{rotation-=5;applyDesignTransform()});
+  document.getElementById('designRotateRight')?.addEventListener('click',()=>{rotation+=5;applyDesignTransform()});
   document.getElementById('designReset')?.addEventListener('click',()=>resetDesign(true));
   document.getElementById('designRemove')?.addEventListener('click',()=>{
-    upload.value='';
-    uploadedName='';
-    previewImg.removeAttribute('src');
-    previewImg.hidden=true;
-    placeholder.hidden=false;
-    zone.classList.remove('has-design');
+    upload.value='';uploadedName='';previewImg.removeAttribute('src');previewImg.hidden=true;
+    placeholder.hidden=false;zone.classList.remove('has-design');
     uploadState.textContent='Cliquez ici pour choisir votre fichier';
     resetDesign(true);
   });
 
   zone.addEventListener('pointerdown',e=>{
-    if (previewImg.hidden) return;
-    dragging=true;
-    zone.setPointerCapture(e.pointerId);
-    dragStartX=e.clientX;
-    dragStartY=e.clientY;
-    originX=offsetX;
-    originY=offsetY;
+    if(previewImg.hidden)return;
+    dragging=true;zone.setPointerCapture(e.pointerId);
+    dragStartX=e.clientX;dragStartY=e.clientY;originX=offsetX;originY=offsetY;
   });
   zone.addEventListener('pointermove',e=>{
     if(!dragging)return;
@@ -560,30 +580,32 @@ if(tshirtForm){
     offsetY=originY+(e.clientY-dragStartY);
     applyDesignTransform();
   });
-  const stopDrag=e=>{
-    dragging=false;
-    try{zone.releasePointerCapture(e.pointerId)}catch(_){}
-  };
+  const stopDrag=e=>{dragging=false;try{zone.releasePointerCapture(e.pointerId)}catch(_){}};
   zone.addEventListener('pointerup',stopDrag);
   zone.addEventListener('pointercancel',stopDrag);
 
+  viewSwitch.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{
+    setView(btn.dataset.view);
+  }));
+
   function sendToWhatsApp(){
     const key=getProductKey();
-    const product=products[key]?.name || 'T-shirt';
-    const color=selected('mockupColor')?.value || 'Noir';
-    const size=selected('customSize')?.value || 'M';
+    const product=products[key]?.name||'T-shirt';
+    const color=selected('mockupColor')?.value||'Noir';
+    const size=selected('customSize')?.value||'M';
     const q=clampQty();
+    const placement=selected('customPlacement')?.value||'Face';
     const note=notes.value.trim();
     const msg=[
       'Bonjour KREONI, je souhaite un devis pour une personnalisation.',
       '',
       'Produit : '+product,
       'Couleur : '+color,
-      !['tote','cap'].includes(key) ? 'Taille : '+size : '',
+      !['tote','cap'].includes(key)?'Taille : '+size:'',
       'Quantité : '+q,
-      'Emplacement : '+placement.value,
-      uploadedName ? 'Fichier préparé : '+uploadedName : 'Design : à envoyer sur WhatsApp',
-      note ? 'Détails : '+note : '',
+      'Position d’impression : '+placement,
+      uploadedName?'Fichier préparé : '+uploadedName:'Design : à envoyer sur WhatsApp',
+      note?'Détails : '+note:'',
       '',
       'J’ai préparé un aperçu sur votre configurateur. Je joins mon fichier original ici pour validation du BAT.'
     ].filter(Boolean).join('\n');
@@ -595,5 +617,6 @@ if(tshirtForm){
   document.getElementById('sideWhatsApp')?.addEventListener('click',sendToWhatsApp);
 
   controls.classList.add('is-disabled');
+  stage.dataset.view='front';
   renderProduct();
 })();
