@@ -387,13 +387,13 @@ if(tshirtForm){
 })();
 
 
-/* === KREONI LIVE CUSTOMIZER V1 === */
+/* === KREONI LIVE CUSTOMIZER V2 PHOTO === */
 (() => {
   const form = document.getElementById('kreoniCustomizer');
   if (!form) return;
 
   const stage = document.getElementById('mockupStage');
-  const svg = document.getElementById('productMockup');
+  const photo = document.getElementById('productMockupPhoto');
   const zone = document.getElementById('designZone');
   const upload = document.getElementById('designUpload');
   const uploadState = document.getElementById('uploadState');
@@ -410,6 +410,13 @@ if(tshirtForm){
   const notes = document.getElementById('customNotes');
   const help = document.getElementById('customizerHelp');
 
+  const products = {
+    tshirt:{name:'T-shirt',src:'assets/tshirt-kreoni.avif',alt:'T-shirt réaliste KREONI'},
+    hoodie:{name:'Hoodie',src:'assets/hoodie-kreoni.avif',alt:'Hoodie réaliste KREONI'},
+    tote:{name:'Tote bag',src:'assets/tote-cream-samurai-kreoni.avif',alt:'Tote bag réaliste KREONI'},
+    cap:{name:'Casquette',src:'assets/cap-kreoni.avif',alt:'Casquette réaliste KREONI'}
+  };
+
   let scale = 1;
   let offsetX = 0;
   let offsetY = 0;
@@ -419,131 +426,6 @@ if(tshirtForm){
   let originX = 0;
   let originY = 0;
   let uploadedName = '';
-
-  const shapes = {
-    tshirt: () => `
-      <ellipse cx="300" cy="527" rx="170" ry="24" fill="rgba(0,0,0,.12)"/>
-      <path data-fill d="M214 126
-        C231 116 249 104 266 92
-        C278 115 322 123 347 93
-        C366 104 386 116 405 128
-        L510 188
-        C525 197 530 215 520 230
-        L466 315
-        C459 326 444 329 433 321
-        L397 295
-        L397 503
-        C397 520 387 531 371 533
-        L229 533
-        C213 531 203 520 203 503
-        L203 295
-        L167 321
-        C156 329 141 326 134 315
-        L80 230
-        C70 215 75 197 90 188
-        Z" fill="#111"/>
-      <path d="M260 94 C270 138 332 145 349 94" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="17" stroke-linecap="round"/>
-      <path d="M261 96 C273 126 327 130 347 96" fill="none" stroke="rgba(0,0,0,.22)" stroke-width="5" stroke-linecap="round"/>
-      <path d="M213 143 C190 165 173 185 157 214" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="4"/>
-      <path d="M405 143 C428 165 445 185 461 214" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="4"/>
-      <path d="M207 279 C238 300 270 309 300 309 C330 309 362 300 393 279" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="4"/>
-      <path d="M205 512 H395" stroke="rgba(255,255,255,.12)" stroke-width="5"/>
-      <path d="M232 138 C218 240 224 390 240 507" fill="none" stroke="rgba(255,255,255,.035)" stroke-width="17"/>
-      <path d="M368 138 C382 240 376 390 360 507" fill="none" stroke="rgba(0,0,0,.07)" stroke-width="19"/>
-      <path d="M96 194 C126 214 154 237 178 268" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="7"/>
-      <path d="M504 194 C474 214 446 237 422 268" fill="none" stroke="rgba(0,0,0,.08)" stroke-width="7"/>
-    `,
-    hoodie: () => `
-      <ellipse cx="300" cy="535" rx="176" ry="24" fill="rgba(0,0,0,.13)"/>
-      <path data-fill d="M220 178
-        C235 164 251 151 267 141
-        C280 153 320 156 337 141
-        C355 151 372 165 388 179
-        L494 234
-        C512 244 517 263 507 279
-        L459 356
-        C451 368 437 372 425 364
-        L396 345
-        L396 506
-        C396 526 382 538 362 540
-        L238 540
-        C218 538 204 526 204 506
-        L204 345
-        L175 364
-        C163 372 149 368 141 356
-        L93 279
-        C83 263 88 244 106 234
-        Z" fill="#111"/>
-      <path data-fill d="M240 177
-        C231 130 251 84 300 73
-        C349 84 369 130 360 177
-        C344 198 325 209 300 211
-        C275 209 256 198 240 177 Z" fill="#111"/>
-      <path d="M253 168 C270 185 286 193 300 194 C314 193 330 185 347 168" fill="none" stroke="rgba(255,255,255,.13)" stroke-width="5"/>
-      <path d="M275 182 L261 279 M325 182 L339 279" stroke="rgba(235,235,235,.82)" stroke-width="4.5" stroke-linecap="round"/>
-      <circle cx="259" cy="282" r="6" fill="rgba(235,235,235,.85)"/>
-      <circle cx="341" cy="282" r="6" fill="rgba(235,235,235,.85)"/>
-      <path d="M245 408
-        C266 391 334 391 355 408
-        L372 489
-        H228 Z" fill="rgba(0,0,0,.13)" stroke="rgba(255,255,255,.10)" stroke-width="4"/>
-      <path d="M205 498 H395" stroke="rgba(255,255,255,.11)" stroke-width="12"/>
-      <path d="M221 203 C210 300 218 410 231 498" fill="none" stroke="rgba(255,255,255,.035)" stroke-width="18"/>
-      <path d="M379 203 C390 300 382 410 369 498" fill="none" stroke="rgba(0,0,0,.08)" stroke-width="20"/>
-      <path d="M106 246 C136 268 158 293 179 327" fill="none" stroke="rgba(255,255,255,.055)" stroke-width="7"/>
-      <path d="M494 246 C464 268 442 293 421 327" fill="none" stroke="rgba(0,0,0,.08)" stroke-width="7"/>
-    `,
-    tote: () => `
-      <ellipse cx="300" cy="525" rx="145" ry="22" fill="rgba(0,0,0,.12)"/>
-      <path data-fill d="M171 222
-        C170 210 180 201 192 201
-        H408
-        C420 201 430 210 429 222
-        L450 499
-        C451 515 440 526 424 526
-        H176
-        C160 526 149 515 150 499 Z" fill="#d6c09d"/>
-      <path d="M212 211
-        C212 125 250 88 300 88
-        C350 88 388 125 388 211" fill="none" stroke="var(--product-color)" stroke-width="24" stroke-linecap="round"/>
-      <path d="M212 211 C212 125 250 88 300 88 C350 88 388 125 388 211" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="5" stroke-linecap="round"/>
-      <path d="M170 231 H430" stroke="rgba(0,0,0,.13)" stroke-width="5"/>
-      <path d="M184 245 L171 494 M416 245 L429 494" stroke="rgba(0,0,0,.07)" stroke-width="4"/>
-      <path d="M196 230 V204 M404 230 V204" stroke="rgba(0,0,0,.15)" stroke-width="7" stroke-linecap="round"/>
-      <path d="M177 505 H423" stroke="rgba(0,0,0,.10)" stroke-width="5"/>
-      <path d="M197 234 C205 323 206 412 194 498" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="18"/>
-      <path d="M403 234 C395 323 394 412 406 498" fill="none" stroke="rgba(0,0,0,.05)" stroke-width="18"/>
-    `,
-    cap: () => `
-      <ellipse cx="308" cy="488" rx="188" ry="26" fill="rgba(0,0,0,.12)"/>
-      <path data-fill d="M161 342
-        C161 219 227 129 325 119
-        C422 129 486 216 486 340
-        C454 372 413 393 364 402
-        C304 413 239 398 194 371
-        C181 363 170 353 161 342 Z" fill="#111"/>
-      <path data-fill d="M181 360
-        C243 336 328 335 401 350
-        C469 364 523 389 560 426
-        C532 468 468 488 381 486
-        C293 484 216 448 181 399 Z" fill="#111"/>
-      <path d="M325 124 V395" stroke="rgba(255,255,255,.13)" stroke-width="4"/>
-      <path d="M325 126 C270 135 226 171 202 224" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="4"/>
-      <path d="M325 126 C380 135 425 170 451 222" fill="none" stroke="rgba(0,0,0,.12)" stroke-width="4"/>
-      <path d="M197 282 C269 248 390 247 465 282" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="4"/>
-      <path d="M190 361 C261 340 350 340 414 354" fill="none" stroke="rgba(0,0,0,.15)" stroke-width="5"/>
-      <path d="M201 386 C290 416 418 433 523 423" fill="none" stroke="rgba(255,255,255,.055)" stroke-width="5"/>
-      <circle cx="325" cy="121" r="12" fill="var(--product-color)" stroke="rgba(255,255,255,.13)" stroke-width="3"/>
-      <path d="M183 362 C209 279 235 194 292 141" fill="none" stroke="rgba(255,255,255,.025)" stroke-width="23"/>
-    `
-  };
-
-  const zones = {
-    tshirt:{left:39,top:34,width:22,height:28},
-    hoodie:{left:38,top:35,width:24,height:26},
-    tote:{left:34,top:39,width:32,height:30},
-    cap:{left:39,top:43,width:22,height:15}
-  };
 
   const selected = name => form.querySelector('input[name="'+name+'"]:checked');
   const getProductKey = () => selected('product')?.dataset.product || 'tshirt';
@@ -558,31 +440,25 @@ if(tshirtForm){
 
   function applyColor(){
     const color = selected('mockupColor')?.dataset.color || '#111111';
-    stage.style.setProperty('--product-color',color);
-    svg.querySelectorAll('[data-fill]').forEach(el => el.setAttribute('fill', color));
-    const light = ['#f4f3ef','#d6c09d'].includes(color.toLowerCase());
-    svg.querySelectorAll('path[stroke*="255"]').forEach(el => {
-      if (light) el.setAttribute('stroke','rgba(0,0,0,.16)');
-    });
-  }
-
-  function setZone(product){
-    const z = zones[product] || zones.tshirt;
-    Object.assign(zone.style,{
-      left:z.left+'%',top:z.top+'%',width:z.width+'%',height:z.height+'%'
-    });
+    stage.style.setProperty('--selected-color',color);
+    updateRecap();
   }
 
   function renderProduct(){
-    const product = getProductKey();
-    stage.dataset.product = product;
-    svg.innerHTML = shapes[product]();
-    setZone(product);
-    applyColor();
-    const name = selected('product')?.value || 'T-shirt';
-    previewTitle.textContent = name + ' personnalisé';
-    sizeBlock.hidden = ['tote','cap'].includes(product);
+    const key = getProductKey();
+    const product = products[key] || products.tshirt;
+    stage.dataset.product = key;
+    photo.src = product.src;
+    photo.alt = product.alt;
+    previewTitle.textContent = product.name + ' personnalisé';
+    sizeBlock.hidden = ['tote','cap'].includes(key);
+
+    const preferred = key === 'tshirt' ? 'Blanc' : key === 'tote' ? 'Beige' : 'Noir';
+    const swatch = [...form.querySelectorAll('input[name="mockupColor"]')].find(el=>el.value===preferred);
+    if (swatch) swatch.checked = true;
+
     resetDesign(false);
+    applyColor();
     updateRecap();
   }
 
@@ -592,14 +468,15 @@ if(tshirtForm){
   }
 
   function resetDesign(resetScale=true){
-    offsetX = 0; offsetY = 0;
+    offsetX = 0;
+    offsetY = 0;
     if (resetScale) scale = 1;
     applyDesignTransform();
   }
 
   function updateRecap(){
-    const product = selected('product')?.value || 'T-shirt';
     const key = getProductKey();
+    const product = products[key]?.name || 'T-shirt';
     const color = selected('mockupColor')?.value || 'Noir';
     const size = selected('customSize')?.value || 'M';
     const q = clampQty();
@@ -611,32 +488,36 @@ if(tshirtForm){
   }
 
   form.querySelectorAll('input[name="product"]').forEach(el => el.addEventListener('change',renderProduct));
-  form.querySelectorAll('input[name="mockupColor"]').forEach(el => el.addEventListener('change',()=>{applyColor();updateRecap()}));
+  form.querySelectorAll('input[name="mockupColor"]').forEach(el => el.addEventListener('change',applyColor));
   form.querySelectorAll('input[name="customSize"]').forEach(el => el.addEventListener('change',updateRecap));
   qty.addEventListener('input',updateRecap);
 
-  document.getElementById('customQtyMinus')?.addEventListener('click',()=>{qty.value=Math.max(1,clampQty()-1);updateRecap()});
-  document.getElementById('customQtyPlus')?.addEventListener('click',()=>{qty.value=Math.min(100,clampQty()+1);updateRecap()});
+  document.getElementById('customQtyMinus')?.addEventListener('click',()=>{
+    qty.value=Math.max(1,clampQty()-1);updateRecap();
+  });
+  document.getElementById('customQtyPlus')?.addEventListener('click',()=>{
+    qty.value=Math.min(100,clampQty()+1);updateRecap();
+  });
 
-  upload.addEventListener('change',() => {
+  upload.addEventListener('change',()=>{
     const file = upload.files?.[0];
     if (!file) return;
-    if (!/^image\/(png|jpeg|webp)$/.test(file.type)) {
-      uploadState.textContent = 'Format non pris en charge.';
+    if (!/^image\/(png|jpeg|webp)$/.test(file.type)){
+      uploadState.textContent='Format non pris en charge.';
       return;
     }
-    if (file.size > 10*1024*1024) {
-      uploadState.textContent = 'Fichier trop lourd — 10 Mo maximum.';
+    if (file.size > 10*1024*1024){
+      uploadState.textContent='Fichier trop lourd — 10 Mo maximum.';
       return;
     }
     const reader = new FileReader();
-    reader.onload = () => {
-      previewImg.src = reader.result;
-      previewImg.hidden = false;
-      placeholder.hidden = true;
+    reader.onload=()=>{
+      previewImg.src=reader.result;
+      previewImg.hidden=false;
+      placeholder.hidden=true;
       zone.classList.add('has-design');
-      uploadedName = file.name;
-      uploadState.textContent = file.name;
+      uploadedName=file.name;
+      uploadState.textContent=file.name;
       controls.classList.remove('is-disabled');
       resetDesign(true);
     };
@@ -644,8 +525,7 @@ if(tshirtForm){
   });
 
   scaleInput.addEventListener('input',()=>{
-    scale = Number(scaleInput.value)/100;
-    applyDesignTransform();
+    scale=Number(scaleInput.value)/100;applyDesignTransform();
   });
   document.getElementById('designZoomOut')?.addEventListener('click',()=>{
     scale=Math.max(.45,scale-.1);applyDesignTransform();
@@ -655,15 +535,24 @@ if(tshirtForm){
   });
   document.getElementById('designReset')?.addEventListener('click',()=>resetDesign(true));
   document.getElementById('designRemove')?.addEventListener('click',()=>{
-    upload.value='';uploadedName='';previewImg.removeAttribute('src');previewImg.hidden=true;
-    placeholder.hidden=false;zone.classList.remove('has-design');
-    uploadState.textContent='Cliquez ici pour choisir votre fichier';resetDesign(true);
+    upload.value='';
+    uploadedName='';
+    previewImg.removeAttribute('src');
+    previewImg.hidden=true;
+    placeholder.hidden=false;
+    zone.classList.remove('has-design');
+    uploadState.textContent='Cliquez ici pour choisir votre fichier';
+    resetDesign(true);
   });
 
   zone.addEventListener('pointerdown',e=>{
     if (previewImg.hidden) return;
-    dragging=true;zone.setPointerCapture(e.pointerId);
-    dragStartX=e.clientX;dragStartY=e.clientY;originX=offsetX;originY=offsetY;
+    dragging=true;
+    zone.setPointerCapture(e.pointerId);
+    dragStartX=e.clientX;
+    dragStartY=e.clientY;
+    originX=offsetX;
+    originY=offsetY;
   });
   zone.addEventListener('pointermove',e=>{
     if(!dragging)return;
@@ -671,18 +560,21 @@ if(tshirtForm){
     offsetY=originY+(e.clientY-dragStartY);
     applyDesignTransform();
   });
-  const stopDrag=e=>{dragging=false;try{zone.releasePointerCapture(e.pointerId)}catch(_){}};
+  const stopDrag=e=>{
+    dragging=false;
+    try{zone.releasePointerCapture(e.pointerId)}catch(_){}
+  };
   zone.addEventListener('pointerup',stopDrag);
   zone.addEventListener('pointercancel',stopDrag);
 
-  document.getElementById('sendCustomConfig')?.addEventListener('click',()=>{
-    const product = selected('product')?.value || 'T-shirt';
-    const key = getProductKey();
-    const color = selected('mockupColor')?.value || 'Noir';
-    const size = selected('customSize')?.value || 'M';
-    const q = clampQty();
-    const note = notes.value.trim();
-    const msg = [
+  function sendToWhatsApp(){
+    const key=getProductKey();
+    const product=products[key]?.name || 'T-shirt';
+    const color=selected('mockupColor')?.value || 'Noir';
+    const size=selected('customSize')?.value || 'M';
+    const q=clampQty();
+    const note=notes.value.trim();
+    const msg=[
       'Bonjour KREONI, je souhaite un devis pour une personnalisation.',
       '',
       'Produit : '+product,
@@ -693,11 +585,14 @@ if(tshirtForm){
       uploadedName ? 'Fichier préparé : '+uploadedName : 'Design : à envoyer sur WhatsApp',
       note ? 'Détails : '+note : '',
       '',
-      'J’ai préparé un aperçu sur votre configurateur. Je joins mon fichier ici pour validation du BAT.'
+      'J’ai préparé un aperçu sur votre configurateur. Je joins mon fichier original ici pour validation du BAT.'
     ].filter(Boolean).join('\n');
     window.open('https://wa.me/212664521613?text='+encodeURIComponent(msg),'_blank','noopener,noreferrer');
     help.textContent='WhatsApp est ouvert. Ajoutez votre fichier original dans la conversation pour finaliser la demande.';
-  });
+  }
+
+  document.getElementById('sendCustomConfig')?.addEventListener('click',sendToWhatsApp);
+  document.getElementById('sideWhatsApp')?.addEventListener('click',sendToWhatsApp);
 
   controls.classList.add('is-disabled');
   renderProduct();
