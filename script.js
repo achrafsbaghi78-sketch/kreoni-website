@@ -18,75 +18,73 @@ if(p&&m){
   })
 }
 
-const tshirtForm=document.getElementById('tshirtConfigurator');
-if(tshirtForm){
-  const shirtBody=document.getElementById('shirtBody');
-  const previewText=document.getElementById('previewText');
-  const previewSummary=document.getElementById('previewSummary');
-  const recap=document.getElementById('configRecap');
-  const qty=document.getElementById('tshirtQty');
-  const placement=document.getElementById('printPlacement');
-  const customText=document.getElementById('customText');
-  const notes=document.getElementById('configNotes');
-  const help=document.getElementById('configHelp');
-
-  const selected=(name)=>tshirtForm.querySelector('input[name="'+name+'"]:checked');
-
-  function clampQty(){
-    let v=parseInt(qty.value||'1',10);
-    if(Number.isNaN(v)||v<1)v=1;
-    if(v>100)v=100;
-    qty.value=v;
-    return v;
-  }
-
-  function updateConfigurator(){
-    const color=selected('color');
-    const size=selected('size');
-    const q=clampQty();
-    if(color&&shirtBody)shirtBody.setAttribute('fill',color.dataset.color);
-    if(previewText){
-      const value=(customText.value||'KREONI').trim().slice(0,18);
-      previewText.textContent=value||'KREONI';
-      const isLight=color&&['Blanc','Beige'].includes(color.value);
-      previewText.setAttribute('fill',isLight?'#7b5714':'#d5a33b');
+const productForm = document.getElementById('productConfigurator');
+if (productForm) {
+  const byId = id => document.getElementById(id);
+  const products = {
+    tshirt: {label: 'T-shirt personnalisé', image: 'assets/tshirt-dtf.webp', placements: ['Devant', 'Dos', 'Devant + dos', 'Poitrine / petit logo']},
+    hoodie: {label: 'Hoodie personnalisé', image: 'assets/hoodie-dtf.webp', placements: ['Devant', 'Dos', 'Devant + dos', 'Poitrine / petit logo']},
+    tote: {label: 'Sac / Tote bag personnalisé', image: 'assets/tote-dtf.webp', placements: ['Recto', 'Verso', 'Recto + verso']},
+    b2b: {label: 'Devis professionnels / B2B', image: 'assets/polo-studio.webp', placements: []}
+  };
+  const current = () => productForm.querySelector('[name="product"]:checked').value;
+  const color = () => productForm.querySelector('[name="color"]:checked').value;
+  const toggle = (id, hidden) => {
+    const el = byId(id); el.hidden = hidden;
+    el.querySelectorAll('input,select,textarea').forEach(input => input.disabled = hidden);
+  };
+  let previousProduct;
+  function updateProduct() {
+    const key = current(), product = products[key], business = key === 'b2b';
+    toggle('b2bFields', !business);
+    toggle('colorFields', business);
+    toggle('sizeField', business || key === 'tote');
+    toggle('placementField', business);
+    if (key !== previousProduct) {
+      const placement = byId('productPlacement');
+      placement.replaceChildren(...product.placements.map(value => new Option(value, value)));
+      byId('productPreview').src = product.image;
+      byId('productPreview').alt = 'Exemple : ' + product.label;
+      byId('productPreviewTitle').textContent = product.label;
+      previousProduct = key;
     }
-    const unit=q===1?'pièce':'pièces';
-    if(previewSummary)previewSummary.textContent=(color?color.value:'')+' • '+(size?size.value:'')+' • '+q+' '+unit;
-    if(recap)recap.textContent='T-shirt '+(color?color.value:'')+' • '+(size?size.value:'')+' • '+q+' '+unit+' • '+placement.value;
+    const quantity = byId('productQty').value;
+    const parts = business
+      ? ['Devis B2B', byId('businessProduct').value]
+      : [product.label, color(), key === 'tote' ? '' : byId('productSize').value, byId('productPlacement').value];
+    parts.push(quantity ? quantity + (quantity === '1' ? ' pièce' : ' pièces') : 'Quantité à préciser');
+    byId('productRecap').textContent = parts.filter(Boolean).join(' · ');
+    const design = byId('designSource').value;
+    byId('designHelp').textContent = design === 'Mon propre design'
+      ? 'Joignez votre image ou votre logo dans la conversation WhatsApp.'
+      : design === 'J’ai une idée' ? 'Décrivez votre idée dans les détails ou sur WhatsApp.'
+      : 'Nous vous partageons les modèles disponibles sur WhatsApp.';
+    byId('sendProductConfig').textContent = business ? 'Demander un devis B2B sur WhatsApp' : 'Demander mon devis sur WhatsApp';
   }
-
-  tshirtForm.querySelectorAll('input,select,textarea').forEach(el=>el.addEventListener('input',updateConfigurator));
-  tshirtForm.querySelectorAll('input[type="radio"]').forEach(el=>el.addEventListener('change',updateConfigurator));
-  document.getElementById('qtyMinus')?.addEventListener('click',()=>{qty.value=Math.max(1,clampQty()-1);updateConfigurator()});
-  document.getElementById('qtyPlus')?.addEventListener('click',()=>{qty.value=Math.min(100,clampQty()+1);updateConfigurator()});
-
-  document.getElementById('sendTshirtConfig')?.addEventListener('click',()=>{
-    const color=selected('color')?.value||'Non précisée';
-    const size=selected('size')?.value||'Non précisée';
-    const q=clampQty();
-    const textValue=customText.value.trim();
-    const noteValue=notes.value.trim();
-    const msg=[
-      'Bonjour KREONI, je souhaite un devis pour un T-shirt personnalisé.',
-      '',
-      'Produit : T-shirt personnalisé',
-      'Couleur souhaitée : '+color,
-      'Taille : '+size,
-      'Quantité : '+q,
-      'Impression : '+placement.value,
-      'Visuel : '+(selected('designSource')?.value||'Non précisé'),
-      textValue?'Texte / prénom : '+textValue:'',
-      noteValue?'Détails : '+noteValue:'',
-      '',
-      'Merci de me confirmer le prix, la disponibilité et le délai.',
-      selected('designSource')?.value==='Modèle DTF KREONI'?'Merci de me partager les modèles DTF KREONI disponibles.':'',
-      selected('designSource')?.value==='Mon propre design'?'Je vais joindre mon design / image dans cette conversation WhatsApp.':'',
-      selected('designSource')?.value==='J’ai une idée'?'Je vous explique mon idée pour que vous puissiez me guider.':''
-    ].filter(Boolean).join('\n');
-    window.open('https://wa.me/212664521613?text='+encodeURIComponent(msg),'_blank','noopener,noreferrer');
-    help.textContent='WhatsApp est ouvert avec votre configuration. Ajoutez votre design/photo si nécessaire.';
+  productForm.addEventListener('input', updateProduct);
+  productForm.addEventListener('change', updateProduct);
+  document.querySelectorAll('[data-product]').forEach(link => link.addEventListener('click', () => {
+    const input = productForm.querySelector('[name="product"][value="' + link.dataset.product + '"]');
+    if (input) { input.checked = true; updateProduct(); }
+  }));
+  productForm.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!productForm.reportValidity()) return;
+    const key = current(), business = key === 'b2b';
+    const lines = ['Bonjour KREONI, je souhaite ' + (business ? 'un devis professionnel / B2B.' : 'un devis pour un ' + products[key].label.toLowerCase() + '.')];
+    if (business) {
+      if (byId('businessName').value.trim()) lines.push('Entreprise / association : ' + byId('businessName').value.trim());
+      lines.push('Produit(s) : ' + byId('businessProduct').value);
+    } else {
+      lines.push('Produit : ' + products[key].label, 'Couleur : ' + color());
+      if (key !== 'tote') lines.push('Taille : ' + byId('productSize').value);
+      lines.push('Impression : ' + byId('productPlacement').value);
+    }
+    lines.push('Quantité : ' + byId('productQty').value, 'Visuel : ' + byId('designSource').value);
+    if (byId('productNotes').value.trim()) lines.push('Détails : ' + byId('productNotes').value.trim());
+    lines.push(byId('designHelp').textContent, 'Merci de confirmer le prix, la disponibilité et le délai.');
+    window.open('https://wa.me/212664521613?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener,noreferrer');
+    byId('productHelp').textContent = 'Votre demande est prête dans WhatsApp. Ajoutez votre fichier si nécessaire, puis envoyez-la.';
   });
-
-  updateConfigurator();
+  updateProduct();
 }

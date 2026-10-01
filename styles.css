@@ -213,3 +213,34 @@ repeating-linear-gradient(90deg,transparent 0 140px,rgba(255,255,255,.025) 141px
  .store-copy{grid-column:1;grid-row:1;padding:18px 12px 18px 18px}
  .store-copy p{min-height:0}
 }
+
+/* Simple product-first quote form. */
+.simple-config [hidden]{display:none!important}
+.simple-config{background:#fff;border:1px solid #e5e1da;border-radius:22px;padding:28px;color:#161616}
+.simple-config fieldset{border:0;padding:0;margin:0 0 24px;min-width:0}
+.simple-config legend{font-size:1rem;font-weight:700;margin-bottom:14px}
+.product-picker{display:flex;gap:10px;flex-wrap:wrap}
+.product-picker label{flex:1;min-width:140px}
+.product-picker input,.simple-colors input{position:absolute;opacity:0;width:1px;height:1px}
+.product-picker span,.simple-colors span{display:flex;align-items:center;justify-content:center;gap:9px;padding:13px 16px;border:1px solid #d9d5cd;border-radius:10px;cursor:pointer;font-size:.95rem}
+.product-picker input:checked+span{background:#151515;color:#f1ce7b;border-color:#151515}
+.simple-colors input:checked+span{border:2px solid #b67d1a;padding:12px 15px;background:#fff8e9}
+.product-picker input:focus-visible+span,.simple-colors input:focus-visible+span{outline:3px solid #af771b;outline-offset:3px}
+.simple-config-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:32px;align-items:start}
+.product-example{background:#f1efea;border-radius:16px;padding:24px;text-align:center}
+.product-example img{display:block;width:100%;height:340px;object-fit:contain;margin-bottom:16px}
+.product-example strong{display:block;font-size:1.15rem}
+.product-example p,.simple-hint{font-size:.875rem;line-height:1.55;color:#666}
+.simple-options h3{margin:0 0 20px;font-size:1.15rem}
+.simple-colors{display:flex;gap:9px;flex-wrap:wrap}
+.simple-colors i{width:20px;height:20px;border:1px solid #bbb;border-radius:50%}
+.simple-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.simple-field{display:flex;flex-direction:column;gap:7px;font-size:.95rem;font-weight:600;margin-bottom:16px}
+.simple-field input,.simple-field select,.simple-field textarea{width:100%;min-width:0;padding:12px 14px;border:1px solid #d4d1ca;border-radius:9px;background:white;color:#171717;font:inherit;font-weight:400;line-height:1.4;min-height:48px}
+.simple-field select{height:48px;align-self:start}
+.simple-field textarea{resize:vertical}
+.simple-field small{font-weight:400;color:#666}
+.simple-recap{padding:16px;background:#f7f4ed;border-radius:10px;margin:20px 0;display:grid;gap:5px;font-size:.9rem}
+.simple-recap span{color:#666;font-size:.875rem}
+.simple-options>.btn{width:100%;font-size:1rem;min-height:50px;white-space:normal}
+@media(max-width:760px){.simple-config{padding:18px}.simple-config-grid{grid-template-columns:1fr;gap:24px}.product-picker label{min-width:calc(50% - 10px)}.product-example img{height:210px}.product-example{padding:16px}.simple-colors span{padding:12px}.simple-row{gap:12px}}
