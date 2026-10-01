@@ -131,3 +131,27 @@ if (productForm) {
   });
   updateProduct();
 }
+
+const heroButtons = document.querySelectorAll('[data-hero-product]');
+if (heroButtons.length) {
+  const heroProducts = {
+    tshirt: {name: 'T-shirt personnalisé', detail: 'Votre univers, imprimé en couleurs.', cta: 'Personnaliser mon T-shirt', image: 'assets/tshirt-dtf.webp', number: '01 / 03'},
+    hoodie: {name: 'Hoodie personnalisé', detail: 'Une pièce forte. Une création à vous.', cta: 'Personnaliser mon Hoodie', image: 'assets/hoodie-dtf.webp', number: '02 / 03'},
+    tote: {name: 'Sac / Tote bag personnalisé', detail: 'Votre créativité vous accompagne.', cta: 'Personnaliser mon Sac', image: 'assets/tote-dtf.webp', number: '03 / 03'}
+  };
+  heroButtons.forEach(button => button.addEventListener('click', () => {
+    const key = button.dataset.heroProduct, product = heroProducts[key];
+    heroButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    document.querySelector('.hero-gallery').dataset.activeProduct = key;
+    const image = document.getElementById('heroProductImage');
+    image.src = product.image;
+    image.alt = product.name + ' avec illustration DTF';
+    document.getElementById('heroProductName').textContent = product.name;
+    document.getElementById('heroProductDetail').textContent = product.detail;
+    document.getElementById('heroProductNumber').textContent = product.number;
+    const link = document.getElementById('heroCustomize');
+    link.dataset.product = key;
+    link.replaceChildren(document.createTextNode(product.cta + ' '));
+    const arrow = document.createElement('span'); arrow.setAttribute('aria-hidden', 'true'); arrow.textContent = '↗'; link.append(arrow);
+  }));
+}

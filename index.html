@@ -70,27 +70,29 @@
 
 <main id="top">
   <section class="hero">
-    <div class="hero-ambient"></div>
+    <div class="hero-ambient" aria-hidden="true"></div>
     <div class="container hero-layout">
       <div class="hero-copy">
-        <div class="hero-badge">♛ Personnalisation textile & DTF</div>
-        <h1>Vos idées<br>sur tous<br><span>vos supports.</span></h1>
-        <p class="lead">T-shirts, hoodies, tote bags et plus encore.<br>Impression DTF de haute qualité, pour particuliers<br>et professionnels.</p>
+        <div class="hero-badge">KREONI STUDIO <span>PERSONNALISATION DTF</span></div>
+        <h1>Votre idée.<br>Votre style.<br><span>Votre création.</span></h1>
+        <p class="lead">Un dessin, une passion, votre signature.<br>Donnez vie à vos idées sur un textile qui vous ressemble.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold hero-primary" href="#configurateur">✎ Créer mon produit →</a>
-          <a class="btn btn-outline hero-models" href="https://wa.me/212664521613?text=Bonjour%20KREONI%2C%20je%20souhaite%20voir%20les%20mod%C3%A8les%20DTF%20disponibles." target="_blank" rel="noopener noreferrer">Voir les modèles DTF →</a>
+          <a class="btn btn-gold hero-primary" id="heroCustomize" href="#configurateur" data-product="tshirt">Personnaliser mon T-shirt <span aria-hidden="true">↗</span></a>
+          <a class="hero-discover" href="#produits">Explorer les produits</a>
         </div>
+        <div class="hero-footnote"><span>01 / Choisissez</span><span>02 / Personnalisez</span><span>03 / Recevez</span></div>
       </div>
-
-      <div class="hero-scene" aria-label="Exemples de produits KREONI">
-        <div class="scene-glow"></div>
-        <img class="scene-tshirt" src="assets/tshirt-dtf.webp" alt="T-shirt noir avec illustration DTF de style animé">
-        <img class="scene-hoodie" src="assets/hoodie-dtf.webp" alt="Hoodie noir avec impression DTF de dragon fantastique">
-        <img class="scene-tote" src="assets/tote-dtf.webp" alt="Tote bag avec illustration DTF de renard et vagues">
-        <div class="scene-brand">
-          <img src="assets/brand-mark.svg" alt="">
-          <strong>KREONI</strong>
-          <small>Create • Print • Personalize</small>
+      <div class="hero-gallery" data-active-product="tshirt">
+        <div class="hero-orbit" aria-hidden="true"></div>
+        <span class="hero-watermark" aria-hidden="true">CREATE.</span>
+        <div class="hero-product-stage">
+          <img id="heroProductImage" src="assets/tshirt-dtf.webp" width="1254" height="1254" fetchpriority="high" alt="T-shirt noir avec illustration DTF de style animé">
+        </div>
+        <div class="hero-product-caption" aria-live="polite"><span id="heroProductNumber">01 / 03</span><div><strong id="heroProductName">T-shirt personnalisé</strong><span id="heroProductDetail">Votre univers, imprimé en couleurs.</span></div><span class="hero-print-badge">DTF<br><b>FULL COLOR</b></span></div>
+        <div class="hero-product-picker" role="group" aria-label="Découvrir les produits">
+          <button type="button" data-hero-product="tshirt" aria-pressed="true"><img src="assets/tshirt-dtf.webp" alt=""><span>T-shirt</span></button>
+          <button type="button" data-hero-product="hoodie" aria-pressed="false"><img src="assets/hoodie-dtf.webp" alt=""><span>Hoodie</span></button>
+          <button type="button" data-hero-product="tote" aria-pressed="false"><img src="assets/tote-dtf.webp" alt=""><span>Sac</span></button>
         </div>
       </div>
     </div>
