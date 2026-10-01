@@ -244,3 +244,7 @@ repeating-linear-gradient(90deg,transparent 0 140px,rgba(255,255,255,.025) 141px
 .simple-recap span{color:#666;font-size:.875rem}
 .simple-options>.btn{width:100%;font-size:1rem;min-height:50px;white-space:normal}
 @media(max-width:760px){.simple-config{padding:18px}.simple-config-grid{grid-template-columns:1fr;gap:24px}.product-picker label{min-width:calc(50% - 10px)}.product-example img{height:210px}.product-example{padding:16px}.simple-colors span{padding:12px}.simple-row{gap:12px}}
+
+.product-example img{transition:opacity .18s ease}
+#previewStatus{display:block;color:#6b5834;font-size:.875rem;margin-top:6px}
+@media(prefers-reduced-motion:reduce){.product-example img{transition:none}}

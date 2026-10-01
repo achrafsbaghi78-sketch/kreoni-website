@@ -33,6 +33,23 @@ if (productForm) {
     const el = byId(id); el.hidden = hidden;
     el.querySelectorAll('input,select,textarea').forEach(input => input.disabled = hidden);
   };
+  const colorImages = {
+    tshirt: {Noir: 'assets/tshirt-dtf.webp', Blanc: 'assets/tshirt-white.webp', Beige: 'assets/tshirt-beige.webp'},
+    hoodie: {Noir: 'assets/hoodie-dtf.webp', Blanc: 'assets/hoodie-white.webp', Beige: 'assets/hoodie-beige.webp'},
+    tote: {Noir: 'assets/tote-black.webp', Blanc: 'assets/tote-white.webp', Beige: 'assets/tote-dtf.webp'}
+  };
+  const preview = byId('productPreview');
+  preview.addEventListener('load', () => { preview.style.opacity = '1'; });
+  preview.addEventListener('error', () => {
+    preview.style.opacity = '1';
+    byId('previewStatus').textContent = 'Image indisponible. Votre couleur reste sélectionnée.';
+  });
+  const cachedProducts = new Set();
+  function preloadColors(key) {
+    if (!colorImages[key] || cachedProducts.has(key)) return;
+    cachedProducts.add(key);
+    Object.values(colorImages[key]).forEach(src => { const image = new Image(); image.src = src; });
+  }
   let previousProduct;
   function updateProduct() {
     const key = current(), product = products[key], business = key === 'b2b';
@@ -43,11 +60,20 @@ if (productForm) {
     if (key !== previousProduct) {
       const placement = byId('productPlacement');
       placement.replaceChildren(...product.placements.map(value => new Option(value, value)));
-      byId('productPreview').src = product.image;
-      byId('productPreview').alt = 'Exemple : ' + product.label;
-      byId('productPreviewTitle').textContent = product.label;
       previousProduct = key;
     }
+    const selectedColor = color();
+    const imageSrc = business ? product.image : colorImages[key][selectedColor];
+    if (preview.getAttribute('src') !== imageSrc) {
+      preview.style.opacity = '.45';
+      preview.src = imageSrc;
+      if (preview.complete && preview.naturalWidth) preview.style.opacity = '1';
+    }
+    const previewLabel = product.label + (business ? '' : ' · ' + selectedColor);
+    preview.alt = 'Exemple : ' + previewLabel;
+    byId('productPreviewTitle').textContent = previewLabel;
+    byId('previewStatus').textContent = business ? '' : 'Couleur : ' + selectedColor;
+    preloadColors(key);
     const quantity = byId('productQty').value;
     const parts = business
       ? ['Devis B2B', byId('businessProduct').value]
