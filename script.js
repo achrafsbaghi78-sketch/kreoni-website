@@ -39,16 +39,23 @@ if (productForm) {
     tote: {Noir: 'assets/tote-black.webp', Blanc: 'assets/tote-white.webp', Beige: 'assets/tote-dtf.webp'}
   };
   const preview = byId('productPreview');
-  preview.addEventListener('load', () => { preview.style.opacity = '1'; });
-  preview.addEventListener('error', () => {
-    preview.style.opacity = '1';
-    byId('previewStatus').textContent = 'Image indisponible. Votre couleur reste sélectionnée.';
+  const secondaryPreview = byId('secondaryPreview');
+  [preview, secondaryPreview].forEach(image => {
+    image.addEventListener('load', () => { image.style.opacity = '1'; });
+    image.addEventListener('error', () => {
+      image.style.opacity = '1';
+      byId('previewStatus').textContent = 'Image indisponible. Votre sélection reste enregistrée.';
+    });
   });
-  const cachedProducts = new Set();
-  function preloadColors(key) {
-    if (!colorImages[key] || cachedProducts.has(key)) return;
-    cachedProducts.add(key);
-    Object.values(colorImages[key]).forEach(src => { const image = new Image(); image.src = src; });
+  function setView(image, frame, src, strip, selectedColor, description) {
+    frame.classList.toggle('color-strip', strip);
+    frame.style.setProperty('--panel-offset', (-100 * ['Noir', 'Blanc', 'Beige'].indexOf(selectedColor)) + '%');
+    if (image.getAttribute('src') !== src) {
+      image.style.opacity = '.45';
+      image.src = src;
+      if (image.complete && image.naturalWidth) image.style.opacity = '1';
+    }
+    image.alt = description;
   }
   let previousProduct;
   function updateProduct() {
@@ -63,17 +70,27 @@ if (productForm) {
       previousProduct = key;
     }
     const selectedColor = color();
-    const imageSrc = business ? product.image : colorImages[key][selectedColor];
-    if (preview.getAttribute('src') !== imageSrc) {
-      preview.style.opacity = '.45';
-      preview.src = imageSrc;
-      if (preview.complete && preview.naturalWidth) preview.style.opacity = '1';
-    }
+    const placement = byId('productPlacement').value;
+    const both = !business && (placement === 'Devant + dos' || placement === 'Recto + verso');
+    const rear = !business && (placement === 'Dos' || placement === 'Verso');
+    const chest = !business && placement === 'Poitrine / petit logo';
+    const frontLabel = key === 'tote' ? 'Recto' : 'Devant';
+    const backLabel = key === 'tote' ? 'Verso' : 'Dos';
+    const viewLabel = business ? 'Exemple professionnel' : rear ? backLabel : chest ? 'Poitrine / petit logo' : frontLabel;
+    const primarySrc = business ? product.image : rear || chest
+      ? 'assets/' + key + (rear ? '-back-colors.webp' : '-chest-colors.webp')
+      : colorImages[key][selectedColor];
     const previewLabel = product.label + (business ? '' : ' · ' + selectedColor);
-    preview.alt = 'Exemple : ' + previewLabel;
+    setView(preview, byId('primaryFrame'), primarySrc, rear || chest, selectedColor, previewLabel + ' · ' + viewLabel);
+    byId('primaryCaption').textContent = viewLabel;
+    byId('secondaryView').hidden = !both;
+    byId('previewViews').classList.toggle('two-views', both);
+    if (both) {
+      setView(secondaryPreview, byId('secondaryFrame'), 'assets/' + key + '-back-colors.webp', true, selectedColor, previewLabel + ' · ' + backLabel);
+      byId('secondaryCaption').textContent = backLabel;
+    }
     byId('productPreviewTitle').textContent = previewLabel;
-    byId('previewStatus').textContent = business ? '' : 'Couleur : ' + selectedColor;
-    preloadColors(key);
+    byId('previewStatus').textContent = business ? '' : selectedColor + ' · ' + placement;
     const quantity = byId('productQty').value;
     const parts = business
       ? ['Devis B2B', byId('businessProduct').value]
