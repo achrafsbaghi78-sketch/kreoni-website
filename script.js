@@ -18,6 +18,12 @@ if(p&&m){
   })
 }
 
+// Add future catalogue imports here with a unique stable reference.
+const catalogDesigns = [
+  {id:'DTF-001',name:'Lune écarlate',category:'Anime',image:'assets/DTF-001.webp',mockupProduct:'tshirt'},
+  {id:'DTF-002',name:'Dragon céleste',category:'Fantasy',image:'assets/DTF-002.webp',mockupProduct:'hoodie'},
+  {id:'DTF-003',name:'Esprit des vagues',category:'Illustrations',image:'assets/DTF-003.webp',mockupProduct:'tote'}
+];
 const productForm = document.getElementById('productConfigurator');
 if (productForm) {
   const byId = id => document.getElementById(id);
@@ -98,10 +104,26 @@ if (productForm) {
     parts.push(quantity ? quantity + (quantity === '1' ? ' pièce' : ' pièces') : 'Quantité à préciser');
     byId('productRecap').textContent = parts.filter(Boolean).join(' · ');
     const design = byId('designSource').value;
+    const selectedDesign = design === 'Modèle DTF KREONI' ? catalogDesigns.find(item => item.id === productForm.dataset.designId) : null;
+    byId('selectedDesignPanel').hidden = !selectedDesign;
+    byId('previewNote').textContent = 'Aperçu indicatif de la couleur et de l’emplacement. Dimensions et visuel final validés avant production.';
+    if (selectedDesign) {
+      byId('selectedDesignImage').src = selectedDesign.image;
+      byId('selectedDesignImage').alt = selectedDesign.name;
+      byId('selectedDesignName').textContent = selectedDesign.id + ' · ' + selectedDesign.name;
+      byId('productRecap').textContent += ' · ' + selectedDesign.id;
+      if (key !== selectedDesign.mockupProduct) {
+        setView(preview, byId('primaryFrame'), selectedDesign.image, false, selectedColor, 'Visuel choisi : ' + selectedDesign.name);
+        byId('secondaryView').hidden = true;
+        byId('previewViews').classList.remove('two-views');
+        byId('primaryCaption').textContent = selectedDesign.id + ' · Visuel choisi';
+        byId('previewNote').textContent = 'Votre design est sélectionné pour ce produit. Le montage sur le textile sera confirmé avec vous avant production.';
+      }
+    }
     byId('designHelp').textContent = design === 'Mon propre design'
       ? 'Joignez votre image ou votre logo dans la conversation WhatsApp.'
       : design === 'J’ai une idée' ? 'Décrivez votre idée dans les détails ou sur WhatsApp.'
-      : 'Nous vous partageons les modèles disponibles sur WhatsApp.';
+      : selectedDesign ? 'Design sélectionné : ' + selectedDesign.id + '. Il sera inclus dans votre demande.' : 'Choisissez un design dans le catalogue, ou demandez conseil sur WhatsApp.';
     byId('sendProductConfig').textContent = business ? 'Demander un devis B2B sur WhatsApp' : 'Demander mon devis sur WhatsApp';
   }
   productForm.addEventListener('input', updateProduct);
@@ -124,6 +146,8 @@ if (productForm) {
       lines.push('Impression : ' + byId('productPlacement').value);
     }
     lines.push('Quantité : ' + byId('productQty').value, 'Visuel : ' + byId('designSource').value);
+    const chosenDesign = byId('designSource').value === 'Modèle DTF KREONI' ? catalogDesigns.find(item => item.id === productForm.dataset.designId) : null;
+    if (chosenDesign) lines.push('Référence design : ' + chosenDesign.id + ' — ' + chosenDesign.name);
     if (byId('productNotes').value.trim()) lines.push('Détails : ' + byId('productNotes').value.trim());
     lines.push(byId('designHelp').textContent, 'Merci de confirmer le prix, la disponibilité et le délai.');
     window.open('https://wa.me/212664521613?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener,noreferrer');
@@ -154,4 +178,49 @@ if (heroButtons.length) {
     link.replaceChildren(document.createTextNode(product.cta + ' '));
     const arrow = document.createElement('span'); arrow.setAttribute('aria-hidden', 'true'); arrow.textContent = '↗'; link.append(arrow);
   }));
+}
+
+const catalogGrid = document.getElementById('catalogGrid');
+if (catalogGrid) {
+  const dialog = document.getElementById('designDialog');
+  let lastDesignButton;
+  function chooseDesign(id) {
+    const design = catalogDesigns.find(item => item.id === id);
+    if (!design) return;
+    productForm.dataset.designId = id;
+    document.getElementById('designSource').value = 'Modèle DTF KREONI';
+    productForm.dispatchEvent(new Event('change', {bubbles:true}));
+    if (dialog.open) dialog.close();
+    document.getElementById('configurateur').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
+  }
+  catalogDesigns.forEach(design => {
+    const card = document.createElement('article'); card.className = 'design-card'; card.dataset.category = design.category;
+    const view = document.createElement('button'); view.type='button'; view.className='design-art'; view.setAttribute('aria-label','Agrandir '+design.name);
+    const img=document.createElement('img');img.src=design.image;img.alt=design.name;img.loading='lazy';view.append(img);
+    const info=document.createElement('div');info.className='design-info';
+    const ref=document.createElement('p');ref.className='design-ref';ref.textContent=design.category+' / '+design.id;
+    const title=document.createElement('h3');title.textContent=design.name;
+    const choose=document.createElement('button');choose.type='button';choose.className='btn btn-gold';choose.textContent='Choisir ce design';choose.dataset.chooseDesign=design.id;choose.addEventListener('click',()=>chooseDesign(design.id));
+    info.append(ref,title,choose);card.append(view,info);catalogGrid.append(card);
+    view.addEventListener('click',()=>{
+      lastDesignButton=view;
+      document.getElementById('designDialogImage').src=design.image;
+      document.getElementById('designDialogImage').alt=design.name;
+      document.getElementById('designDialogTitle').textContent=design.name;
+      document.getElementById('designDialogCategory').textContent=design.category+' · '+design.id;
+      document.getElementById('chooseDialogDesign').dataset.designId=design.id;
+      dialog.showModal();
+    });
+  });
+  document.getElementById('catalogCount').textContent=catalogDesigns.length+' designs';
+  document.querySelectorAll('.catalog-filters [data-category]').forEach(button=>button.addEventListener('click',()=>{
+    document.querySelectorAll('.catalog-filters [data-category]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+    let count=0;
+    catalogGrid.querySelectorAll('.design-card').forEach(card=>{card.hidden=button.dataset.category!=='Tous'&&card.dataset.category!==button.dataset.category;if(!card.hidden)count++;});
+    document.getElementById('catalogCount').textContent=count+(count===1?' design':' designs');
+  }));
+  document.getElementById('closeDesignDialog').addEventListener('click',()=>dialog.close());
+  dialog.addEventListener('close',()=>lastDesignButton?.focus());
+  document.getElementById('chooseDialogDesign').addEventListener('click',event=>chooseDesign(event.currentTarget.dataset.designId));
+  document.getElementById('clearDesign').addEventListener('click',()=>{delete productForm.dataset.designId;productForm.dispatchEvent(new Event('change',{bubbles:true}));});
 }
