@@ -22,7 +22,10 @@ if(p&&m){
 const catalogDesigns = [
   {id:'DTF-001',name:'Lune écarlate',category:'Anime',image:'assets/DTF-001.webp',mockupProduct:'tshirt'},
   {id:'DTF-002',name:'Dragon céleste',category:'Fantasy',image:'assets/DTF-002.webp',mockupProduct:'hoodie'},
-  {id:'DTF-003',name:'Esprit des vagues',category:'Illustrations',image:'assets/DTF-003.webp',mockupProduct:'tote'}
+  {id:'DTF-003',name:'Esprit des vagues',category:'Illustrations',image:'assets/DTF-003.webp',mockupProduct:'tote'},
+  {id:'DTF-004',name:'Samouraï néon',category:'Anime',image:'assets/DTF-004.webp'},
+  {id:'DTF-005',name:'Phénix solaire',category:'Fantasy',image:'assets/DTF-005.webp'},
+  {id:'DTF-006',name:'Danse des koïs',category:'Illustrations',image:'assets/DTF-006.webp'}
 ];
 const productForm = document.getElementById('productConfigurator');
 if (productForm) {
