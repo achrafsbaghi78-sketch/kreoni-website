@@ -141,15 +141,28 @@
 
   <section class="section dtf-catalogue" id="catalogue">
     <div class="container">
-      <div class="section-head"><p class="eyebrow">COLLECTION KREONI</p><h2>Trouvez votre prochain imprimé.</h2><p>Explorez nos univers et choisissez le design à ajouter à votre demande.</p></div>
+      <div class="section-head"><p class="eyebrow">COLLECTION KREONI</p><h2>Trouvez votre prochain imprimé.</h2><p>50 designs, 5 univers. Essayez vos favoris sur un T-shirt et changez sa couleur en un geste.</p></div>
       <div class="catalog-filters" role="group" aria-label="Catégories de designs">
         <button type="button" data-category="Tous" aria-pressed="true">Tous</button>
         <button type="button" data-category="Anime" aria-pressed="false">Anime</button>
         <button type="button" data-category="Fantasy" aria-pressed="false">Fantasy</button>
         <button type="button" data-category="Illustrations" aria-pressed="false">Illustrations</button>
+        <button type="button" data-category="Streetwear" aria-pressed="false">Streetwear</button>
+        <button type="button" data-category="Maroc" aria-pressed="false">Maroc</button>
+      </div>
+      <div class="catalog-tools">
+        <label class="catalog-search">Rechercher un design<input type="search" id="catalogSearch" placeholder="Nom, univers ou référence…" autocomplete="off"></label>
+        <fieldset class="catalog-colors"><legend>Couleur du T-shirt</legend>
+          <label><input type="radio" name="catalogColor" value="Noir" checked><span><i style="background:#161616"></i>Noir</span></label>
+          <label><input type="radio" name="catalogColor" value="Blanc"><span><i style="background:#fff"></i>Blanc</span></label>
+          <label><input type="radio" name="catalogColor" value="Beige"><span><i style="background:#d9c5a3"></i>Beige</span></label>
+        </fieldset>
+        <div class="catalog-view" role="group" aria-label="Affichage du catalogue"><button type="button" data-catalog-view="shirt" aria-pressed="true">Sur T-shirt</button><button type="button" data-catalog-view="art" aria-pressed="false">Design seul</button></div>
       </div>
       <p id="catalogCount" role="status" class="catalog-count"></p>
-      <div id="catalogGrid" class="catalog-grid"></div>
+      <div id="catalogGrid" class="catalog-grid" data-view="shirt"></div>
+      <p id="catalogEmpty" hidden>Aucun design trouvé. Essayez un autre mot ou une autre catégorie.</p>
+      <button id="catalogMore" type="button" class="btn btn-gold">Voir plus de designs</button>
       <noscript><p>Activez JavaScript pour parcourir et sélectionner les designs du catalogue.</p></noscript>
     </div>
   </section>
@@ -166,7 +179,7 @@
           <label><input type="radio" name="product" value="b2b"><span>Professionnels · B2B</span></label>
         </fieldset>
         <div class="simple-config-grid">
-          <aside class="product-example"><div id="previewViews" class="preview-views"><figure><div class="preview-frame" id="primaryFrame"><img id="productPreview" src="assets/tshirt-dtf.webp" alt="Exemple de T-shirt avec impression DTF"></div><figcaption id="primaryCaption">Devant</figcaption></figure><figure id="secondaryView" hidden><div class="preview-frame" id="secondaryFrame"><img id="secondaryPreview" alt="" loading="lazy"></div><figcaption id="secondaryCaption">Dos</figcaption></figure></div><strong id="productPreviewTitle">T-shirt personnalisé · Noir</strong><span id="previewStatus" role="status" aria-live="polite">Couleur : Noir</span><p id="previewNote">Aperçu indicatif de la couleur et de l’emplacement. Dimensions et visuel final validés avant production.</p></aside>
+          <aside class="product-example"><div id="previewViews" class="preview-views"><figure><div class="preview-frame" id="primaryFrame"><img class="garment-base" id="productPreview" src="assets/tshirt-blank-front.webp" alt="T-shirt personnalisable"><img class="print-artwork" id="primaryArtwork" alt="" hidden></div><figcaption id="primaryCaption">Devant</figcaption></figure><figure id="secondaryView" hidden><div class="preview-frame" id="secondaryFrame"><img class="garment-base" id="secondaryPreview" alt="" loading="lazy"><img class="print-artwork" id="secondaryArtwork" alt="" hidden></div><figcaption id="secondaryCaption">Dos</figcaption></figure></div><strong id="productPreviewTitle">T-shirt personnalisé · Noir</strong><span id="previewStatus" role="status" aria-live="polite">Couleur : Noir</span><p id="previewNote">Aperçu indicatif de la couleur et de l’emplacement. Dimensions et visuel final validés avant production.</p></aside>
           <div class="simple-options">
             <h3>2. Personnalisez votre demande</h3>
             <div id="b2bFields" hidden>
@@ -244,6 +257,7 @@
 </main>
 
 <footer><div class="container footer-wrap"><div class="brand"><img class="brand-logo" src="assets/brand-mark.svg" alt="" aria-hidden="true"><span>KREONI</span></div><p>© 2026 KREONI. Personnalisation & Print — Maroc.</p><a href="https://www.instagram.com/kreoni.ma/" target="_blank" rel="noopener noreferrer">@kreoni.ma</a></div></footer>
+<script src="catalogue.js" defer></script>
 <script src="script.js" defer></script>
 </body>
 </html>

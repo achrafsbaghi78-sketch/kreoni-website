@@ -254,7 +254,7 @@ repeating-linear-gradient(90deg,transparent 0 140px,rgba(255,255,255,.025) 141px
 .preview-views figure{margin:0;min-width:0}
 .preview-frame{position:relative;width:100%;max-width:340px;aspect-ratio:1;margin:auto;overflow:hidden}
 .product-example .preview-frame img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:contain;margin:0}
-.product-example .preview-frame.color-strip img{width:300%;height:100%;left:var(--panel-offset,0%);right:auto;object-fit:fill}
+.product-example .preview-frame.color-strip .garment-base{width:300%;height:100%;left:var(--panel-offset,0%);right:auto;object-fit:fill}
 .preview-views figcaption{font-size:.875rem;font-weight:600;margin-top:10px;color:#4d4639}
 
 /* KREONI studio: interactive editorial hero. */
@@ -327,3 +327,40 @@ repeating-linear-gradient(90deg,transparent 0 140px,rgba(255,255,255,.025) 141px
 @media(max-width:900px){.catalog-grid{gap:14px}.design-art{height:290px}.design-info{padding:16px}}
 @media(max-width:640px){.catalog-grid{grid-template-columns:1fr}.design-art{height:350px}.catalog-filters{gap:7px}.catalog-filters button{padding:9px 13px}}
 @media(prefers-reduced-motion:reduce){.design-art img{transition:none}}
+
+/* Garment and artwork remain independent across every color and placement. */
+.product-example .preview-frame .print-artwork{inset:auto;left:32%;top:27%;width:36%;height:46%;object-fit:contain;pointer-events:none;opacity:.98}
+.product-example .preview-frame[data-placement=back] .print-artwork{top:25%}
+.product-example .preview-frame[data-placement=chest] .print-artwork{left:57%;top:27%;width:13%;height:17%}
+.product-example .preview-frame[data-product=hoodie] .print-artwork{left:34.5%;top:29%;width:31%;height:30%}
+.product-example .preview-frame[data-product=hoodie][data-placement=back] .print-artwork{left:33%;top:36%;width:34%;height:43%}
+.product-example .preview-frame[data-product=hoodie][data-placement=chest] .print-artwork{left:56%;top:30%;width:12%;height:16%}
+.product-example .preview-frame[data-product=tote] .print-artwork{left:31%;top:45%;width:38%;height:40%}
+.preview-frame{max-width:440px;border-radius:10px;background:#eeece7}
+.catalog-tools{display:flex;align-items:end;flex-wrap:wrap;gap:22px;padding:22px 0 12px;border-top:1px solid #ffffff15}
+.catalog-search{display:grid;gap:9px;flex:1;min-width:200px;color:#bdbfc8;font-size:.85rem}
+.catalog-search input{width:100%;min-height:46px;border:1px solid #ffffff35;border-radius:9px;background:#1b1c22;color:#fff;padding:11px 14px;font:inherit}
+.catalog-colors{border:0;padding:0;margin:0;display:flex;gap:7px;flex-wrap:wrap;min-width:0}
+.catalog-colors legend{font-size:.85rem;color:#bdbfc8;margin-bottom:9px}
+.catalog-colors label{position:relative}
+.catalog-colors input{position:absolute;opacity:0;width:1px;height:1px}
+.catalog-colors span{display:flex;align-items:center;gap:7px;border:1px solid #ffffff35;border-radius:8px;padding:12px 10px;font-size:.8rem;cursor:pointer}
+.catalog-colors i{width:17px;height:17px;border-radius:50%;border:1px solid #aaa}
+.catalog-colors input:checked+span{border-color:#f0bf5f;color:#f0bf5f;background:#f0bf5f10}
+.catalog-view{display:flex;border:1px solid #ffffff35;border-radius:9px;overflow:hidden}
+.catalog-view button{border:0;background:transparent;color:#babcc5;padding:14px 12px;cursor:pointer;font:inherit;font-size:.8rem}
+.catalog-view button[aria-pressed=true]{background:#f0bf5f;color:#15120c}
+.catalog-search input:focus-visible,.catalog-colors input:focus-visible+span,.catalog-view button:focus-visible{outline:3px solid #f0bf5f;outline-offset:2px}
+.design-art{padding:0;height:auto;aspect-ratio:1;background:#eeece7;overflow:hidden}
+.catalog-stage{display:block;position:relative;width:100%;height:100%;overflow:hidden}
+.design-art .catalog-shirt{position:absolute;max-width:none;width:300%;height:100%;left:var(--catalog-offset,0%);top:0;object-fit:fill;transition:none}
+.design-art .catalog-artwork{position:absolute;width:36%;height:46%;left:32%;top:27%;object-fit:contain;opacity:.98;transition:none}
+.design-art:hover img{transform:none}
+.catalog-grid[data-view=art] .design-art{background:radial-gradient(ellipse,#30313c,#17181d)}
+.catalog-grid[data-view=art] .catalog-shirt{display:none}
+.catalog-grid[data-view=art] .catalog-artwork{width:88%;height:88%;left:6%;top:6%;opacity:1}
+#catalogMore{display:block;margin:28px auto 0;min-width:220px}
+#catalogue [hidden]{display:none!important}
+#catalogEmpty{padding:30px 0;color:#bdbfc8}
+@media(max-width:640px){.catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.design-info{padding:12px}.design-info h3{font-size:.95rem;min-height:2.5em;margin-bottom:12px}.design-ref{font-size:.58rem;letter-spacing:.03em}.design-info .btn{font-size:.73rem;min-height:44px;padding:10px 6px}.catalog-tools{gap:16px}.catalog-search{flex-basis:100%}.catalog-view{margin-left:auto}.catalog-colors span{padding:11px 8px;font-size:.72rem}.catalog-view button{padding:13px 9px;font-size:.72rem}}
+@media(max-width:360px){.catalog-view{margin-left:0}.catalog-grid{gap:8px}.design-info{padding:9px}.design-info h3{font-size:.85rem}}

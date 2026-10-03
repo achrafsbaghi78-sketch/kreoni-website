@@ -19,14 +19,7 @@ if(p&&m){
 }
 
 // Add future catalogue imports here with a unique stable reference.
-const catalogDesigns = [
-  {id:'DTF-001',name:'Lune écarlate',category:'Anime',image:'assets/DTF-001.webp',mockupProduct:'tshirt'},
-  {id:'DTF-002',name:'Dragon céleste',category:'Fantasy',image:'assets/DTF-002.webp',mockupProduct:'hoodie'},
-  {id:'DTF-003',name:'Esprit des vagues',category:'Illustrations',image:'assets/DTF-003.webp',mockupProduct:'tote'},
-  {id:'DTF-004',name:'Samouraï néon',category:'Anime',image:'assets/DTF-004.webp'},
-  {id:'DTF-005',name:'Phénix solaire',category:'Fantasy',image:'assets/DTF-005.webp'},
-  {id:'DTF-006',name:'Danse des koïs',category:'Illustrations',image:'assets/DTF-006.webp'}
-];
+
 const productForm = document.getElementById('productConfigurator');
 if (productForm) {
   const byId = id => document.getElementById(id);
@@ -42,17 +35,13 @@ if (productForm) {
     const el = byId(id); el.hidden = hidden;
     el.querySelectorAll('input,select,textarea').forEach(input => input.disabled = hidden);
   };
-  const colorImages = {
-    tshirt: {Noir: 'assets/tshirt-dtf.webp', Blanc: 'assets/tshirt-white.webp', Beige: 'assets/tshirt-beige.webp'},
-    hoodie: {Noir: 'assets/hoodie-dtf.webp', Blanc: 'assets/hoodie-white.webp', Beige: 'assets/hoodie-beige.webp'},
-    tote: {Noir: 'assets/tote-black.webp', Blanc: 'assets/tote-white.webp', Beige: 'assets/tote-dtf.webp'}
-  };
   const preview = byId('productPreview');
   const secondaryPreview = byId('secondaryPreview');
-  [preview, secondaryPreview].forEach(image => {
-    image.addEventListener('load', () => { image.style.opacity = '1'; });
+  [preview, secondaryPreview, byId('primaryArtwork'), byId('secondaryArtwork')].forEach(image => {
+    image.addEventListener('load', () => { image.style.opacity = '1'; image.style.visibility = 'visible'; });
     image.addEventListener('error', () => {
       image.style.opacity = '1';
+      image.style.visibility = 'hidden';
       byId('previewStatus').textContent = 'Image indisponible. Votre sélection reste enregistrée.';
     });
   });
@@ -86,16 +75,18 @@ if (productForm) {
     const frontLabel = key === 'tote' ? 'Recto' : 'Devant';
     const backLabel = key === 'tote' ? 'Verso' : 'Dos';
     const viewLabel = business ? 'Exemple professionnel' : rear ? backLabel : chest ? 'Poitrine / petit logo' : frontLabel;
-    const primarySrc = business ? product.image : rear || chest
-      ? 'assets/' + key + (rear ? '-back-colors.webp' : '-chest-colors.webp')
-      : colorImages[key][selectedColor];
+    const primarySrc = business ? product.image : 'assets/' + key + '-blank-' + (rear ? 'back' : 'front') + '.webp';
     const previewLabel = product.label + (business ? '' : ' · ' + selectedColor);
-    setView(preview, byId('primaryFrame'), primarySrc, rear || chest, selectedColor, previewLabel + ' · ' + viewLabel);
+    setView(preview, byId('primaryFrame'), primarySrc, !business, selectedColor, previewLabel + ' · ' + viewLabel);
+    byId('primaryFrame').dataset.product = key;
+    byId('primaryFrame').dataset.placement = rear ? 'back' : chest ? 'chest' : 'front';
     byId('primaryCaption').textContent = viewLabel;
     byId('secondaryView').hidden = !both;
     byId('previewViews').classList.toggle('two-views', both);
     if (both) {
-      setView(secondaryPreview, byId('secondaryFrame'), 'assets/' + key + '-back-colors.webp', true, selectedColor, previewLabel + ' · ' + backLabel);
+      setView(secondaryPreview, byId('secondaryFrame'), 'assets/' + key + '-blank-back.webp', true, selectedColor, previewLabel + ' · ' + backLabel);
+      byId('secondaryFrame').dataset.product = key;
+      byId('secondaryFrame').dataset.placement = 'back';
       byId('secondaryCaption').textContent = backLabel;
     }
     byId('productPreviewTitle').textContent = previewLabel;
@@ -115,14 +106,17 @@ if (productForm) {
       byId('selectedDesignImage').alt = selectedDesign.name;
       byId('selectedDesignName').textContent = selectedDesign.id + ' · ' + selectedDesign.name;
       byId('productRecap').textContent += ' · ' + selectedDesign.id;
-      if (key !== selectedDesign.mockupProduct) {
-        setView(preview, byId('primaryFrame'), selectedDesign.image, false, selectedColor, 'Visuel choisi : ' + selectedDesign.name);
-        byId('secondaryView').hidden = true;
-        byId('previewViews').classList.remove('two-views');
-        byId('primaryCaption').textContent = selectedDesign.id + ' · Visuel choisi';
-        byId('previewNote').textContent = 'Votre design est sélectionné pour ce produit. Le montage sur le textile sera confirmé avec vous avant production.';
-      }
     }
+    [byId('primaryArtwork'), byId('secondaryArtwork')].forEach((art, index) => {
+      art.hidden = !selectedDesign || business || (index === 1 && !both);
+      if (selectedDesign && !business) {
+        art.src = selectedDesign.image;
+        art.alt = selectedDesign.name + ' · ' + selectedDesign.id;
+      } else {
+        art.removeAttribute('src');
+        art.alt = '';
+      }
+    });
     byId('designHelp').textContent = design === 'Mon propre design'
       ? 'Joignez votre image ou votre logo dans la conversation WhatsApp.'
       : design === 'J’ai une idée' ? 'Décrivez votre idée dans les détails ou sur WhatsApp.'
@@ -196,14 +190,34 @@ if (catalogGrid) {
     if (dialog.open) dialog.close();
     document.getElementById('configurateur').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
   }
+  let activeCategory = 'Tous', visibleLimit = 12;
+  const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const search = document.getElementById('catalogSearch');
+  const more = document.getElementById('catalogMore');
+  function filterCatalogue() {
+    const query = normalize(search.value.trim());
+    let matched = 0, shown = 0;
+    catalogGrid.querySelectorAll('.design-card').forEach(card => {
+      const matches = (activeCategory === 'Tous' || card.dataset.category === activeCategory) && card.dataset.search.includes(query);
+      card.hidden = !matches || matched >= visibleLimit;
+      if (matches) { matched++; if (!card.hidden) shown++; }
+    });
+    document.getElementById('catalogCount').textContent = shown + ' / ' + matched + ' designs';
+    document.getElementById('catalogEmpty').hidden = matched !== 0;
+    more.hidden = shown >= matched;
+  }
   catalogDesigns.forEach(design => {
     const card = document.createElement('article'); card.className = 'design-card'; card.dataset.category = design.category;
+    card.dataset.search = normalize(design.id + ' ' + design.name + ' ' + design.category);
     const view = document.createElement('button'); view.type='button'; view.className='design-art'; view.setAttribute('aria-label','Agrandir '+design.name);
-    const img=document.createElement('img');img.src=design.image;img.alt=design.name;img.loading='lazy';view.append(img);
+    const stage = document.createElement('span'); stage.className = 'catalog-stage';
+    const shirt = document.createElement('img'); shirt.className='catalog-shirt'; shirt.src='assets/tshirt-blank-front.webp'; shirt.alt=''; shirt.loading='lazy'; shirt.decoding='async';
+    const img=document.createElement('img');img.className='catalog-artwork';img.src=design.thumbnail;img.alt=design.name;img.loading='lazy';img.decoding='async';
+    stage.append(shirt,img);view.append(stage);
     const info=document.createElement('div');info.className='design-info';
     const ref=document.createElement('p');ref.className='design-ref';ref.textContent=design.category+' / '+design.id;
     const title=document.createElement('h3');title.textContent=design.name;
-    const choose=document.createElement('button');choose.type='button';choose.className='btn btn-gold';choose.textContent='Choisir ce design';choose.dataset.chooseDesign=design.id;choose.addEventListener('click',()=>chooseDesign(design.id));
+    const choose=document.createElement('button');choose.type='button';choose.className='btn btn-gold';choose.textContent='Essayer ce design';choose.dataset.chooseDesign=design.id;choose.addEventListener('click',()=>chooseDesign(design.id));
     info.append(ref,title,choose);card.append(view,info);catalogGrid.append(card);
     view.addEventListener('click',()=>{
       lastDesignButton=view;
@@ -215,13 +229,27 @@ if (catalogGrid) {
       dialog.showModal();
     });
   });
-  document.getElementById('catalogCount').textContent=catalogDesigns.length+' designs';
   document.querySelectorAll('.catalog-filters [data-category]').forEach(button=>button.addEventListener('click',()=>{
     document.querySelectorAll('.catalog-filters [data-category]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
-    let count=0;
-    catalogGrid.querySelectorAll('.design-card').forEach(card=>{card.hidden=button.dataset.category!=='Tous'&&card.dataset.category!==button.dataset.category;if(!card.hidden)count++;});
-    document.getElementById('catalogCount').textContent=count+(count===1?' design':' designs');
+    activeCategory=button.dataset.category;visibleLimit=12;filterCatalogue();
   }));
+  search.addEventListener('input',()=>{visibleLimit=12;filterCatalogue();});
+  more.addEventListener('click',()=>{visibleLimit+=12;filterCatalogue();});
+  document.querySelectorAll('[name="catalogColor"]').forEach(input=>input.addEventListener('change',()=>{
+    catalogGrid.style.setProperty('--catalog-offset',(-100 * ['Noir','Blanc','Beige'].indexOf(input.value))+'%');
+    const colorInput = productForm.querySelector('[name="color"][value="'+input.value+'"]');
+    colorInput.checked=true;productForm.dispatchEvent(new Event('change',{bubbles:true}));
+  }));
+  productForm.addEventListener('change',()=>{
+    const selected=productForm.querySelector('[name="color"]:checked').value;
+    document.querySelector('[name="catalogColor"][value="'+selected+'"]').checked=true;
+    catalogGrid.style.setProperty('--catalog-offset',(-100 * ['Noir','Blanc','Beige'].indexOf(selected))+'%');
+  });
+  document.querySelectorAll('[data-catalog-view]').forEach(button=>button.addEventListener('click',()=>{
+    document.querySelectorAll('[data-catalog-view]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+    catalogGrid.dataset.view=button.dataset.catalogView;
+  }));
+  filterCatalogue();
   document.getElementById('closeDesignDialog').addEventListener('click',()=>dialog.close());
   dialog.addEventListener('close',()=>lastDesignButton?.focus());
   document.getElementById('chooseDialogDesign').addEventListener('click',event=>chooseDesign(event.currentTarget.dataset.designId));
