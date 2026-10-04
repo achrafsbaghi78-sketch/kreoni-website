@@ -195,12 +195,13 @@ if (catalogGrid) {
   let activeCategory = 'Tous', visibleLimit = 12;
   const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   const search = document.getElementById('catalogSearch');
+  const collection = document.getElementById('catalogCollection');
   const more = document.getElementById('catalogMore');
   function filterCatalogue() {
     const query = normalize(search.value.trim());
     let matched = 0, shown = 0;
     catalogGrid.querySelectorAll('.design-card').forEach(card => {
-      const matches = (activeCategory === 'Tous' || card.dataset.category === activeCategory) && card.dataset.search.includes(query);
+      const matches = (activeCategory === 'Tous' || card.dataset.category === activeCategory) && (!collection.value || card.dataset.collection === collection.value) && card.dataset.search.includes(query);
       card.hidden = !matches || matched >= visibleLimit;
       if (matches) { matched++; if (!card.hidden) shown++; }
     });
@@ -210,6 +211,7 @@ if (catalogGrid) {
   }
   catalogDesigns.forEach(design => {
     const card = document.createElement('article'); card.className = 'design-card'; card.dataset.category = design.category;
+    card.dataset.collection = design.collection || '';
     card.dataset.search = normalize(design.id + ' ' + design.name + ' ' + design.category + ' ' + (design.collection || '') + ' ' + (design.message || ''));
     const view = document.createElement('button'); view.type='button'; view.className='design-art'; view.setAttribute('aria-label','Agrandir '+design.name);
     const stage = document.createElement('span'); stage.className = 'catalog-stage';
@@ -217,7 +219,7 @@ if (catalogGrid) {
     const img=document.createElement('img');img.className='catalog-artwork';img.src=design.thumbnail;img.alt=design.name;img.loading='lazy';img.decoding='async';
     stage.append(shirt,img);view.append(stage);
     const info=document.createElement('div');info.className='design-info';
-    const ref=document.createElement('p');ref.className='design-ref';ref.textContent=design.category+' / '+design.id;
+    const ref=document.createElement('p');ref.className='design-ref';ref.textContent=(design.collection || design.category)+' / '+design.id;
     const title=document.createElement('h3');title.textContent=design.name;
     const choose=document.createElement('button');choose.type='button';choose.className='btn btn-gold';choose.textContent='Essayer ce design';choose.dataset.chooseDesign=design.id;choose.addEventListener('click',()=>chooseDesign(design.id));
     info.append(ref,title);
@@ -228,7 +230,7 @@ if (catalogGrid) {
       document.getElementById('designDialogImage').src=design.image;
       document.getElementById('designDialogImage').alt=design.name;
       document.getElementById('designDialogTitle').textContent=design.name;
-      document.getElementById('designDialogCategory').textContent=design.category+' · '+design.id;
+      document.getElementById('designDialogCategory').textContent=(design.collection || design.category)+' · '+design.id;
       document.getElementById('designDialogStory').textContent=design.story || '';
       document.getElementById('designDialogStory').hidden=!design.story;
       document.getElementById('chooseDialogDesign').dataset.designId=design.id;
@@ -237,8 +239,13 @@ if (catalogGrid) {
   });
   document.querySelectorAll('.catalog-filters [data-category]').forEach(button=>button.addEventListener('click',()=>{
     document.querySelectorAll('.catalog-filters [data-category]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
-    activeCategory=button.dataset.category;visibleLimit=12;filterCatalogue();
+    activeCategory=button.dataset.category;collection.value='';visibleLimit=12;filterCatalogue();
   }));
+  collection.addEventListener('change',()=>{
+    activeCategory='Tous';
+    document.querySelectorAll('.catalog-filters [data-category]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.category==='Tous')));
+    visibleLimit=12;filterCatalogue();
+  });
   search.addEventListener('input',()=>{visibleLimit=12;filterCatalogue();});
   more.addEventListener('click',()=>{visibleLimit+=12;filterCatalogue();});
   document.querySelectorAll('[name="catalogColor"]').forEach(input=>input.addEventListener('change',()=>{

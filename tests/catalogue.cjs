@@ -8,19 +8,29 @@ w.eval(fs.readFileSync(root+'catalogue.js','utf8')+'\n'+fs.readFileSync(root+'sc
 const get=id=>d.getElementById(id),form=get('productConfigurator');
 const change=()=>form.dispatchEvent(new w.Event('change',{bubbles:true}));
 const visible=()=>[...d.querySelectorAll('.design-card')].filter(x=>!x.hidden).length;
-const cards=[...d.querySelectorAll('.design-card')];assert.equal(cards.length,53);assert.equal(visible(),12);
+const cards=[...d.querySelectorAll('.design-card')];assert.equal(cards.length,83);assert.equal(visible(),12);
 get('catalogMore').click();assert.equal(visible(),24);
-for(const [category,count] of Object.entries({Anime:15,Fantasy:12,Illustrations:10,Streetwear:8,Maroc:8})){
+for(const [category,count] of Object.entries({Anime:45,Fantasy:12,Illustrations:10,Streetwear:8,Maroc:8})){
  d.querySelector('.catalog-filters [data-category="'+category+'"]').click();assert.equal(visible(),Math.min(count,12));assert.equal(get('catalogMore').hidden,count<=12);
 }
 d.querySelector('.catalog-filters [data-category=Tous]').click();assert.equal(visible(),12);
+for(const collection of ['Demon Slayer','One Piece','Jujutsu Kaisen']){
+ get('catalogCollection').value=collection;get('catalogCollection').dispatchEvent(new w.Event('change'));
+ assert.equal(visible(),10);assert(get('catalogMore').hidden);
+ assert([...d.querySelectorAll('.design-card')].filter(c=>!c.hidden).every(c=>c.dataset.collection===collection));
+}
+get('catalogSearch').value='Gojo';get('catalogSearch').dispatchEvent(new w.Event('input'));assert.equal(visible(),1);
+get('catalogSearch').value='';get('catalogSearch').dispatchEvent(new w.Event('input'));
+d.querySelector('.catalog-filters [data-category=Fantasy]').click();assert.equal(get('catalogCollection').value,'');assert.equal(visible(),12);
+get('catalogCollection').value='Histoires & émotions';get('catalogCollection').dispatchEvent(new w.Event('change'));assert.equal(visible(),3);
+d.querySelector('.catalog-filters [data-category=Tous]').click();assert.equal(get('catalogCollection').value,'');assert.equal(visible(),12);
 get('catalogSearch').value='kois';get('catalogSearch').dispatchEvent(new w.Event('input'));assert.equal(visible(),1);
 get('catalogSearch').value='not-a-design';get('catalogSearch').dispatchEvent(new w.Event('input'));assert.equal(visible(),0);assert(!get('catalogEmpty').hidden);
 get('catalogSearch').value='DTF-050';get('catalogSearch').dispatchEvent(new w.Event('input'));assert.equal(visible(),1);
 get('catalogSearch').value='';get('catalogSearch').dispatchEvent(new w.Event('input'));
-while(!get('catalogMore').hidden)get('catalogMore').click();assert.equal(visible(),53);
+while(!get('catalogMore').hidden)get('catalogMore').click();assert.equal(visible(),83);
 let combinations=0;
-for(let i=1;i<=53;i++){
+for(let i=1;i<=83;i++){
  const id='DTF-'+String(i).padStart(3,'0');
  assert(fs.existsSync(root+'assets/'+id+'.webp'));assert(fs.existsSync(root+'assets/thumbs/'+id+'.webp'));
  d.querySelector('[data-choose-design="'+id+'"]').click();assert.equal(form.dataset.designId,id);
@@ -56,6 +66,6 @@ d.querySelector('[data-product=tshirt]').click();get('designSource').value='Mon 
 get('designSource').value='Modèle DTF KREONI';change();assert(!get('primaryArtwork').hidden);get('clearDesign').click();assert(get('primaryArtwork').hidden);assert(get('selectedDesignPanel').hidden);
 for(const key of ['hoodie','tote','tshirt']){d.querySelector('[data-hero-product="'+key+'"]').click();assert.equal(get('heroCustomize').dataset.product,key);get('heroCustomize').click();assert.equal(d.querySelector('[name=product]:checked').value,key);}
 assert(html.indexOf('src="catalogue.js"')<html.indexOf('src="script.js"'));
-console.log('PASS: 53 unique designs; '+combinations+' design/product/color/placement combinations; front/back/chest overlays; synchronized catalogue colors; filters/search/pagination; order references; B2B; removal; hero links.');
+console.log('PASS: 83 unique designs; '+combinations+' design/product/color/placement combinations; front/back/chest overlays; synchronized catalogue colors; filters/search/pagination; order references; B2B; removal; hero links.');
 
-d.querySelector('[data-choose-design="DTF-051"]').click();assert(get('selectedDesignStory').textContent.includes('loup'));assert(!get('selectedDesignStory').hidden);assert.equal(d.querySelectorAll('.design-message').length,3);console.log('PASS: story collection shown first and selected story displayed.');
+d.querySelector('[data-choose-design="DTF-051"]').click();assert(get('selectedDesignStory').textContent.includes('loup'));assert(!get('selectedDesignStory').hidden);assert.equal(d.querySelectorAll('.design-message').length,3);console.log('PASS: story collection retained and selected story displayed.');

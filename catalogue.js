@@ -1,6 +1,246 @@
 // Stable references shared by catalogue, preview and order.
 const catalogDesigns = [
   {
+    "id": "DTF-054",
+    "name": "Tanjiro — Danse des éléments",
+    "category": "Anime",
+    "collection": "Demon Slayer",
+    "image": "assets/DTF-054.webp",
+    "thumbnail": "assets/thumbs/DTF-054.webp"
+  },
+  {
+    "id": "DTF-064",
+    "name": "Luffy — Liberté Gear 5",
+    "category": "Anime",
+    "collection": "One Piece",
+    "image": "assets/DTF-064.webp",
+    "thumbnail": "assets/thumbs/DTF-064.webp"
+  },
+  {
+    "id": "DTF-074",
+    "name": "Gojo — Infini violet",
+    "category": "Anime",
+    "collection": "Jujutsu Kaisen",
+    "image": "assets/DTF-074.webp",
+    "thumbnail": "assets/thumbs/DTF-074.webp"
+  },
+  {
+    "id": "DTF-055",
+    "name": "Nezuko — Lune rose",
+    "category": "Anime",
+    "collection": "Demon Slayer",
+    "image": "assets/DTF-055.webp",
+    "thumbnail": "assets/thumbs/DTF-055.webp"
+  },
+  {
+    "id": "DTF-065",
+    "name": "Zoro — Trois sabres",
+    "category": "Anime",
+    "collection": "One Piece",
+    "image": "assets/DTF-065.webp",
+    "thumbnail": "assets/thumbs/DTF-065.webp"
+  },
+  {
+    "id": "DTF-075",
+    "name": "Sukuna — Roi des malédictions",
+    "category": "Anime",
+    "collection": "Jujutsu Kaisen",
+    "image": "assets/DTF-075.webp",
+    "thumbnail": "assets/thumbs/DTF-075.webp"
+  },
+  {
+    "id": "DTF-056",
+    "name": "Zenitsu — Éclair doré",
+    "category": "Anime",
+    "collection": "Demon Slayer",
+    "image": "assets/DTF-056.webp",
+    "thumbnail": "assets/thumbs/DTF-056.webp"
+  },
+  {
+    "id": "DTF-066",
+    "name": "Sanji — Pas de feu",
+    "category": "Anime",
+    "collection": "One Piece",
+    "image": "assets/DTF-066.webp",
+    "thumbnail": "assets/thumbs/DTF-066.webp"
+  },
+  {
+    "id": "DTF-076",
+    "name": "Yuji — Impact noir",
+    "category": "Anime",
+    "collection": "Jujutsu Kaisen",
+    "image": "assets/DTF-076.webp",
+    "thumbnail": "assets/thumbs/DTF-076.webp"
+  },
+  {
+    "id": "DTF-057",
+    "name": "Inosuke — Instinct sauvage",
+    "category": "Anime",
+    "collection": "Demon Slayer",
+    "image": "assets/DTF-057.webp",
+    "thumbnail": "assets/thumbs/DTF-057.webp"
+  },
+  {
+    "id": "DTF-067",
+    "name": "Ace — Flamme éternelle",
+    "category": "Anime",
+    "collection": "One Piece",
+    "image": "assets/DTF-067.webp",
+    "thumbnail": "assets/thumbs/DTF-067.webp"
+  },
+  {
+    "id": "DTF-077",
+    "name": "Megumi — Ombres jumelles",
+    "category": "Anime",
+    "collection": "Jujutsu Kaisen",
+    "image": "assets/DTF-077.webp",
+    "thumbnail": "assets/thumbs/DTF-077.webp"
+  },
+  {
+    "id": "DTF-058",
+    "name": "Rengoku — Cœur ardent",
+    "category": "Anime",
+    "collection": "Demon Slayer",
+    "image": "assets/DTF-058.webp",
+    "thumbnail": "assets/thumbs/DTF-058.webp"
+  },
+  {
+    "id": "DTF-068",
+    "name": "Law — Cercle du destin",
+    "category": "Anime",
+    "collection": "One Piece",
+    "image": "assets/DTF-068.webp",
+    "thumbnail": "assets/thumbs/DTF-068.webp"
+  },
+  {
+    "id": "DTF-078",
+    "name": "Toji — Force silencieuse",
+    "category": "Anime",
+    "collection": "Jujutsu Kaisen",
+    "image": "assets/DTF-078.webp",
+    "thumbnail": "assets/thumbs/DTF-078.webp"
+  },
+  {
+    "id": "DTF-059",
+    "name": "Giyu — Silence de l’eau",
+    "category": "Anime",
+    "collection": "Demon Slayer",
+    "image": "assets/DTF-059.webp",
+    "thumbnail": "assets/thumbs/DTF-059.webp"
+  },
+  {
+    "id": "DTF-069",
+    "name": "Shanks — Horizon rouge",
+    "category": "Anime",
+    "collection": "One Piece",
+    "image": "assets/DTF-069.webp",
+    "thumbnail": "assets/thumbs/DTF-069.webp"
+  },
+  {
+    "id": "DTF-079",
+    "name": "Yuta — Lien indestructible",
+    "category": "Anime",
+    "collection": "Jujutsu Kaisen",
+    "image": "assets/DTF-079.webp",
+    "thumbnail": "assets/thumbs/DTF-079.webp"
+  },
+  {
+    "id": "DTF-060",
+    "name": "Shinobu — Ailes de nuit",
+    "category": "Anime",
+    "collection": "Demon Slayer",
+    "image": "assets/DTF-060.webp",
+    "thumbnail": "assets/thumbs/DTF-060.webp"
+  },
+  {
+    "id": "DTF-070",
+    "name": "Robin — Fleur mystérieuse",
+    "category": "Anime",
+    "collection": "One Piece",
+    "image": "assets/DTF-070.webp",
+    "thumbnail": "assets/thumbs/DTF-070.webp"
+  },
+  {
+    "id": "DTF-080",
+    "name": "Geto — Spirale obscure",
+    "category": "Anime",
+    "collection": "Jujutsu Kaisen",
+    "image": "assets/DTF-080.webp",
+    "thumbnail": "assets/thumbs/DTF-080.webp"
+  },
+  {
+    "id": "DTF-061",
+    "name": "Tengen — Rythme éclatant",
+    "category": "Anime",
+    "collection": "Demon Slayer",
+    "image": "assets/DTF-061.webp",
+    "thumbnail": "assets/thumbs/DTF-061.webp"
+  },
+  {
+    "id": "DTF-071",
+    "name": "Nami — Boussole céleste",
+    "category": "Anime",
+    "collection": "One Piece",
+    "image": "assets/DTF-071.webp",
+    "thumbnail": "assets/thumbs/DTF-071.webp"
+  },
+  {
+    "id": "DTF-081",
+    "name": "Nanami — Précision",
+    "category": "Anime",
+    "collection": "Jujutsu Kaisen",
+    "image": "assets/DTF-081.webp",
+    "thumbnail": "assets/thumbs/DTF-081.webp"
+  },
+  {
+    "id": "DTF-062",
+    "name": "Muichiro — Brume azur",
+    "category": "Anime",
+    "collection": "Demon Slayer",
+    "image": "assets/DTF-062.webp",
+    "thumbnail": "assets/thumbs/DTF-062.webp"
+  },
+  {
+    "id": "DTF-072",
+    "name": "Chopper — Petit courage",
+    "category": "Anime",
+    "collection": "One Piece",
+    "image": "assets/DTF-072.webp",
+    "thumbnail": "assets/thumbs/DTF-072.webp"
+  },
+  {
+    "id": "DTF-082",
+    "name": "Nobara — Volonté d’acier",
+    "category": "Anime",
+    "collection": "Jujutsu Kaisen",
+    "image": "assets/DTF-082.webp",
+    "thumbnail": "assets/thumbs/DTF-082.webp"
+  },
+  {
+    "id": "DTF-063",
+    "name": "Akaza — Lune de combat",
+    "category": "Anime",
+    "collection": "Demon Slayer",
+    "image": "assets/DTF-063.webp",
+    "thumbnail": "assets/thumbs/DTF-063.webp"
+  },
+  {
+    "id": "DTF-073",
+    "name": "Thousand Sunny — Cap sur l’aventure",
+    "category": "Anime",
+    "collection": "One Piece",
+    "image": "assets/DTF-073.webp",
+    "thumbnail": "assets/thumbs/DTF-073.webp"
+  },
+  {
+    "id": "DTF-083",
+    "name": "Maki — Détermination",
+    "category": "Anime",
+    "collection": "Jujutsu Kaisen",
+    "image": "assets/DTF-083.webp",
+    "thumbnail": "assets/thumbs/DTF-083.webp"
+  },
+  {
     "id": "DTF-051",
     "name": "Le dernier souffle de la forêt",
     "category": "Anime",

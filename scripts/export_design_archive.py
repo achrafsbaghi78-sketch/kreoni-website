@@ -31,12 +31,12 @@ with zipfile.ZipFile(staging,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=
    w,h=im.size;assert im.getextrema()[-1][0]==0,'Missing transparency: '+ref
   digest=hashlib.sha256(b).hexdigest();z.writestr(name,b)
   width=round(w/300*2.54,2);height=round(h/300*2.54,2)
-  rows.append([ref,d['name'],d['category'],w,h,width,height,name,'Source native; préparation au format final à valider'])
-  manifest.append(dict(id=ref,name=d['name'],category=d['category'],file=name,width_px=w,height_px=h,sha256=digest))
-  label=html.escape(ref+' '+d['name']+' '+d['category'],quote=True)
+  rows.append([ref,d['name'],d['category'],w,h,width,height,name,'Source native; préparation au format final à valider',d.get('collection','')])
+  manifest.append(dict(id=ref,name=d['name'],category=d['category'],collection=d.get('collection',''),file=name,width_px=w,height_px=h,sha256=digest))
+  label=html.escape(ref+' '+d['name']+' '+d['category']+' '+d.get('collection',''),quote=True)
   story=html.escape(d.get('story',''))
   cards.append(f'<article data-search="{label}"><img src="{name}" alt="{html.escape(d["name"],quote=True)}" loading="lazy"><div><small>{ref} · {html.escape(d["category"])}</small><h2>{html.escape(d["name"])}</h2><p>{story}</p><p>{w} × {h} px · cadre à 300 ppp : {width} × {height} cm</p><a href="{name}" download="{ref}.png">Télécharger le PNG ↓</a></div></article>')
- table=io.StringIO();writer=csv.writer(table);writer.writerow(['Référence','Nom','Catégorie','Largeur px','Hauteur px','Largeur cadre cm à 300 ppp','Hauteur cadre cm à 300 ppp','Fichier','Statut']);writer.writerows(rows)
+ table=io.StringIO();writer=csv.writer(table);writer.writerow(['Référence','Nom','Catégorie','Largeur px','Hauteur px','Largeur cadre cm à 300 ppp','Hauteur cadre cm à 300 ppp','Fichier','Statut','Collection']);writer.writerows(rows)
  z.writestr('CATALOGUE.csv',table.getvalue().encode('utf-8-sig'))
  z.writestr('MANIFEST.json',json.dumps({'updated_utc':datetime.now(timezone.utc).isoformat(),'count':len(catalog),'designs':manifest},ensure_ascii=False,indent=2))
  z.writestr('LIRE_MOI.txt',f'''KREONI — Designothèque — {len(catalog)} designs
