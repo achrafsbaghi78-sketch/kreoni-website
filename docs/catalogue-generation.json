@@ -1,0 +1,269 @@
+{
+  "method": "Built-in image generation. Originals retained in generation workspace. WebP files are catalogue previews; production dimensions and final artwork must be confirmed before printing.",
+  "designs": [
+    {
+      "id": "DTF-007",
+      "name": "Gardienne sakura",
+      "category": "Anime",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: original anime woman swordswoman with flowing ivory hair and burgundy robe, cherry blossom petals, circular red moon, intricate ink strokes. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-008",
+      "name": "Ronin des brumes",
+      "category": "Anime",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: original masked wandering ronin wearing navy and silver, katana held downward, blue fog and crescent moon, dramatic manga engraving. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-009",
+      "name": "Renard des étoiles",
+      "category": "Anime",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: original anime fox spirit with sweeping nine tails made of stars, indigo and rose gold, elegant dynamic silhouette. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-010",
+      "name": "Course néon",
+      "category": "Anime",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: original anime motorcycle courier in futuristic helmet, cyan magenta light trails, dynamic low-angle cyberpunk illustration. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-011",
+      "name": "Lame de glace",
+      "category": "Anime",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: original anime ice knight with crystalline sword, silver teal frost shards, intense composed portrait. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-012",
+      "name": "Chat astronaute",
+      "category": "Anime",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: expressive original anime astronaut cat floating with tiny orange planet, ivory spacesuit and violet nebula, playful detailed linework. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-013",
+      "name": "Tempête rouge",
+      "category": "Anime",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: original anime female archer drawing a red energy bow, black flowing hair, vermilion storm, dynamic circular composition. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-014",
+      "name": "Robot botanique",
+      "category": "Anime",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: original friendly anime mecha with moss and blooming flowers, emerald copper ivory, intricate mechanical and organic details. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-015",
+      "name": "Masque kitsune",
+      "category": "Anime",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: ornate Japanese fox festival mask with red and golden details, chrysanthemum flowers and flowing ribbons, anime streetwear art. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-016",
+      "name": "Esprit du vent",
+      "category": "Anime",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: original anime traveler in flowing scarf standing amid stylized spiraling wind, cobalt and warm ivory palette. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-017",
+      "name": "Loup lunaire",
+      "category": "Fantasy",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: majestic silver wolf head beneath a crescent moon, midnight blue and silver foliage, intricate fantasy engraving. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-018",
+      "name": "Tigre de jade",
+      "category": "Fantasy",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: powerful white tiger intertwined with jade leaves and gold clouds, elaborate mystical tattoo illustration. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-019",
+      "name": "Serpent astral",
+      "category": "Fantasy",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: emerald and gold cosmic serpent coiling around a luminous small sun, richly detailed scales. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-020",
+      "name": "Griffon impérial",
+      "category": "Fantasy",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: majestic fantasy griffin spreading wings above a ruby crystal, bronze and storm blue feathers. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-021",
+      "name": "Cerf des aurores",
+      "category": "Fantasy",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: ethereal antlered stag with luminous cyan antlers holding aurora ribbons, midnight purple woodland atmosphere. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-022",
+      "name": "Corbeau d’obsidienne",
+      "category": "Fantasy",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: raven with metallic obsidian feathers perched on a delicate antique crescent, gold roses and violet accents. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-023",
+      "name": "Dragon des mers",
+      "category": "Fantasy",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: original turquoise sea dragon curling through stylized cresting ocean waves, ivory and copper accents. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-024",
+      "name": "Lion solaire",
+      "category": "Fantasy",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: regal roaring lion with mane formed from golden solar flames, fine engraving lines and crimson accents. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-025",
+      "name": "Papillon cosmique",
+      "category": "Fantasy",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: large symmetrical cosmic moth with celestial eye-like wing patterns, golden moon phases, violet and turquoise. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-026",
+      "name": "Gardien des ruines",
+      "category": "Fantasy",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: original stone golem with glowing moss and flowering vines, ancient mystical arch silhouette, earthy gold and jade. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-027",
+      "name": "Méduse céleste",
+      "category": "Illustrations",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: luminous turquoise jellyfish with flowing ornate tentacles surrounded by tiny stars, graceful golden details. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-028",
+      "name": "Poulpe profond",
+      "category": "Illustrations",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: elegant indigo octopus with curling tentacles and ornate marine botanical elements, copper and turquoise. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-029",
+      "name": "Baleine des nuages",
+      "category": "Illustrations",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: huge graceful whale floating through ivory clouds and golden stars, deep cobalt contemporary surreal illustration. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-030",
+      "name": "Fleur de minuit",
+      "category": "Illustrations",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: lush burgundy peony with golden leaves and delicate moth, intricate vintage botanical illustration. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-031",
+      "name": "Soleil géométrique",
+      "category": "Illustrations",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: bold elegant sun and crescent composition with terracotta geometric shapes, subtle ivory line texture, mid-century art. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-032",
+      "name": "Éclipse sauvage",
+      "category": "Illustrations",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: mountain peaks pine trees and a gigantic coral eclipsed sun reflected in a still lake, refined adventure poster illustration. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-033",
+      "name": "Oiseau de paradis",
+      "category": "Illustrations",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: exotic bird in flight with teal gold vermilion feathers and tropical florals, detailed flowing composition. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-034",
+      "name": "Vague infinie",
+      "category": "Illustrations",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: powerful spiraling ocean wave framing a coral setting sun and tiny sailboat, refined woodblock-style ink linework. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-035",
+      "name": "Cœur chromé",
+      "category": "Streetwear",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: three-dimensional chrome anatomical heart wrapped by delicate crimson ribbons, futuristic surreal fashion illustration. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-036",
+      "name": "Rose électrique",
+      "category": "Streetwear",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: electric cobalt rose with chrome thorns and liquid silver droplets, bold premium futuristic streetwear art. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-037",
+      "name": "Œil galactique",
+      "category": "Streetwear",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: surreal detailed eye with galaxy iris surrounded by floating chrome rings and magenta lightning strokes. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-038",
+      "name": "Crâne fleuri",
+      "category": "Streetwear",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: decorative ivory skull with blooming orange poppies and blue leaves, elegant intricate engraving, non-gory. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-039",
+      "name": "Basket cosmique",
+      "category": "Streetwear",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: original unbranded futuristic sneaker orbiting a small orange planet, cyan space trails, playful detailed streetwear illustration. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-040",
+      "name": "Cassette rétro",
+      "category": "Streetwear",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: unbranded vintage cassette player with flowing magnetic tape turning into orange and teal waves, nostalgic rich illustration. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-041",
+      "name": "Panthère urbaine",
+      "category": "Streetwear",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: black panther leaping through cyan and purple abstract geometric shards, powerful premium streetwear silhouette. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-042",
+      "name": "Énergie liquide",
+      "category": "Streetwear",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: sculptural liquid chrome lightning bolt surrounded by golden and cobalt fluid swirls, bold dimensional art. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-043",
+      "name": "Porte de Tanger",
+      "category": "Maroc",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: ornate blue Moroccan doorway with a tiny golden sun, bougainvillea and intricate zellige, refined illustrated travel art, no text. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-044",
+      "name": "Zellige royal",
+      "category": "Maroc",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: intricate symmetrical Moroccan zellige medallion, deep blue emerald and warm gold, refined geometric craftsmanship. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-045",
+      "name": "Atlas sauvage",
+      "category": "Maroc",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: snowy Atlas mountain silhouette with cedar trees and terracotta sunrise, elegant layered travel illustration. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-046",
+      "name": "Nuit du désert",
+      "category": "Maroc",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: camel caravan tiny silhouettes under huge crescent moon above golden Sahara dunes, rich indigo and copper. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-047",
+      "name": "Thé à la menthe",
+      "category": "Maroc",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: ornate Moroccan silver teapot with mint leaves and flowing steam arabesques, emerald and golden details. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-048",
+      "name": "Lion de l’Atlas",
+      "category": "Maroc",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: powerful Atlas lion portrait within refined Moroccan geometric ornament, emerald ruby and warm gold. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-049",
+      "name": "Ruelle bleue",
+      "category": "Maroc",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: picturesque Chefchaouen blue steps and arched doorway with flowering pots, artistic indigo and coral travel illustration. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    },
+    {
+      "id": "DTF-050",
+      "name": "Main fleurie",
+      "category": "Maroc",
+      "prompt": "Use case: stylized-concept. Asset type: original premium DTF graphic for a KREONI streetwear catalogue. Primary request: ornamental Moroccan khamsa with intricate blue gold geometry and olive branches, elegant symmetric folk artwork. Create ONE finished distinct standalone graphic, not a garment mockup. Professional rich crisp detailed illustration with strong silhouette and visual hierarchy. Portrait 2:3 composition. Center entire motif with safe margin, no clipped details. Transparent outside the motif, no rectangular background, no checkerboard, no environment beyond the motif. The design should stand out on both black and white cotton. Print-friendly well defined edges, no faint smoke at the boundary. No text, no lettering, no watermarks, no brand marks, no existing franchise characters."
+    }
+  ]
+}

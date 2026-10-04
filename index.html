@@ -58,6 +58,7 @@
     <nav class="nav" aria-label="Navigation principale">
       <a class="active" href="#top">Accueil</a>
       <a href="#produits">Produits</a>
+      <a href="#catalogue">Catalogue DTF</a>
       <a href="#configurateur">DTF & Personnalisation</a>
       <a href="#b2b">Professionnels</a>
       <a href="#personnalisation">À propos</a>
@@ -70,27 +71,29 @@
 
 <main id="top">
   <section class="hero">
-    <div class="hero-ambient"></div>
+    <div class="hero-ambient" aria-hidden="true"></div>
     <div class="container hero-layout">
       <div class="hero-copy">
-        <div class="hero-badge">♛ Personnalisation textile & DTF</div>
-        <h1>Vos idées<br>sur tous<br><span>vos supports.</span></h1>
-        <p class="lead">T-shirts, hoodies, tote bags et plus encore.<br>Impression DTF de haute qualité, pour particuliers<br>et professionnels.</p>
+        <div class="hero-badge">KREONI STUDIO <span>PERSONNALISATION DTF</span></div>
+        <h1>Votre idée.<br>Votre style.<br><span>Votre création.</span></h1>
+        <p class="lead">Un dessin, une passion, votre signature.<br>Donnez vie à vos idées sur un textile qui vous ressemble.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold hero-primary" href="#configurateur">✎ Créer mon produit →</a>
-          <a class="btn btn-outline hero-models" href="https://wa.me/212664521613?text=Bonjour%20KREONI%2C%20je%20souhaite%20voir%20les%20mod%C3%A8les%20DTF%20disponibles." target="_blank" rel="noopener noreferrer">Voir les modèles DTF →</a>
+          <a class="btn btn-gold hero-primary" id="heroCustomize" href="#configurateur" data-product="tshirt">Personnaliser mon T-shirt <span aria-hidden="true">↗</span></a>
+          <a class="hero-discover" href="#catalogue">Découvrir les designs DTF</a>
         </div>
+        <div class="hero-footnote"><span>01 / Choisissez</span><span>02 / Personnalisez</span><span>03 / Recevez</span></div>
       </div>
-
-      <div class="hero-scene" aria-label="Exemples de produits KREONI">
-        <div class="scene-glow"></div>
-        <img class="scene-tshirt" src="assets/tshirt-pro.webp" alt="T-shirt personnalisé KREONI">
-        <img class="scene-hoodie" src="assets/hoodie.svg" alt="Hoodie personnalisé KREONI">
-        <img class="scene-tote" src="assets/tote.svg" alt="Tote bag personnalisé KREONI">
-        <div class="scene-brand">
-          <img src="assets/brand-mark.svg" alt="">
-          <strong>KREONI</strong>
-          <small>Create • Print • Personalize</small>
+      <div class="hero-gallery" data-active-product="tshirt">
+        <div class="hero-orbit" aria-hidden="true"></div>
+        <span class="hero-watermark" aria-hidden="true">CREATE.</span>
+        <div class="hero-product-stage">
+          <img id="heroProductImage" src="assets/tshirt-dtf.webp" width="1254" height="1254" fetchpriority="high" alt="T-shirt noir avec illustration DTF de style animé">
+        </div>
+        <div class="hero-product-caption" aria-live="polite"><span id="heroProductNumber">01 / 03</span><div><strong id="heroProductName">T-shirt personnalisé</strong><span id="heroProductDetail">Votre univers, imprimé en couleurs.</span></div><span class="hero-print-badge">DTF<br><b>FULL COLOR</b></span></div>
+        <div class="hero-product-picker" role="group" aria-label="Découvrir les produits">
+          <button type="button" data-hero-product="tshirt" aria-pressed="true"><img src="assets/tshirt-dtf.webp" alt=""><span>T-shirt</span></button>
+          <button type="button" data-hero-product="hoodie" aria-pressed="false"><img src="assets/hoodie-dtf.webp" alt=""><span>Hoodie</span></button>
+          <button type="button" data-hero-product="tote" aria-pressed="false"><img src="assets/tote-dtf.webp" alt=""><span>Sac</span></button>
         </div>
       </div>
     </div>
@@ -107,20 +110,20 @@
     <div class="container">
       <div class="store-grid">
         <article class="store-card">
-          <div class="store-copy"><h3>T-shirt<br>Personnalisé</h3><p>À partir de vos idées ou de nos modèles DTF.</p><a href="#configurateur">Configurer →</a></div>
-          <img src="assets/tshirt-pro.webp" alt="T-shirt personnalisé KREONI">
+          <div class="store-copy"><h3>T-shirt<br>Personnalisé</h3><p>À partir de vos idées ou de nos modèles DTF.</p><a href="#configurateur" data-product="tshirt">Configurer →</a></div>
+          <img src="assets/tshirt-dtf.webp" alt="T-shirt noir avec illustration DTF de style animé">
         </article>
         <article class="store-card">
-          <div class="store-copy"><h3>Hoodie<br>Personnalisé</h3><p>Confort, style et impression durable.</p><a href="#configurateur">Configurer →</a></div>
-          <img src="assets/hoodie.svg" alt="Hoodie personnalisé KREONI">
+          <div class="store-copy"><h3>Hoodie<br>Personnalisé</h3><p>Confort, style et impression durable.</p><a href="#configurateur" data-product="hoodie">Configurer →</a></div>
+          <img src="assets/hoodie-dtf.webp" alt="Hoodie noir avec impression DTF de dragon fantastique">
         </article>
         <article class="store-card">
-          <div class="store-copy"><h3>Tote Bag<br>Personnalisé</h3><p>Pratique, tendance et idéal pour votre marque.</p><a href="#contact">Configurer →</a></div>
-          <img src="assets/tote.svg" alt="Tote bag personnalisé KREONI">
+          <div class="store-copy"><h3>Tote Bag<br>Personnalisé</h3><p>Pratique, tendance et idéal pour votre marque.</p><a href="#configurateur" data-product="tote">Configurer →</a></div>
+          <img src="assets/tote-dtf.webp" alt="Tote bag avec illustration DTF de renard et vagues">
         </article>
         <article class="store-card">
-          <div class="store-copy"><h3>B2B<br>Professionnels</h3><p>Solutions sur mesure pour entreprises et événements.</p><a href="#b2b">Demander un devis →</a></div>
-          <img src="assets/polo-b2b.svg" alt="Textile professionnel KREONI">
+          <div class="store-copy"><h3>B2B<br>Professionnels</h3><p>Solutions sur mesure pour entreprises et événements.</p><a href="#configurateur" data-product="b2b">Demander un devis →</a></div>
+          <img src="assets/polo-studio.webp" alt="Textile professionnel KREONI">
         </article>
       </div>
 
@@ -136,112 +139,76 @@
     </div>
   </section>
 
+  <section class="section dtf-catalogue" id="catalogue">
+    <div class="container">
+      <div class="section-head"><p class="eyebrow">COLLECTION KREONI</p><h2>Trouvez votre prochain imprimé.</h2><p>83 designs, 5 univers. Découvrez aussi les collections Demon Slayer, One Piece et Jujutsu Kaisen. Essayez vos favoris et changez la couleur du T-shirt en un geste.</p></div>
+      <div class="catalog-filters" role="group" aria-label="Catégories de designs">
+        <button type="button" data-category="Tous" aria-pressed="true">Tous</button>
+        <button type="button" data-category="Anime" aria-pressed="false">Anime</button>
+        <button type="button" data-category="Fantasy" aria-pressed="false">Fantasy</button>
+        <button type="button" data-category="Illustrations" aria-pressed="false">Illustrations</button>
+        <button type="button" data-category="Streetwear" aria-pressed="false">Streetwear</button>
+        <button type="button" data-category="Maroc" aria-pressed="false">Maroc</button>
+      </div>
+      <div class="catalog-tools">
+        <label class="catalog-search">Rechercher un design<input type="search" id="catalogSearch" placeholder="Nom, univers ou référence…" autocomplete="off"></label>
+        <label class="catalog-search">Collection<select id="catalogCollection"><option value="">Toutes les collections</option><option>Demon Slayer</option><option>One Piece</option><option>Jujutsu Kaisen</option><option>Histoires &amp; émotions</option></select></label>
+        <fieldset class="catalog-colors"><legend>Couleur du T-shirt</legend>
+          <label><input type="radio" name="catalogColor" value="Noir" checked><span><i style="background:#161616"></i>Noir</span></label>
+          <label><input type="radio" name="catalogColor" value="Blanc"><span><i style="background:#fff"></i>Blanc</span></label>
+          <label><input type="radio" name="catalogColor" value="Beige"><span><i style="background:#d9c5a3"></i>Beige</span></label>
+        </fieldset>
+        <div class="catalog-view" role="group" aria-label="Affichage du catalogue"><button type="button" data-catalog-view="shirt" aria-pressed="true">Sur T-shirt</button><button type="button" data-catalog-view="art" aria-pressed="false">Design seul</button></div>
+      </div>
+      <p id="catalogCount" role="status" class="catalog-count"></p>
+      <div id="catalogGrid" class="catalog-grid" data-view="shirt"></div>
+      <p id="catalogEmpty" hidden>Aucun design trouvé. Essayez un autre mot ou une autre catégorie.</p>
+      <button id="catalogMore" type="button" class="btn btn-gold">Voir plus de designs</button>
+      <noscript><p>Activez JavaScript pour parcourir et sélectionner les designs du catalogue.</p></noscript>
+    </div>
+  </section>
+  <dialog id="designDialog" aria-labelledby="designDialogTitle"><button id="closeDesignDialog" type="button" aria-label="Fermer l’aperçu">Fermer ×</button><img id="designDialogImage" alt=""><h3 id="designDialogTitle"></h3><p id="designDialogCategory"></p><p id="designDialogStory" hidden></p><button type="button" id="chooseDialogDesign" class="btn btn-gold">Choisir ce design</button></dialog>
+
   <section class="section configurator-section" id="configurateur">
     <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">CONFIGURATEUR T-SHIRT</p>
-        <h2>Préparez votre demande en quelques clics.</h2>
-        <p>Choisissez vos préférences. Le prix final sera confirmé selon le textile, le visuel, la quantité et la disponibilité.</p>
-      </div>
-
-      <div class="configurator">
-        <div class="config-preview">
-          <div class="preview-top">
-            <span class="preview-badge">Aperçu</span>
-            <span id="previewSummary">Noir • M • 1 pièce</span>
+      <div class="section-head"><p class="eyebrow">PERSONNALISATION DTF</p><h2>Votre produit, votre style.</h2><p>Choisissez votre produit, vos options, puis demandez votre devis sur WhatsApp.</p></div>
+      <form id="productConfigurator" class="simple-config">
+        <fieldset class="product-picker"><legend>1. Choisissez votre produit</legend>
+          <label><input type="radio" name="product" value="tshirt" checked><span>T-shirt</span></label>
+          <label><input type="radio" name="product" value="hoodie"><span>Hoodie</span></label>
+          <label><input type="radio" name="product" value="tote"><span>Sac / Tote bag</span></label>
+          <label><input type="radio" name="product" value="b2b"><span>Professionnels · B2B</span></label>
+        </fieldset>
+        <div class="simple-config-grid">
+          <aside class="product-example"><div id="previewViews" class="preview-views"><figure><div class="preview-frame" id="primaryFrame"><img class="garment-base" id="productPreview" src="assets/tshirt-blank-front.webp" alt="T-shirt personnalisable"><img class="print-artwork" id="primaryArtwork" alt="" hidden></div><figcaption id="primaryCaption">Devant</figcaption></figure><figure id="secondaryView" hidden><div class="preview-frame" id="secondaryFrame"><img class="garment-base" id="secondaryPreview" alt="" loading="lazy"><img class="print-artwork" id="secondaryArtwork" alt="" hidden></div><figcaption id="secondaryCaption">Dos</figcaption></figure></div><strong id="productPreviewTitle">T-shirt personnalisé · Noir</strong><span id="previewStatus" role="status" aria-live="polite">Couleur : Noir</span><p id="previewNote">Aperçu indicatif de la couleur et de l’emplacement. Dimensions et visuel final validés avant production.</p></aside>
+          <div class="simple-options">
+            <h3>2. Personnalisez votre demande</h3>
+            <div id="b2bFields" hidden>
+              <label class="simple-field">Entreprise / association<input id="businessName" type="text" maxlength="120" placeholder="Nom de votre structure"></label>
+              <label class="simple-field">Produit souhaité<select id="businessProduct"><option>T-shirts</option><option>Hoodies</option><option>Sacs / Tote bags</option><option>Polos</option><option>Plusieurs produits / à définir</option></select></label>
+              <p class="simple-hint">Précisez les couleurs, tailles et quantités par produit dans les détails ci-dessous.</p>
+            </div>
+            <fieldset id="colorFields" class="simple-colors"><legend>Couleur</legend>
+              <label><input type="radio" name="color" value="Noir" checked><span><i style="background:#161616"></i>Noir</span></label>
+              <label><input type="radio" name="color" value="Blanc"><span><i style="background:#fff"></i>Blanc</span></label>
+              <label><input type="radio" name="color" value="Beige"><span><i style="background:#d9c5a3"></i>Beige</span></label>
+            </fieldset>
+            <div class="simple-row">
+              <label id="sizeField" class="simple-field">Taille<select id="productSize"><option>S</option><option selected>M</option><option>L</option><option>XL</option><option>XXL</option><option>Plusieurs tailles</option></select></label>
+              <label class="simple-field">Quantité<input id="productQty" type="number" min="1" step="1" value="1" required inputmode="numeric"></label>
+            </div>
+            <label id="placementField" class="simple-field">Emplacement de l’impression<select id="productPlacement"><option>Devant</option><option>Dos</option><option>Devant + dos</option><option>Poitrine / petit logo</option></select></label>
+            <label class="simple-field">Votre visuel<select id="designSource"><option>Modèle DTF KREONI</option><option>Mon propre design</option><option>J’ai une idée</option></select></label>
+            <div id="selectedDesignPanel" class="selected-design" hidden><img id="selectedDesignImage" alt=""><div><strong id="selectedDesignName"></strong><p id="selectedDesignStory" hidden></p><a href="#catalogue">Changer de design</a><button type="button" id="clearDesign">Retirer</button></div></div>
+            <a class="catalog-browse" href="#catalogue">Parcourir le catalogue DTF</a>
+            <p class="simple-hint" id="designHelp">Choisissez un design dans le catalogue, ou demandez conseil sur WhatsApp.</p>
+            <label class="simple-field"><span>Détails <small>(facultatif)</small></span><textarea id="productNotes" rows="3" maxlength="2000" placeholder="Votre idée, prénom, tailles ou délai souhaité…"></textarea></label>
+            <div class="simple-recap" aria-live="polite"><strong id="productRecap"></strong><span>Prix et disponibilité sur devis</span></div>
+            <button class="btn btn-gold" type="submit" id="sendProductConfig">Demander mon devis sur WhatsApp</button>
+            <p class="simple-hint" id="productHelp" role="status">Vérifiez votre sélection, puis envoyez votre demande sur WhatsApp.</p>
           </div>
-          <div class="shirt-stage">
-            <svg class="shirt-svg" viewBox="0 0 520 520" role="img" aria-label="Aperçu du T-shirt">
-              <path id="shirtBody" d="M166 92l58-34c12 20 60 20 72 0l58 34 91 59-62 101-61-37v235H198V215l-61 37-62-101z" fill="#111111"/>
-              <path d="M224 58c7 25 65 25 72 0" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="12" stroke-linecap="round"/>
-              <rect id="printZone" x="205" y="180" width="110" height="115" rx="10" fill="none" stroke="#d5a33b" stroke-width="3" stroke-dasharray="8 8"/>
-              <text id="previewText" x="260" y="240" text-anchor="middle" dominant-baseline="middle" fill="#d5a33b" font-size="22" font-weight="700" font-family="Arial,sans-serif">KREONI</text>
-            </svg>
-          </div>
-          <p class="preview-note">Aperçu indicatif. Le BAT final est validé avec KREONI avant production.</p>
         </div>
-
-        <form class="config-form" id="tshirtConfigurator" onsubmit="return false">
-          <div class="config-block">
-            <div class="config-label"><span>01</span><div><strong>Couleur souhaitée</strong><small>Selon disponibilité du textile</small></div></div>
-            <div class="swatches" role="radiogroup" aria-label="Couleur du T-shirt">
-              <label class="swatch-option"><input type="radio" name="color" value="Noir" data-color="#111111" checked><span class="swatch black"></span><em>Noir</em></label>
-              <label class="swatch-option"><input type="radio" name="color" value="Blanc" data-color="#f7f7f7"><span class="swatch white"></span><em>Blanc</em></label>
-              <label class="swatch-option"><input type="radio" name="color" value="Beige" data-color="#d9c5a3"><span class="swatch beige"></span><em>Beige</em></label>
-              <label class="swatch-option"><input type="radio" name="color" value="Bleu marine" data-color="#17233d"><span class="swatch navy"></span><em>Marine</em></label>
-              <label class="swatch-option"><input type="radio" name="color" value="Bordeaux" data-color="#651f2b"><span class="swatch burgundy"></span><em>Bordeaux</em></label>
-            </div>
-          </div>
-
-          <div class="config-row">
-            <div class="config-block">
-              <div class="config-label"><span>02</span><div><strong>Taille</strong></div></div>
-              <div class="size-options">
-                <label><input type="radio" name="size" value="S"><span>S</span></label>
-                <label><input type="radio" name="size" value="M" checked><span>M</span></label>
-                <label><input type="radio" name="size" value="L"><span>L</span></label>
-                <label><input type="radio" name="size" value="XL"><span>XL</span></label>
-                <label><input type="radio" name="size" value="XXL"><span>XXL</span></label>
-              </div>
-            </div>
-
-            <div class="config-block">
-              <div class="config-label"><span>03</span><div><strong>Quantité</strong></div></div>
-              <div class="qty-control">
-                <button type="button" id="qtyMinus" aria-label="Diminuer la quantité">−</button>
-                <input id="tshirtQty" name="quantity" type="number" min="1" max="100" value="1" inputmode="numeric">
-                <button type="button" id="qtyPlus" aria-label="Augmenter la quantité">+</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="config-row">
-            <label class="field">
-              <span>Emplacement de l’impression</span>
-              <select id="printPlacement" name="placement">
-                <option value="Poitrine / petit logo">Poitrine / petit logo</option>
-                <option value="Devant" selected>Devant</option>
-                <option value="Dos">Dos</option>
-                <option value="Devant + dos">Devant + dos</option>
-              </select>
-            </label>
-            <div class="visual-choice">
-              <span class="visual-choice-title">Choisissez votre visuel</span>
-              <label class="visual-option">
-                <input type="radio" name="designSource" value="Modèle DTF KREONI" checked>
-                <span><strong>Modèles DTF KREONI</strong><small>Nous vous partageons les modèles disponibles sur WhatsApp.</small></span>
-              </label>
-              <label class="visual-option">
-                <input type="radio" name="designSource" value="Mon propre design">
-                <span><strong>Mon propre design</strong><small>Envoyez-nous votre image, logo ou fichier directement sur WhatsApp.</small></span>
-              </label>
-              <label class="visual-option">
-                <input type="radio" name="designSource" value="J’ai une idée">
-                <span><strong>J’ai une idée</strong><small>Expliquez-nous votre idée et nous vous aidons à la préparer.</small></span>
-              </label>
-              <a class="models-link" href="https://wa.me/212664521613?text=Bonjour%20KREONI%2C%20je%20souhaite%20voir%20les%20mod%C3%A8les%20DTF%20disponibles." target="_blank" rel="noopener noreferrer">Voir les modèles DTF disponibles →</a>
-            </div>
-          </div>
-
-          <label class="field">
-            <span>Texte / prénom à afficher <small>(optionnel — aperçu rapide)</small></span>
-            <input id="customText" name="customText" type="text" maxlength="18" placeholder="Ex: KREONI">
-          </label>
-
-          <label class="field">
-            <span>Détails de votre demande <small>(optionnel)</small></span>
-            <textarea id="configNotes" name="notes" rows="3" placeholder="Ex: impression grande au centre, cadeau d’anniversaire, logo de mon entreprise..."></textarea>
-          </label>
-
-          <div class="config-recap">
-            <div><small>Votre sélection</small><strong id="configRecap">T-shirt Noir • M • 1 pièce • Devant</strong></div>
-            <span>Prix sur devis</span>
-          </div>
-
-          <button class="btn btn-gold config-submit" type="button" id="sendTshirtConfig">Demander le prix sur WhatsApp</button>
-          <p class="config-help" id="configHelp">Les modèles DTF vous seront partagés sur WhatsApp. Vous pouvez aussi envoyer votre propre design, photo ou logo.</p>
-        </form>
-      </div>
+      </form>
     </div>
   </section>
 
@@ -249,7 +216,7 @@
     <div class="container b2b-box">
       <div><p class="eyebrow">KREONI POUR LES ENTREPRISES</p><h2>Votre équipe, votre image.</h2><p>Vêtements professionnels, événements, petites marques et commandes en série. Devis selon quantité, finition et délai.</p></div>
       <div class="tags"><span>Restaurants & cafés</span><span>Commerces</span><span>Événements</span><span>Associations & clubs</span><span>Petites marques</span><span>Entreprises</span></div>
-      <a class="btn btn-gold" href="#contact">Demander un devis B2B</a>
+      <a class="btn btn-gold" href="#configurateur" data-product="b2b">Demander un devis B2B</a>
     </div>
   </section>
 
@@ -291,6 +258,7 @@
 </main>
 
 <footer><div class="container footer-wrap"><div class="brand"><img class="brand-logo" src="assets/brand-mark.svg" alt="" aria-hidden="true"><span>KREONI</span></div><p>© 2026 KREONI. Personnalisation & Print — Maroc.</p><a href="https://www.instagram.com/kreoni.ma/" target="_blank" rel="noopener noreferrer">@kreoni.ma</a></div></footer>
+<script src="catalogue.js" defer></script>
 <script src="script.js" defer></script>
 </body>
 </html>
