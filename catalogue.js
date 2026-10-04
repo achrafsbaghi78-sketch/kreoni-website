@@ -1,6 +1,36 @@
 // Stable references shared by catalogue, preview and order.
 const catalogDesigns = [
   {
+    "id": "DTF-051",
+    "name": "Le dernier souffle de la forêt",
+    "category": "Anime",
+    "image": "assets/DTF-051.webp",
+    "thumbnail": "assets/thumbs/DTF-051.webp",
+    "collection": "Histoires & émotions",
+    "message": "Protéger le vivant",
+    "story": "Un loup veille sur une jeune pousse entre forêt vivante et branches brûlées. Même après la destruction, un geste de protection peut faire renaître la vie."
+  },
+  {
+    "id": "DTF-052",
+    "name": "Au-delà des distances",
+    "category": "Anime",
+    "image": "assets/DTF-052.webp",
+    "thumbnail": "assets/thumbs/DTF-052.webp",
+    "collection": "Histoires & émotions",
+    "message": "Le lien qui demeure",
+    "story": "Deux silhouettes éloignées restent reliées par un fil rouge sous les étoiles. Une histoire de mémoire, de rencontre et d’espoir malgré la distance."
+  },
+  {
+    "id": "DTF-053",
+    "name": "Une seconde chance",
+    "category": "Anime",
+    "image": "assets/DTF-053.webp",
+    "thumbnail": "assets/thumbs/DTF-053.webp",
+    "collection": "Histoires & émotions",
+    "message": "Choisir de se comprendre",
+    "story": "Deux mains se rapprochent au-dessus des mêmes ondes. Écouter, réparer et pardonner ouvrent la voie à une nouvelle rencontre."
+  },
+  {
     "id": "DTF-001",
     "name": "Lune écarlate",
     "category": "Anime",

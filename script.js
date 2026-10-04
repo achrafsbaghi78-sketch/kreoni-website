@@ -105,6 +105,8 @@ if (productForm) {
       byId('selectedDesignImage').src = selectedDesign.image;
       byId('selectedDesignImage').alt = selectedDesign.name;
       byId('selectedDesignName').textContent = selectedDesign.id + ' · ' + selectedDesign.name;
+      byId('selectedDesignStory').textContent = selectedDesign.story || '';
+      byId('selectedDesignStory').hidden = !selectedDesign.story;
       byId('productRecap').textContent += ' · ' + selectedDesign.id;
     }
     [byId('primaryArtwork'), byId('secondaryArtwork')].forEach((art, index) => {
@@ -208,7 +210,7 @@ if (catalogGrid) {
   }
   catalogDesigns.forEach(design => {
     const card = document.createElement('article'); card.className = 'design-card'; card.dataset.category = design.category;
-    card.dataset.search = normalize(design.id + ' ' + design.name + ' ' + design.category);
+    card.dataset.search = normalize(design.id + ' ' + design.name + ' ' + design.category + ' ' + (design.collection || '') + ' ' + (design.message || ''));
     const view = document.createElement('button'); view.type='button'; view.className='design-art'; view.setAttribute('aria-label','Agrandir '+design.name);
     const stage = document.createElement('span'); stage.className = 'catalog-stage';
     const shirt = document.createElement('img'); shirt.className='catalog-shirt'; shirt.src='assets/tshirt-blank-front.webp'; shirt.alt=''; shirt.loading='lazy'; shirt.decoding='async';
@@ -218,13 +220,17 @@ if (catalogGrid) {
     const ref=document.createElement('p');ref.className='design-ref';ref.textContent=design.category+' / '+design.id;
     const title=document.createElement('h3');title.textContent=design.name;
     const choose=document.createElement('button');choose.type='button';choose.className='btn btn-gold';choose.textContent='Essayer ce design';choose.dataset.chooseDesign=design.id;choose.addEventListener('click',()=>chooseDesign(design.id));
-    info.append(ref,title,choose);card.append(view,info);catalogGrid.append(card);
+    info.append(ref,title);
+    if(design.message){const message=document.createElement('p');message.className='design-message';message.textContent=design.message;info.append(message);}
+    info.append(choose);card.append(view,info);catalogGrid.append(card);
     view.addEventListener('click',()=>{
       lastDesignButton=view;
       document.getElementById('designDialogImage').src=design.image;
       document.getElementById('designDialogImage').alt=design.name;
       document.getElementById('designDialogTitle').textContent=design.name;
       document.getElementById('designDialogCategory').textContent=design.category+' · '+design.id;
+      document.getElementById('designDialogStory').textContent=design.story || '';
+      document.getElementById('designDialogStory').hidden=!design.story;
       document.getElementById('chooseDialogDesign').dataset.designId=design.id;
       dialog.showModal();
     });
