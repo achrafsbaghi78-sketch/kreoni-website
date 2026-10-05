@@ -1,6 +1,246 @@
 // Stable references shared by catalogue, preview and order.
 const catalogDesigns = [
   {
+    "id": "DTF-084",
+    "name": "Naruto — Tourbillon solaire",
+    "category": "Anime",
+    "collection": "Naruto",
+    "image": "assets/DTF-084.webp",
+    "thumbnail": "assets/thumbs/DTF-084.webp"
+  },
+  {
+    "id": "DTF-094",
+    "name": "Ichigo — Lame du destin",
+    "category": "Anime",
+    "collection": "Bleach",
+    "image": "assets/DTF-094.webp",
+    "thumbnail": "assets/thumbs/DTF-094.webp"
+  },
+  {
+    "id": "DTF-104",
+    "name": "Sung Jinwoo — Monarque des ombres",
+    "category": "Anime",
+    "collection": "Solo Leveling",
+    "image": "assets/DTF-104.webp",
+    "thumbnail": "assets/thumbs/DTF-104.webp"
+  },
+  {
+    "id": "DTF-085",
+    "name": "Sasuke — Éclair indigo",
+    "category": "Anime",
+    "collection": "Naruto",
+    "image": "assets/DTF-085.webp",
+    "thumbnail": "assets/thumbs/DTF-085.webp"
+  },
+  {
+    "id": "DTF-095",
+    "name": "Rukia — Neige silencieuse",
+    "category": "Anime",
+    "collection": "Bleach",
+    "image": "assets/DTF-095.webp",
+    "thumbnail": "assets/thumbs/DTF-095.webp"
+  },
+  {
+    "id": "DTF-105",
+    "name": "Igris — Serment du chevalier",
+    "category": "Anime",
+    "collection": "Solo Leveling",
+    "image": "assets/DTF-105.webp",
+    "thumbnail": "assets/thumbs/DTF-105.webp"
+  },
+  {
+    "id": "DTF-086",
+    "name": "Itachi — Nuée écarlate",
+    "category": "Anime",
+    "collection": "Naruto",
+    "image": "assets/DTF-086.webp",
+    "thumbnail": "assets/thumbs/DTF-086.webp"
+  },
+  {
+    "id": "DTF-096",
+    "name": "Byakuya — Mille pétales",
+    "category": "Anime",
+    "collection": "Bleach",
+    "image": "assets/DTF-096.webp",
+    "thumbnail": "assets/thumbs/DTF-096.webp"
+  },
+  {
+    "id": "DTF-106",
+    "name": "Beru — Roi des fourmis",
+    "category": "Anime",
+    "collection": "Solo Leveling",
+    "image": "assets/DTF-106.webp",
+    "thumbnail": "assets/thumbs/DTF-106.webp"
+  },
+  {
+    "id": "DTF-087",
+    "name": "Kakashi — Foudre argentée",
+    "category": "Anime",
+    "collection": "Naruto",
+    "image": "assets/DTF-087.webp",
+    "thumbnail": "assets/thumbs/DTF-087.webp"
+  },
+  {
+    "id": "DTF-097",
+    "name": "Toshiro — Dragon de glace",
+    "category": "Anime",
+    "collection": "Bleach",
+    "image": "assets/DTF-097.webp",
+    "thumbnail": "assets/thumbs/DTF-097.webp"
+  },
+  {
+    "id": "DTF-107",
+    "name": "Cha Hae-In — Lame de lumière",
+    "category": "Anime",
+    "collection": "Solo Leveling",
+    "image": "assets/DTF-107.webp",
+    "thumbnail": "assets/thumbs/DTF-107.webp"
+  },
+  {
+    "id": "DTF-088",
+    "name": "Gaara — Gardien du sable",
+    "category": "Anime",
+    "collection": "Naruto",
+    "image": "assets/DTF-088.webp",
+    "thumbnail": "assets/thumbs/DTF-088.webp"
+  },
+  {
+    "id": "DTF-098",
+    "name": "Kenpachi — Force brute",
+    "category": "Anime",
+    "collection": "Bleach",
+    "image": "assets/DTF-098.webp",
+    "thumbnail": "assets/thumbs/DTF-098.webp"
+  },
+  {
+    "id": "DTF-108",
+    "name": "Choi Jong-In — Cercle de feu",
+    "category": "Anime",
+    "collection": "Solo Leveling",
+    "image": "assets/DTF-108.webp",
+    "thumbnail": "assets/thumbs/DTF-108.webp"
+  },
+  {
+    "id": "DTF-089",
+    "name": "Minato — Éclair jaune",
+    "category": "Anime",
+    "collection": "Naruto",
+    "image": "assets/DTF-089.webp",
+    "thumbnail": "assets/thumbs/DTF-089.webp"
+  },
+  {
+    "id": "DTF-099",
+    "name": "Urahara — Ombre émeraude",
+    "category": "Anime",
+    "collection": "Bleach",
+    "image": "assets/DTF-099.webp",
+    "thumbnail": "assets/thumbs/DTF-099.webp"
+  },
+  {
+    "id": "DTF-109",
+    "name": "Baek Yoonho — Tigre blanc",
+    "category": "Anime",
+    "collection": "Solo Leveling",
+    "image": "assets/DTF-109.webp",
+    "thumbnail": "assets/thumbs/DTF-109.webp"
+  },
+  {
+    "id": "DTF-090",
+    "name": "Hinata — Paumes jumelles",
+    "category": "Anime",
+    "collection": "Naruto",
+    "image": "assets/DTF-090.webp",
+    "thumbnail": "assets/thumbs/DTF-090.webp"
+  },
+  {
+    "id": "DTF-100",
+    "name": "Yoruichi — Éclair félin",
+    "category": "Anime",
+    "collection": "Bleach",
+    "image": "assets/DTF-100.webp",
+    "thumbnail": "assets/thumbs/DTF-100.webp"
+  },
+  {
+    "id": "DTF-110",
+    "name": "Yoo Jinho — Courage fidèle",
+    "category": "Anime",
+    "collection": "Solo Leveling",
+    "image": "assets/DTF-110.webp",
+    "thumbnail": "assets/thumbs/DTF-110.webp"
+  },
+  {
+    "id": "DTF-091",
+    "name": "Madara — Volonté de fer",
+    "category": "Anime",
+    "collection": "Naruto",
+    "image": "assets/DTF-091.webp",
+    "thumbnail": "assets/thumbs/DTF-091.webp"
+  },
+  {
+    "id": "DTF-101",
+    "name": "Aizen — Illusion parfaite",
+    "category": "Anime",
+    "collection": "Bleach",
+    "image": "assets/DTF-101.webp",
+    "thumbnail": "assets/thumbs/DTF-101.webp"
+  },
+  {
+    "id": "DTF-111",
+    "name": "Jinwoo — Éveil bleu",
+    "category": "Anime",
+    "collection": "Solo Leveling",
+    "image": "assets/DTF-111.webp",
+    "thumbnail": "assets/thumbs/DTF-111.webp"
+  },
+  {
+    "id": "DTF-092",
+    "name": "Pain — Onde gravitationnelle",
+    "category": "Anime",
+    "collection": "Naruto",
+    "image": "assets/DTF-092.webp",
+    "thumbnail": "assets/thumbs/DTF-092.webp"
+  },
+  {
+    "id": "DTF-102",
+    "name": "Ulquiorra — Lune d’émeraude",
+    "category": "Anime",
+    "collection": "Bleach",
+    "image": "assets/DTF-102.webp",
+    "thumbnail": "assets/thumbs/DTF-102.webp"
+  },
+  {
+    "id": "DTF-112",
+    "name": "Jinwoo et Igris — Pacte des ombres",
+    "category": "Anime",
+    "collection": "Solo Leveling",
+    "image": "assets/DTF-112.webp",
+    "thumbnail": "assets/thumbs/DTF-112.webp"
+  },
+  {
+    "id": "DTF-093",
+    "name": "Kurama — Neuf queues",
+    "category": "Anime",
+    "collection": "Naruto",
+    "image": "assets/DTF-093.webp",
+    "thumbnail": "assets/thumbs/DTF-093.webp"
+  },
+  {
+    "id": "DTF-103",
+    "name": "Grimmjow — Instinct bleu",
+    "category": "Anime",
+    "collection": "Bleach",
+    "image": "assets/DTF-103.webp",
+    "thumbnail": "assets/thumbs/DTF-103.webp"
+  },
+  {
+    "id": "DTF-113",
+    "name": "Jinwoo et Beru — Garde du monarque",
+    "category": "Anime",
+    "collection": "Solo Leveling",
+    "image": "assets/DTF-113.webp",
+    "thumbnail": "assets/thumbs/DTF-113.webp"
+  },
+  {
     "id": "DTF-054",
     "name": "Tanjiro — Danse des éléments",
     "category": "Anime",
