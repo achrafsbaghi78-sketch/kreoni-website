@@ -8,3 +8,5 @@ When adding a design to this catalogue, also update the user's private downloada
 - Save the updated archive using the current Library skill; report the download link and actual design count. Confirm final physical print dimensions before claiming production readiness.
 - Do not publish the source archive or Library metadata on the public website as part of this workflow. The website keeps optimized previews; the user receives the complete source archive privately.
 - This is part of each assisted catalogue update, not a background synchronization service. A previously downloaded ZIP is an offline snapshot and must be downloaded again after an update.
+
+- Paired designs use `frontImage` for a small chest emblem and `image` for the large back illustration. Preserve both originals: `PNG/DTF-xxx.png` and `PNG/DTF-xxx-FRONT.png`. Supply both keys in the source map. The export script retains paired sources and prompt metadata on subsequent updates.

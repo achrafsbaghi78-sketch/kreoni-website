@@ -370,3 +370,9 @@ repeating-linear-gradient(90deg,transparent 0 140px,rgba(255,255,255,.025) 141px
 #designDialog #designDialogStory{color:#dedee6;line-height:1.7;font-size:.95rem}
 #selectedDesignStory{font-size:.8rem;font-weight:400;line-height:1.55;color:#605b51;margin:0}
 @media(max-width:640px){.design-message{font-size:.72rem;margin-top:-3px}}
+
+.design-duo{color:#e7bd6c;font-size:.75rem;line-height:1.4;margin:-4px 0 14px}
+#designDialogFront{margin:12px auto 20px;text-align:center}
+#designDialog #designDialogFrontImage{display:block;width:100px;height:100px;object-fit:contain;margin:0 auto 8px}
+#designDialogFront figcaption{font-size:.8rem;color:#dedee6}
+#designDialog [hidden]{display:none!important}

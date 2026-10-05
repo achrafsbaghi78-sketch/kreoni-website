@@ -99,6 +99,11 @@ if (productForm) {
     byId('productRecap').textContent = parts.filter(Boolean).join(' · ');
     const design = byId('designSource').value;
     const selectedDesign = design === 'Modèle DTF KREONI' ? catalogDesigns.find(item => item.id === productForm.dataset.designId) : null;
+    const pairedFront = !!selectedDesign?.frontImage && (key === 'tshirt' || key === 'hoodie') && !rear;
+    if (pairedFront) {
+      byId('primaryFrame').dataset.placement = 'chest';
+      byId('primaryCaption').textContent = 'Devant · petit emblème';
+    }
     byId('selectedDesignPanel').hidden = !selectedDesign;
     byId('previewNote').textContent = 'Aperçu indicatif de la couleur et de l’emplacement. Dimensions et visuel final validés avant production.';
     if (selectedDesign) {
@@ -112,13 +117,14 @@ if (productForm) {
     [byId('primaryArtwork'), byId('secondaryArtwork')].forEach((art, index) => {
       art.hidden = !selectedDesign || business || (index === 1 && !both);
       if (selectedDesign && !business) {
-        art.src = selectedDesign.image;
+        art.src = index === 0 && pairedFront ? selectedDesign.frontImage : selectedDesign.image;
         art.alt = selectedDesign.name + ' · ' + selectedDesign.id;
       } else {
         art.removeAttribute('src');
         art.alt = '';
       }
     });
+    if (pairedFront) byId('previewNote').textContent = 'Duo assorti : petit emblème devant, grande illustration au dos. Choisissez Devant + dos pour voir les deux. Dimensions validées avant production.';
     byId('designHelp').textContent = design === 'Mon propre design'
       ? 'Joignez votre image ou votre logo dans la conversation WhatsApp.'
       : design === 'J’ai une idée' ? 'Décrivez votre idée dans les détails ou sur WhatsApp.'
@@ -147,6 +153,11 @@ if (productForm) {
     lines.push('Quantité : ' + byId('productQty').value, 'Visuel : ' + byId('designSource').value);
     const chosenDesign = byId('designSource').value === 'Modèle DTF KREONI' ? catalogDesigns.find(item => item.id === productForm.dataset.designId) : null;
     if (chosenDesign) lines.push('Référence design : ' + chosenDesign.id + ' — ' + chosenDesign.name);
+    if (chosenDesign?.frontImage && !business) {
+      const placement = byId('productPlacement').value;
+      const garment = key === 'tshirt' || key === 'hoodie';
+      lines.push('Visuels : ' + (garment && !['Dos','Verso'].includes(placement) ? 'emblème devant (' + chosenDesign.id + '-FRONT)' + (placement.includes('+') ? ' + illustration au dos (' + chosenDesign.id + ')' : '') : 'illustration principale (' + chosenDesign.id + ')'));
+    }
     if (byId('productNotes').value.trim()) lines.push('Détails : ' + byId('productNotes').value.trim());
     lines.push(byId('designHelp').textContent, 'Merci de confirmer le prix, la disponibilité et le délai.');
     window.open('https://wa.me/212664521613?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener,noreferrer');
@@ -189,6 +200,10 @@ if (catalogGrid) {
     productForm.dataset.designId = id;
     document.getElementById('designSource').value = 'Modèle DTF KREONI';
     productForm.dispatchEvent(new Event('change', {bubbles:true}));
+    if (design.frontImage && ['tshirt','hoodie'].includes(productForm.querySelector('[name="product"]:checked').value)) {
+      document.getElementById('productPlacement').value = 'Devant + dos';
+      productForm.dispatchEvent(new Event('change', {bubbles:true}));
+    }
     if (dialog.open) dialog.close();
     document.getElementById('configurateur').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
   }
@@ -215,7 +230,7 @@ if (catalogGrid) {
     card.dataset.search = normalize(design.id + ' ' + design.name + ' ' + design.category + ' ' + (design.collection || '') + ' ' + (design.message || ''));
     const view = document.createElement('button'); view.type='button'; view.className='design-art'; view.setAttribute('aria-label','Agrandir '+design.name);
     const stage = document.createElement('span'); stage.className = 'catalog-stage';
-    const shirt = document.createElement('img'); shirt.className='catalog-shirt'; shirt.src='assets/tshirt-blank-front.webp'; shirt.alt=''; shirt.loading='lazy'; shirt.decoding='async';
+    const shirt = document.createElement('img'); shirt.className='catalog-shirt'; shirt.src=design.frontImage ? 'assets/tshirt-blank-back.webp' : 'assets/tshirt-blank-front.webp'; shirt.alt=''; shirt.loading='lazy'; shirt.decoding='async';
     const img=document.createElement('img');img.className='catalog-artwork';img.src=design.thumbnail;img.alt=design.name;img.loading='lazy';img.decoding='async';
     stage.append(shirt,img);view.append(stage);
     const info=document.createElement('div');info.className='design-info';
@@ -223,6 +238,7 @@ if (catalogGrid) {
     const title=document.createElement('h3');title.textContent=design.name;
     const choose=document.createElement('button');choose.type='button';choose.className='btn btn-gold';choose.textContent='Essayer ce design';choose.dataset.chooseDesign=design.id;choose.addEventListener('click',()=>chooseDesign(design.id));
     info.append(ref,title);
+    if(design.frontImage){const badge=document.createElement('p');badge.className='design-duo';badge.textContent='Duo · petit devant + grand dos';info.append(badge);}
     if(design.message){const message=document.createElement('p');message.className='design-message';message.textContent=design.message;info.append(message);}
     info.append(choose);card.append(view,info);catalogGrid.append(card);
     view.addEventListener('click',()=>{
@@ -233,6 +249,10 @@ if (catalogGrid) {
       document.getElementById('designDialogCategory').textContent=(design.collection || design.category)+' · '+design.id;
       document.getElementById('designDialogStory').textContent=design.story || '';
       document.getElementById('designDialogStory').hidden=!design.story;
+      const frontPreview=document.getElementById('designDialogFront');
+      frontPreview.hidden=!design.frontImage;
+      const frontImage=document.getElementById('designDialogFrontImage');
+      if(design.frontImage){frontImage.src=design.frontImage;frontImage.alt=design.name+' · petit emblème devant';}else{frontImage.removeAttribute('src');frontImage.alt='';}
       document.getElementById('chooseDialogDesign').dataset.designId=design.id;
       dialog.showModal();
     });

@@ -1,6 +1,141 @@
 // Stable references shared by catalogue, preview and order.
 const catalogDesigns = [
   {
+    "id": "DTF-114",
+    "name": "Dragon — Lame écarlate",
+    "category": "Streetwear",
+    "collection": "Japan Street",
+    "image": "assets/DTF-114.webp",
+    "thumbnail": "assets/thumbs/DTF-114.webp",
+    "frontImage": "assets/DTF-114-FRONT.webp"
+  },
+  {
+    "id": "DTF-119",
+    "name": "Tanger — Nuits du détroit",
+    "category": "Maroc",
+    "collection": "Morocco Street",
+    "image": "assets/DTF-119.webp",
+    "thumbnail": "assets/thumbs/DTF-119.webp",
+    "frontImage": "assets/DTF-119-FRONT.webp"
+  },
+  {
+    "id": "DTF-124",
+    "name": "Loup — Regard polaire",
+    "category": "Illustrations",
+    "collection": "Wild Spirit",
+    "image": "assets/DTF-124.webp",
+    "thumbnail": "assets/thumbs/DTF-124.webp",
+    "frontImage": "assets/DTF-124-FRONT.webp"
+  },
+  {
+    "id": "DTF-115",
+    "name": "Samouraï — Lune silencieuse",
+    "category": "Streetwear",
+    "collection": "Japan Street",
+    "image": "assets/DTF-115.webp",
+    "thumbnail": "assets/thumbs/DTF-115.webp",
+    "frontImage": "assets/DTF-115-FRONT.webp"
+  },
+  {
+    "id": "DTF-120",
+    "name": "Tigre — Zellige royal",
+    "category": "Maroc",
+    "collection": "Morocco Street",
+    "image": "assets/DTF-120.webp",
+    "thumbnail": "assets/thumbs/DTF-120.webp",
+    "frontImage": "assets/DTF-120-FRONT.webp"
+  },
+  {
+    "id": "DTF-125",
+    "name": "Tigre blanc — Instinct",
+    "category": "Illustrations",
+    "collection": "Wild Spirit",
+    "image": "assets/DTF-125.webp",
+    "thumbnail": "assets/thumbs/DTF-125.webp",
+    "frontImage": "assets/DTF-125-FRONT.webp"
+  },
+  {
+    "id": "DTF-116",
+    "name": "Koi — Courant éternel",
+    "category": "Streetwear",
+    "collection": "Japan Street",
+    "image": "assets/DTF-116.webp",
+    "thumbnail": "assets/thumbs/DTF-116.webp",
+    "frontImage": "assets/DTF-116-FRONT.webp"
+  },
+  {
+    "id": "DTF-121",
+    "name": "Lion — Force de l’Atlas",
+    "category": "Maroc",
+    "collection": "Morocco Street",
+    "image": "assets/DTF-121.webp",
+    "thumbnail": "assets/thumbs/DTF-121.webp",
+    "frontImage": "assets/DTF-121-FRONT.webp"
+  },
+  {
+    "id": "DTF-126",
+    "name": "Aigle — Envol libre",
+    "category": "Illustrations",
+    "collection": "Wild Spirit",
+    "image": "assets/DTF-126.webp",
+    "thumbnail": "assets/thumbs/DTF-126.webp",
+    "frontImage": "assets/DTF-126-FRONT.webp"
+  },
+  {
+    "id": "DTF-117",
+    "name": "Kitsune — Esprit nocturne",
+    "category": "Streetwear",
+    "collection": "Japan Street",
+    "image": "assets/DTF-117.webp",
+    "thumbnail": "assets/thumbs/DTF-117.webp",
+    "frontImage": "assets/DTF-117-FRONT.webp"
+  },
+  {
+    "id": "DTF-122",
+    "name": "Portes — Âme de la médina",
+    "category": "Maroc",
+    "collection": "Morocco Street",
+    "image": "assets/DTF-122.webp",
+    "thumbnail": "assets/thumbs/DTF-122.webp",
+    "frontImage": "assets/DTF-122-FRONT.webp"
+  },
+  {
+    "id": "DTF-127",
+    "name": "Panthère — Ombre sauvage",
+    "category": "Illustrations",
+    "collection": "Wild Spirit",
+    "image": "assets/DTF-127.webp",
+    "thumbnail": "assets/thumbs/DTF-127.webp",
+    "frontImage": "assets/DTF-127-FRONT.webp"
+  },
+  {
+    "id": "DTF-118",
+    "name": "Grue — Vent du matin",
+    "category": "Streetwear",
+    "collection": "Japan Street",
+    "image": "assets/DTF-118.webp",
+    "thumbnail": "assets/thumbs/DTF-118.webp",
+    "frontImage": "assets/DTF-118-FRONT.webp"
+  },
+  {
+    "id": "DTF-123",
+    "name": "Faucon — Horizon du Maroc",
+    "category": "Maroc",
+    "collection": "Morocco Street",
+    "image": "assets/DTF-123.webp",
+    "thumbnail": "assets/thumbs/DTF-123.webp",
+    "frontImage": "assets/DTF-123-FRONT.webp"
+  },
+  {
+    "id": "DTF-128",
+    "name": "Cerf — Couronne des bois",
+    "category": "Illustrations",
+    "collection": "Wild Spirit",
+    "image": "assets/DTF-128.webp",
+    "thumbnail": "assets/thumbs/DTF-128.webp",
+    "frontImage": "assets/DTF-128-FRONT.webp"
+  },
+  {
     "id": "DTF-084",
     "name": "Naruto — Tourbillon solaire",
     "category": "Anime",
