@@ -380,3 +380,19 @@ repeating-linear-gradient(90deg,transparent 0 140px,rgba(255,255,255,.025) 141px
 
 .catalog-stage[data-placement=chest] .catalog-artwork{left:57%;top:27%;width:13%;height:17%}
 .catalog-grid[data-view=art] .catalog-stage[data-placement=chest] .catalog-artwork{left:5%;top:5%;width:90%;height:90%}
+
+/* Use the available canvas on wide screens and when the browser is zoomed out. */
+@media(min-width:1500px){
+  .container{width:96%;max-width:none}
+  .hero-layout{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:3vw}
+  .hero-copy{max-width:none;min-width:0}
+  .hero h1{font-size:clamp(5.3rem,4.8vw,10rem)}
+  .hero-product-stage{height:max(450px,28vw)}
+  .store-grid{gap:clamp(16px,1.2vw,48px)}
+  .store-card{grid-template-rows:auto 1fr}
+  .store-card img{height:auto;aspect-ratio:1.5;object-fit:contain}
+  .catalog-grid{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+  .catalog-tools{justify-content:flex-start}
+  .catalog-search{flex:0 1 420px}
+  .simple-config,.contact-grid,.faq-wrap,.b2b-box{max-width:1600px;margin-inline:auto}
+}
