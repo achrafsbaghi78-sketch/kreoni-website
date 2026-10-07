@@ -31,8 +31,8 @@ with zipfile.ZipFile(staging,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=
    w,h=im.size;assert im.getextrema()[-1][0]==0,'Missing transparency: '+ref
   digest=hashlib.sha256(b).hexdigest();z.writestr(name,b);file_count+=1
   width=round(w/300*2.54,2);height=round(h/300*2.54,2)
-  rows.append([ref,d['name'],d['category'],w,h,width,height,name,'Source native; préparation au format final à valider',d.get('collection','')])
-  manifest.append(dict(id=ref,name=d['name'],category=d['category'],collection=d.get('collection',''),file=name,width_px=w,height_px=h,sha256=digest))
+  rows.append([ref,d['name'],d['category'],w,h,width,height,name,'Source native; préparation au format final à valider',d.get('collection',''),d.get('series',''),d.get('style','')])
+  manifest.append(dict(id=ref,name=d['name'],category=d['category'],collection=d.get('collection',''),series=d.get('series',''),style=d.get('style',''),file=name,width_px=w,height_px=h,sha256=digest))
   extra=''
   if d.get('frontImage'):
    front_ref=ref+'-FRONT';front_name=f'PNG/{front_ref}.png'
@@ -44,12 +44,12 @@ with zipfile.ZipFile(staging,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=
     fw,fh=im.size
    z.writestr(front_name,front_bytes);file_count+=1
    manifest[-1]['front']=dict(file=front_name,width_px=fw,height_px=fh,sha256=hashlib.sha256(front_bytes).hexdigest())
-   rows.append([front_ref,d['name']+' — Emblème devant',d['category'],fw,fh,round(fw/300*2.54,2),round(fh/300*2.54,2),front_name,'Source native; préparation au format final à valider',d.get('collection','')])
+   rows.append([front_ref,d['name']+' — Emblème devant',d['category'],fw,fh,round(fw/300*2.54,2),round(fh/300*2.54,2),front_name,'Source native; préparation au format final à valider',d.get('collection',''),d.get('series',''),d.get('style','')])
    extra=f'<p>Duo : grande illustration au dos, petit emblème devant.</p><img class="emblem" src="{front_name}" alt="Emblème devant"><a href="{front_name}" download="{front_ref}.png">PNG emblème devant ↓</a>'
-  label=html.escape(ref+' '+d['name']+' '+d['category']+' '+d.get('collection',''),quote=True)
+  label=html.escape(ref+' '+d['name']+' '+d['category']+' '+d.get('collection','')+' '+d.get('series','')+' '+d.get('style',''),quote=True)
   story=html.escape(d.get('story',''))
   cards.append(f'<article data-search="{label}"><img src="{name}" alt="{html.escape(d["name"],quote=True)}" loading="lazy"><div><small>{ref} · {html.escape(d["category"])}</small><h2>{html.escape(d["name"])}</h2><p>{story}</p><p>{w} × {h} px · cadre à 300 ppp : {width} × {height} cm</p><a href="{name}" download="{ref}.png">PNG illustration principale ↓</a>{extra}</div></article>')
- table=io.StringIO();writer=csv.writer(table);writer.writerow(['Référence','Nom','Catégorie','Largeur px','Hauteur px','Largeur cadre cm à 300 ppp','Hauteur cadre cm à 300 ppp','Fichier','Statut','Collection']);writer.writerows(rows)
+ table=io.StringIO();writer=csv.writer(table);writer.writerow(['Référence','Nom','Catégorie','Largeur px','Hauteur px','Largeur cadre cm à 300 ppp','Hauteur cadre cm à 300 ppp','Fichier','Statut','Collection','Anime','Style']);writer.writerows(rows)
  z.writestr('CATALOGUE.csv',table.getvalue().encode('utf-8-sig'))
  z.writestr('MANIFEST.json',json.dumps({'updated_utc':datetime.now(timezone.utc).isoformat(),'count':len(catalog),'png_count':file_count,'designs':manifest},ensure_ascii=False,indent=2))
  z.writestr('LIRE_MOI.txt',f'''KREONI — Designothèque — {len(catalog)} designs
@@ -77,3 +77,4 @@ with zipfile.ZipFile(staging) as z:
  assert len([x for x in z.namelist() if x.startswith('PNG/')])==file_count
 staging.replace(a.output)
 print(json.dumps({'path':str(a.output.resolve()),'designs':len(catalog),'bytes':a.output.stat().st_size}))
+

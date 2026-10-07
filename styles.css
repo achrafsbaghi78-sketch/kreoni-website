@@ -376,3 +376,50 @@ repeating-linear-gradient(90deg,transparent 0 140px,rgba(255,255,255,.025) 141px
 #designDialog #designDialogFrontImage{display:block;width:100px;height:100px;object-fit:contain;margin:0 auto 8px}
 #designDialogFront figcaption{font-size:.8rem;color:#dedee6}
 #designDialog [hidden]{display:none!important}
+
+
+/* Dark Manga: a dedicated art gallery, sharing the product configurator. */
+@media(min-width:901px) and (max-width:1200px){.menu-toggle{display:block}.nav{display:none;position:absolute;top:72px;left:16px;right:16px;background:#111;border:1px solid #ffffff20;border-radius:18px;padding:18px;flex-direction:column;align-items:stretch;gap:16px}.nav.open{display:flex}}
+#dark-manga{scroll-margin-top:90px}
+.dark-manga{background:#0e0d10;color:#f5efdf;border-top:1px solid #ffffff15;border-bottom:1px solid #ffffff15}
+.dark-manga-heading{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:32px}
+.dark-manga-heading .eyebrow{color:#c7989e;letter-spacing:.2em;font-size:.75rem}
+.dark-manga-heading h2{font-size:clamp(2.8rem,7vw,6rem);line-height:.95;letter-spacing:-.065em;margin:18px 0 0;font-weight:800}
+.dark-manga-heading h2 span{display:block;color:#d64354}
+.dark-manga-intro{font-size:clamp(1.1rem,2vw,1.5rem);line-height:1.5;margin:0 0 12px;font-weight:600}
+.dark-manga-description{color:#b6adb4;font-size:.9rem;line-height:1.8;margin:0;max-width:540px}
+.dark-manga-controls{display:flex;align-items:end;justify-content:space-between;gap:20px;border-top:1px solid #ffffff20;padding:24px 0}
+.dark-manga-controls label{display:grid;gap:10px;font-size:.8rem;color:#cfc5ca;min-width:240px}
+.dark-manga-controls select{font:inherit;color:#fff;background:#211b22;border:1px solid #685461;border-radius:8px;padding:13px;min-height:46px}
+.dark-manga-controls p{font-size:.8rem;color:#b6adb4}
+.dark-manga-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.dark-manga-card{min-width:0;border:1px solid #ffffff20;background:#171419;border-radius:12px;overflow:hidden}
+.dark-manga-card[hidden]{display:none}
+.dark-manga-art{display:block;width:100%;aspect-ratio:2/3;padding:10px;background:#080809;border:0;cursor:zoom-in;overflow:hidden}
+.dark-manga-art img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .35s ease}
+.dark-manga-art:hover img{transform:scale(1.025)}
+.dark-manga-art:focus-visible,.dark-manga-controls select:focus-visible{outline:3px solid #e7bd6c;outline-offset:-3px}
+.dark-manga-info{padding:22px}.dark-manga-series{color:#d9a4ac;font-size:.7rem;line-height:1.6;margin:0 0 9px;text-transform:uppercase;letter-spacing:.06em}
+.dark-manga-info h3{font-size:1.08rem;line-height:1.5;margin:0 0 20px;color:#f5efdf;min-height:3.25em}
+.dark-manga-info .btn{width:100%;font-size:.8rem}
+.dark-manga-footer{color:#b6adb4;font-size:.85rem;line-height:1.7;text-align:center;margin:28px auto 0;max-width:650px}
+@media(max-width:980px){.dark-manga-heading{gap:24px}.dark-manga-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.dark-manga-heading{grid-template-columns:1fr;gap:24px}.dark-manga-heading h2 span{display:inline}.dark-manga-heading h2{font-size:clamp(2.6rem,11vw,4rem)}.dark-manga-controls{align-items:stretch;flex-direction:column;gap:4px}.dark-manga-controls label{min-width:0}.dark-manga-grid{grid-template-columns:1fr;gap:22px}.dark-manga-info h3{min-height:0}.dark-manga-info{padding:20px}}
+@media(prefers-reduced-motion:reduce){.dark-manga-art img{transition:none}.dark-manga-art:hover img{transform:none}}
+
+
+#her-world{scroll-margin-top:90px}
+.her-world{background:#f3e9e5;color:#2b2028}
+.her-world .eyebrow,.her-world .dark-manga-heading h2 span{color:#8d455b}
+.her-world .dark-manga-description,.her-world .dark-manga-footer,.her-world .dark-manga-controls p{color:#695962}
+.her-world .dark-manga-controls{border-color:#2b202825}
+.her-world .dark-manga-controls label{color:#503b48}
+.her-world .dark-manga-controls select{background:#fff9f6;color:#34232f;border-color:#ac8c9a}
+.her-world-card{min-width:0;border:1px solid #d9c6cb;border-radius:12px;overflow:hidden;background:#fffaf7}
+.her-world-card[hidden]{display:none}
+.her-world .dark-manga-series{color:#8d455b}
+.her-world .dark-manga-info h3{color:#2b2028}
+.her-world .btn-gold{background:#3c2435;color:#fff6ee}
+.her-world-card[data-style="Minimal chic"] .dark-manga-art{background:#f8f2ed;padding:40px}
+.catalog-stage[data-placement=chest] .catalog-artwork{left:57%;top:27%;width:13%;height:17%}
+.catalog-grid[data-view=art] .catalog-stage[data-placement=chest] .catalog-artwork{left:5%;top:5%;width:90%;height:90%}

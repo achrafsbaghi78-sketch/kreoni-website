@@ -64,7 +64,13 @@ if (productForm) {
     toggle('placementField', business);
     if (key !== previousProduct) {
       const placement = byId('productPlacement');
+      const previousPlacement = placement.value;
       placement.replaceChildren(...product.placements.map(value => new Option(value, value)));
+      if (product.placements.includes(previousPlacement)) placement.value = previousPlacement;
+      else {
+        const selectedDesign = catalogDesigns.find(item => item.id === productForm.dataset.designId);
+        if (selectedDesign?.defaultPlacement && product.placements.includes(selectedDesign.defaultPlacement)) placement.value = selectedDesign.defaultPlacement;
+      }
       previousProduct = key;
     }
     const selectedColor = color();
@@ -204,8 +210,27 @@ if (catalogGrid) {
       document.getElementById('productPlacement').value = 'Devant + dos';
       productForm.dispatchEvent(new Event('change', {bubbles:true}));
     }
+    if (design.defaultPlacement && ['tshirt','hoodie'].includes(productForm.querySelector('[name="product"]:checked').value)) {
+      document.getElementById('productPlacement').value = design.defaultPlacement;
+      productForm.dispatchEvent(new Event('change', {bubbles:true}));
+    }
     if (dialog.open) dialog.close();
     document.getElementById('configurateur').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
+  }
+  function openDesign(design,trigger) {
+      lastDesignButton=trigger;
+      document.getElementById('designDialogImage').src=design.image;
+      document.getElementById('designDialogImage').alt=design.name;
+      document.getElementById('designDialogTitle').textContent=design.name;
+      document.getElementById('designDialogCategory').textContent=(design.collection || design.category)+(design.series?' · '+design.series:'')+' · '+design.id;
+      document.getElementById('designDialogStory').textContent=design.story || '';
+      document.getElementById('designDialogStory').hidden=!design.story;
+      const frontPreview=document.getElementById('designDialogFront');
+      frontPreview.hidden=!design.frontImage;
+      const frontImage=document.getElementById('designDialogFrontImage');
+      if(design.frontImage){frontImage.src=design.frontImage;frontImage.alt=design.name+' · petit emblème devant';}else{frontImage.removeAttribute('src');frontImage.alt='';}
+      document.getElementById('chooseDialogDesign').dataset.designId=design.id;
+      dialog.showModal();
   }
   let activeCategory = 'Tous', visibleLimit = 12;
   const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
@@ -227,10 +252,10 @@ if (catalogGrid) {
   catalogDesigns.forEach(design => {
     const card = document.createElement('article'); card.className = 'design-card'; card.dataset.category = design.category;
     card.dataset.collection = design.collection || '';
-    card.dataset.search = normalize(design.id + ' ' + design.name + ' ' + design.category + ' ' + (design.collection || '') + ' ' + (design.message || ''));
+    card.dataset.search = normalize(design.id + ' ' + design.name + ' ' + design.category + ' ' + (design.collection || '') + ' ' + (design.series || '') + ' ' + (design.style || '') + ' ' + (design.message || ''));
     const view = document.createElement('button'); view.type='button'; view.className='design-art'; view.setAttribute('aria-label','Agrandir '+design.name);
-    const stage = document.createElement('span'); stage.className = 'catalog-stage';
-    const shirt = document.createElement('img'); shirt.className='catalog-shirt'; shirt.src=design.frontImage ? 'assets/tshirt-blank-back.webp' : 'assets/tshirt-blank-front.webp'; shirt.alt=''; shirt.loading='lazy'; shirt.decoding='async';
+    const stage = document.createElement('span'); stage.className = 'catalog-stage'; stage.dataset.placement = design.defaultPlacement === 'Poitrine / petit logo' ? 'chest' : 'standard';
+    const shirt = document.createElement('img'); shirt.className='catalog-shirt'; shirt.src=(design.frontImage || design.defaultPlacement === 'Dos') ? 'assets/tshirt-blank-back.webp' : 'assets/tshirt-blank-front.webp'; shirt.alt=''; shirt.loading='lazy'; shirt.decoding='async';
     const img=document.createElement('img');img.className='catalog-artwork';img.src=design.thumbnail;img.alt=design.name;img.loading='lazy';img.decoding='async';
     stage.append(shirt,img);view.append(stage);
     const info=document.createElement('div');info.className='design-info';
@@ -241,22 +266,36 @@ if (catalogGrid) {
     if(design.frontImage){const badge=document.createElement('p');badge.className='design-duo';badge.textContent='Duo · petit devant + grand dos';info.append(badge);}
     if(design.message){const message=document.createElement('p');message.className='design-message';message.textContent=design.message;info.append(message);}
     info.append(choose);card.append(view,info);catalogGrid.append(card);
-    view.addEventListener('click',()=>{
-      lastDesignButton=view;
-      document.getElementById('designDialogImage').src=design.image;
-      document.getElementById('designDialogImage').alt=design.name;
-      document.getElementById('designDialogTitle').textContent=design.name;
-      document.getElementById('designDialogCategory').textContent=(design.collection || design.category)+' · '+design.id;
-      document.getElementById('designDialogStory').textContent=design.story || '';
-      document.getElementById('designDialogStory').hidden=!design.story;
-      const frontPreview=document.getElementById('designDialogFront');
-      frontPreview.hidden=!design.frontImage;
-      const frontImage=document.getElementById('designDialogFrontImage');
-      if(design.frontImage){frontImage.src=design.frontImage;frontImage.alt=design.name+' · petit emblème devant';}else{frontImage.removeAttribute('src');frontImage.alt='';}
-      document.getElementById('chooseDialogDesign').dataset.designId=design.id;
-      dialog.showModal();
-    });
+    view.addEventListener('click',()=>openDesign(design,view));
   });
+  function renderCollectionGallery(config) {
+    const grid = document.getElementById(config.grid);
+    if (!grid) return;
+    const designs = catalogDesigns.filter(design => design.collection === config.collection);
+    const filter = document.getElementById(config.filter);
+    const groups = [...new Set(designs.map(design => design[config.field]))];
+    filter.replaceChildren(new Option(config.allLabel, ''), ...groups.map(group => new Option(group, group)));
+    designs.forEach(design => {
+      const card = document.createElement('article'); card.className = config.cardClass;
+      card.dataset.filter = design[config.field]; card.dataset.series = design.series || ''; card.dataset.style = design.style || '';
+      const view = document.createElement('button'); view.type = 'button'; view.className = 'dark-manga-art'; view.setAttribute('aria-label', 'Agrandir ' + design.name);
+      const img = document.createElement('img'); img.src = design.image; img.alt = design.name; img.loading = 'lazy'; img.decoding = 'async'; img.width = 1024; img.height = 1536;
+      view.append(img); view.addEventListener('click', () => openDesign(design, view));
+      const info = document.createElement('div'); info.className = 'dark-manga-info';
+      const group = document.createElement('p'); group.className = 'dark-manga-series'; group.textContent = design[config.field] + ' · ' + design.id;
+      const title = document.createElement('h3'); title.textContent = design.name;
+      const choose = document.createElement('button'); choose.type = 'button'; choose.className = 'btn btn-gold'; choose.textContent = 'Essayer sur un textile'; choose.dataset[config.dataKey] = design.id; choose.addEventListener('click', () => chooseDesign(design.id));
+      info.append(group, title, choose); card.append(view, info); grid.append(card);
+    });
+    const update = () => {
+      let count = 0;
+      [...grid.children].forEach(card => { card.hidden = !!filter.value && card.dataset.filter !== filter.value; if (!card.hidden) count++; });
+      document.getElementById(config.count).textContent = filter.value ? count + (count === 1 ? ' design · ' : ' designs · ') + filter.value : designs.length + ' designs · ' + groups.length + ' ' + config.groupLabel;
+    };
+    filter.addEventListener('change', update); update();
+  }
+  renderCollectionGallery({collection:'Dark Manga',grid:'darkMangaGrid',filter:'darkMangaSeries',count:'darkMangaCount',field:'series',cardClass:'dark-manga-card',dataKey:'darkDesign',allLabel:'Tous les animes',groupLabel:'animes'});
+  renderCollectionGallery({collection:'Her World',grid:'herWorldGrid',filter:'herWorldStyle',count:'herWorldCount',field:'style',cardClass:'her-world-card',dataKey:'herDesign',allLabel:'Tous les styles',groupLabel:'styles'});
   document.querySelectorAll('.catalog-filters [data-category]').forEach(button=>button.addEventListener('click',()=>{
     document.querySelectorAll('.catalog-filters [data-category]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
     activeCategory=button.dataset.category;collection.value='';visibleLimit=12;filterCatalogue();
@@ -288,3 +327,4 @@ if (catalogGrid) {
   document.getElementById('chooseDialogDesign').addEventListener('click',event=>chooseDesign(event.currentTarget.dataset.designId));
   document.getElementById('clearDesign').addEventListener('click',()=>{delete productForm.dataset.designId;productForm.dispatchEvent(new Event('change',{bubbles:true}));});
 }
+

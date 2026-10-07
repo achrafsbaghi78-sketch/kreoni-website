@@ -1,6 +1,189 @@
 // Stable references shared by catalogue, preview and order.
 const catalogDesigns = [
   {
+    "id": "DTF-129",
+    "name": "Light — Justice dans l’ombre",
+    "category": "Anime",
+    "collection": "Dark Manga",
+    "series": "Death Note",
+    "image": "assets/DTF-129.webp",
+    "thumbnail": "assets/thumbs/DTF-129.webp",
+    "defaultPlacement": "Dos"
+  },
+  {
+    "id": "DTF-130",
+    "name": "Eren — Au-delà des murs",
+    "category": "Anime",
+    "collection": "Dark Manga",
+    "series": "Attack on Titan",
+    "image": "assets/DTF-130.webp",
+    "thumbnail": "assets/thumbs/DTF-130.webp",
+    "defaultPlacement": "Dos"
+  },
+  {
+    "id": "DTF-131",
+    "name": "Hisoka — Le jeu du destin",
+    "category": "Anime",
+    "collection": "Dark Manga",
+    "series": "Hunter × Hunter",
+    "image": "assets/DTF-131.webp",
+    "thumbnail": "assets/thumbs/DTF-131.webp",
+    "defaultPlacement": "Dos"
+  },
+  {
+    "id": "DTF-132",
+    "name": "Tanjiro — Serment de braise",
+    "category": "Anime",
+    "collection": "Dark Manga",
+    "series": "Demon Slayer",
+    "image": "assets/DTF-132.webp",
+    "thumbnail": "assets/thumbs/DTF-132.webp",
+    "defaultPlacement": "Dos"
+  },
+  {
+    "id": "DTF-133",
+    "name": "Luffy — Horizon libre",
+    "category": "Anime",
+    "collection": "Dark Manga",
+    "series": "One Piece",
+    "image": "assets/DTF-133.webp",
+    "thumbnail": "assets/thumbs/DTF-133.webp",
+    "defaultPlacement": "Dos"
+  },
+  {
+    "id": "DTF-134",
+    "name": "Gojo — Au-delà de l’infini",
+    "category": "Anime",
+    "collection": "Dark Manga",
+    "series": "Jujutsu Kaisen",
+    "image": "assets/DTF-134.webp",
+    "thumbnail": "assets/thumbs/DTF-134.webp",
+    "defaultPlacement": "Dos"
+  },
+  {
+    "id": "DTF-135",
+    "name": "Itachi — Silence des corbeaux",
+    "category": "Anime",
+    "collection": "Dark Manga",
+    "series": "Naruto",
+    "image": "assets/DTF-135.webp",
+    "thumbnail": "assets/thumbs/DTF-135.webp",
+    "defaultPlacement": "Dos"
+  },
+  {
+    "id": "DTF-136",
+    "name": "Ichigo — Lame intérieure",
+    "category": "Anime",
+    "collection": "Dark Manga",
+    "series": "Bleach",
+    "image": "assets/DTF-136.webp",
+    "thumbnail": "assets/thumbs/DTF-136.webp",
+    "defaultPlacement": "Dos"
+  },
+  {
+    "id": "DTF-137",
+    "name": "Jinwoo — Roi des ombres",
+    "category": "Anime",
+    "collection": "Dark Manga",
+    "series": "Solo Leveling",
+    "image": "assets/DTF-137.webp",
+    "thumbnail": "assets/thumbs/DTF-137.webp",
+    "defaultPlacement": "Dos"
+  },
+  {
+    "id": "DTF-138",
+    "name": "Rose Nocturne",
+    "category": "Féminin",
+    "collection": "Her World",
+    "style": "Dark feminine",
+    "image": "assets/DTF-138.webp",
+    "thumbnail": "assets/thumbs/DTF-138.webp",
+    "defaultPlacement": "Dos"
+  },
+  {
+    "id": "DTF-139",
+    "name": "Métamorphose",
+    "category": "Féminin",
+    "collection": "Her World",
+    "style": "Dark feminine",
+    "image": "assets/DTF-139.webp",
+    "thumbnail": "assets/thumbs/DTF-139.webp",
+    "defaultPlacement": "Dos"
+  },
+  {
+    "id": "DTF-140",
+    "name": "Lune Sauvage",
+    "category": "Féminin",
+    "collection": "Her World",
+    "style": "Dark feminine",
+    "image": "assets/DTF-140.webp",
+    "thumbnail": "assets/thumbs/DTF-140.webp",
+    "defaultPlacement": "Dos"
+  },
+  {
+    "id": "DTF-141",
+    "name": "Mikasa — Force tranquille",
+    "category": "Anime",
+    "collection": "Her World",
+    "style": "Anime heroines",
+    "image": "assets/DTF-141.webp",
+    "thumbnail": "assets/thumbs/DTF-141.webp",
+    "defaultPlacement": "Dos",
+    "series": "Attack on Titan"
+  },
+  {
+    "id": "DTF-142",
+    "name": "Nobara — Sans compromis",
+    "category": "Anime",
+    "collection": "Her World",
+    "style": "Anime heroines",
+    "image": "assets/DTF-142.webp",
+    "thumbnail": "assets/thumbs/DTF-142.webp",
+    "defaultPlacement": "Dos",
+    "series": "Jujutsu Kaisen"
+  },
+  {
+    "id": "DTF-143",
+    "name": "Shinobu — Grâce et poison",
+    "category": "Anime",
+    "collection": "Her World",
+    "style": "Anime heroines",
+    "image": "assets/DTF-143.webp",
+    "thumbnail": "assets/thumbs/DTF-143.webp",
+    "defaultPlacement": "Dos",
+    "series": "Demon Slayer"
+  },
+  {
+    "id": "DTF-144",
+    "name": "Éclosion",
+    "category": "Féminin",
+    "collection": "Her World",
+    "style": "Minimal chic",
+    "image": "assets/DTF-144.webp",
+    "thumbnail": "assets/thumbs/DTF-144.webp",
+    "defaultPlacement": "Poitrine / petit logo"
+  },
+  {
+    "id": "DTF-145",
+    "name": "Libre",
+    "category": "Féminin",
+    "collection": "Her World",
+    "style": "Minimal chic",
+    "image": "assets/DTF-145.webp",
+    "thumbnail": "assets/thumbs/DTF-145.webp",
+    "defaultPlacement": "Poitrine / petit logo"
+  },
+  {
+    "id": "DTF-146",
+    "name": "Soleil Intérieur",
+    "category": "Féminin",
+    "collection": "Her World",
+    "style": "Minimal chic",
+    "image": "assets/DTF-146.webp",
+    "thumbnail": "assets/thumbs/DTF-146.webp",
+    "defaultPlacement": "Poitrine / petit logo"
+  },
+  {
     "id": "DTF-114",
     "name": "Dragon — Lame écarlate",
     "category": "Streetwear",

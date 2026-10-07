@@ -8,9 +8,9 @@ w.eval(fs.readFileSync(root+'catalogue.js','utf8')+'\n'+fs.readFileSync(root+'sc
 const get=id=>d.getElementById(id),form=get('productConfigurator');
 const change=()=>form.dispatchEvent(new w.Event('change',{bubbles:true}));
 const visible=()=>[...d.querySelectorAll('.design-card')].filter(x=>!x.hidden).length;
-const cards=[...d.querySelectorAll('.design-card')];assert.equal(cards.length,128);assert.equal(visible(),12);
+const cards=[...d.querySelectorAll('.design-card')];assert.equal(cards.length,146);assert.equal(visible(),12);
 get('catalogMore').click();assert.equal(visible(),24);
-for(const [category,count] of Object.entries({Anime:75,Fantasy:12,Illustrations:15,Streetwear:13,Maroc:13})){
+for(const [category,count] of Object.entries({Anime:87,Féminin:6,Fantasy:12,Illustrations:15,Streetwear:13,Maroc:13})){
  d.querySelector('.catalog-filters [data-category="'+category+'"]').click();assert.equal(visible(),Math.min(count,12));assert.equal(get('catalogMore').hidden,count<=12);
 }
 d.querySelector('.catalog-filters [data-category=Tous]').click();assert.equal(visible(),12);
@@ -28,11 +28,11 @@ get('catalogSearch').value='kois';get('catalogSearch').dispatchEvent(new w.Event
 get('catalogSearch').value='not-a-design';get('catalogSearch').dispatchEvent(new w.Event('input'));assert.equal(visible(),0);assert(!get('catalogEmpty').hidden);
 get('catalogSearch').value='DTF-050';get('catalogSearch').dispatchEvent(new w.Event('input'));assert.equal(visible(),1);
 get('catalogSearch').value='';get('catalogSearch').dispatchEvent(new w.Event('input'));
-while(!get('catalogMore').hidden)get('catalogMore').click();assert.equal(visible(),128);
+while(!get('catalogMore').hidden)get('catalogMore').click();assert.equal(visible(),146);
 let combinations=0;
-for(let i=1;i<=128;i++){
+for(let i=1;i<=146;i++){
  const id='DTF-'+String(i).padStart(3,'0');
- const paired=i>=114;
+ const paired=i>=114&&i<=128;
  if(paired)assert(fs.existsSync(root+'assets/'+id+'-FRONT.webp'));
  assert(fs.existsSync(root+'assets/'+id+'.webp'));assert(fs.existsSync(root+'assets/thumbs/'+id+'.webp'));
  d.querySelector('[data-choose-design="'+id+'"]').click();assert.equal(form.dataset.designId,id);
@@ -72,7 +72,7 @@ d.querySelector('[data-product=tshirt]').click();get('designSource').value='Mon 
 get('designSource').value='Modèle DTF KREONI';change();assert(!get('primaryArtwork').hidden);get('clearDesign').click();assert(get('primaryArtwork').hidden);assert(get('selectedDesignPanel').hidden);
 for(const key of ['hoodie','tote','tshirt']){d.querySelector('[data-hero-product="'+key+'"]').click();assert.equal(get('heroCustomize').dataset.product,key);get('heroCustomize').click();assert.equal(d.querySelector('[name=product]:checked').value,key);}
 assert(html.indexOf('src="catalogue.js"')<html.indexOf('src="script.js"'));
-console.log('PASS: 128 unique designs; '+combinations+' design/product/color/placement combinations; front/back/chest overlays; synchronized catalogue colors; filters/search/pagination; order references; B2B; removal; hero links.');
+console.log('PASS: 146 unique designs; '+combinations+' design/product/color/placement combinations; front/back/chest overlays; synchronized catalogue colors; filters/search/pagination; order references; B2B; removal; hero links.');
 
 d.querySelector('[data-choose-design="DTF-051"]').click();assert(get('selectedDesignStory').textContent.includes('loup'));assert(!get('selectedDesignStory').hidden);assert.equal(d.querySelectorAll('.design-message').length,3);console.log('PASS: story collection retained and selected story displayed.');
 
@@ -80,3 +80,58 @@ d.querySelector("[data-product=tshirt]").click();d.querySelector("[data-choose-d
 assert.equal(get("productPlacement").value,"Devant + dos");assert(get("primaryArtwork").src.endsWith("DTF-114-FRONT.webp"));assert(get("secondaryArtwork").src.endsWith("DTF-114.webp"));
 get("clearDesign").click();assert.equal(get("primaryFrame").dataset.placement,"front");
 console.log("PASS: paired front emblems, back artwork, order references and selection defaults.");
+
+// Dark Manga shares the existing preview/order flow, with one design per anime.
+const darkCards=[...d.querySelectorAll('.dark-manga-card')];assert.equal(darkCards.length,9);
+const darkSelect=get('darkMangaSeries');assert.equal(darkSelect.options.length,10);
+for(const option of [...darkSelect.options].slice(1)){
+ darkSelect.value=option.value;darkSelect.dispatchEvent(new w.Event('change'));
+ assert.equal(darkCards.filter(card=>!card.hidden).length,1);
+ assert.equal(darkCards.find(card=>!card.hidden).dataset.series,option.value);
+}
+darkSelect.value='';darkSelect.dispatchEvent(new w.Event('change'));assert.equal(darkCards.filter(card=>!card.hidden).length,9);
+get('catalogCollection').value='Dark Manga';get('catalogCollection').dispatchEvent(new w.Event('change'));assert.equal(visible(),9);
+get('catalogSearch').value='Hunter';get('catalogSearch').dispatchEvent(new w.Event('input'));assert.equal(visible(),1);
+get('catalogSearch').value='';get('catalogSearch').dispatchEvent(new w.Event('input'));
+get('designDialog').showModal=function(){this.open=true;};get('designDialog').close=function(){this.open=false;};
+for(const key of ['tshirt','hoodie']){
+ d.querySelector('[data-product="'+key+'"]').click();
+ for(const card of darkCards){
+  card.querySelector('.dark-manga-art').click();assert(get('designDialog').open);assert(get('designDialogCategory').textContent.includes(card.dataset.series));
+  get('chooseDialogDesign').click();assert(!get('designDialog').open);assert.equal(get('productPlacement').value,'Dos');
+  const id=card.querySelector('[data-dark-design]').dataset.darkDesign;assert.equal(form.dataset.designId,id);assert(get('primaryArtwork').src.endsWith(id+'.webp'));
+  card.querySelector('[data-dark-design]').click();assert.equal(form.dataset.designId,id);
+ }
+}
+console.log('PASS: Dark Manga gallery, nine anime filters, catalogue search, shared modal and back-print defaults on T-shirt/hoodie.');
+
+const herCards=[...d.querySelectorAll('.her-world-card')];assert.equal(herCards.length,9);
+const herSelect=get('herWorldStyle');assert.equal(herSelect.options.length,4);
+for(const option of [...herSelect.options].slice(1)){
+ herSelect.value=option.value;herSelect.dispatchEvent(new w.Event('change'));
+ assert.equal(herCards.filter(card=>!card.hidden).length,3);
+ assert(herCards.filter(card=>!card.hidden).every(card=>card.dataset.style===option.value));
+}
+herSelect.value='';herSelect.dispatchEvent(new w.Event('change'));
+get('catalogCollection').value='Her World';get('catalogCollection').dispatchEvent(new w.Event('change'));assert.equal(visible(),9);
+get('catalogSearch').value='Minimal chic';get('catalogSearch').dispatchEvent(new w.Event('input'));assert.equal(visible(),3);
+get('catalogSearch').value='';get('catalogSearch').dispatchEvent(new w.Event('input'));
+for(const card of herCards){
+ const id=card.querySelector('[data-her-design]').dataset.herDesign;
+ const small=card.dataset.style==='Minimal chic';
+ d.querySelector('[data-product=tshirt]').click();card.querySelector('[data-her-design]').click();
+ for(const key of ['hoodie','tshirt']){
+  d.querySelector('[data-product="'+key+'"]').click();assert.equal(get('productPlacement').value,small?'Poitrine / petit logo':'Dos');
+  assert.equal(form.dataset.designId,id);
+  for(const color of ['Noir','Blanc','Beige']){
+   d.querySelector('[name=color][value="'+color+'"]').checked=true;change();
+   assert(get('primaryArtwork').src.endsWith(id+'.webp'));
+   assert.equal(get('primaryFrame').dataset.placement,small?'chest':'back');
+   assert.equal(get('primaryFrame').style.getPropertyValue('--panel-offset'),(-100*['Noir','Blanc','Beige'].indexOf(color))+'%');
+  }
+ }
+ card.querySelector('.dark-manga-art').click();assert(get('designDialog').open);assert(get('designDialogImage').src.endsWith(id+'.webp'));get('chooseDialogDesign').click();
+ assert.equal(d.querySelector('[data-choose-design="'+id+'"]').closest('.design-card').querySelector('.catalog-stage').dataset.placement,small?'chest':'standard');
+}
+console.log('PASS: Her World styles, search, modal, color changes and placement retained between T-shirt and hoodie.');
+w.close();
