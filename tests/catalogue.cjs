@@ -81,57 +81,23 @@ assert.equal(get("productPlacement").value,"Devant + dos");assert(get("primaryAr
 get("clearDesign").click();assert.equal(get("primaryFrame").dataset.placement,"front");
 console.log("PASS: paired front emblems, back artwork, order references and selection defaults.");
 
-// Dark Manga shares the existing preview/order flow, with one design per anime.
-const darkCards=[...d.querySelectorAll('.dark-manga-card')];assert.equal(darkCards.length,9);
-const darkSelect=get('darkMangaSeries');assert.equal(darkSelect.options.length,10);
-for(const option of [...darkSelect.options].slice(1)){
- darkSelect.value=option.value;darkSelect.dispatchEvent(new w.Event('change'));
- assert.equal(darkCards.filter(card=>!card.hidden).length,1);
- assert.equal(darkCards.find(card=>!card.hidden).dataset.series,option.value);
-}
-darkSelect.value='';darkSelect.dispatchEvent(new w.Event('change'));assert.equal(darkCards.filter(card=>!card.hidden).length,9);
-get('catalogCollection').value='Dark Manga';get('catalogCollection').dispatchEvent(new w.Event('change'));assert.equal(visible(),9);
-get('catalogSearch').value='Hunter';get('catalogSearch').dispatchEvent(new w.Event('input'));assert.equal(visible(),1);
-get('catalogSearch').value='';get('catalogSearch').dispatchEvent(new w.Event('input'));
+// Both collections use the existing catalogue and configurator.
+assert(!get('dark-manga'));assert(!get('her-world'));
+assert(!d.querySelector('a[href="#dark-manga"],a[href="#her-world"]'));
 get('designDialog').showModal=function(){this.open=true;};get('designDialog').close=function(){this.open=false;};
-for(const key of ['tshirt','hoodie']){
- d.querySelector('[data-product="'+key+'"]').click();
- for(const card of darkCards){
-  card.querySelector('.dark-manga-art').click();assert(get('designDialog').open);assert(get('designDialogCategory').textContent.includes(card.dataset.series));
-  get('chooseDialogDesign').click();assert(!get('designDialog').open);assert.equal(get('productPlacement').value,'Dos');
-  const id=card.querySelector('[data-dark-design]').dataset.darkDesign;assert.equal(form.dataset.designId,id);assert(get('primaryArtwork').src.endsWith(id+'.webp'));
-  card.querySelector('[data-dark-design]').click();assert.equal(form.dataset.designId,id);
+for(const collection of ['Dark Manga','Her World']){
+ get('catalogCollection').value=collection;get('catalogCollection').dispatchEvent(new w.Event('change'));assert.equal(visible(),9);
+ const selected=cards.filter(card=>!card.hidden);
+ assert(selected.every(card=>card.dataset.collection===collection));
+ for(const card of selected){
+  const id=card.querySelector('[data-choose-design]').dataset.chooseDesign;
+  const small=Number(id.slice(4))>=144;
+  d.querySelector('[data-product=tshirt]').click();card.querySelector('.design-art').click();assert(get('designDialog').open);
+  get('chooseDialogDesign').click();assert.equal(form.dataset.designId,id);assert(!get('designDialog').open);
+  d.querySelector('[data-product=hoodie]').click();assert.equal(get('productPlacement').value,small?'Poitrine / petit logo':'Dos');
+  assert(get('primaryArtwork').src.endsWith(id+'.webp'));
  }
 }
-console.log('PASS: Dark Manga gallery, nine anime filters, catalogue search, shared modal and back-print defaults on T-shirt/hoodie.');
-
-const herCards=[...d.querySelectorAll('.her-world-card')];assert.equal(herCards.length,9);
-const herSelect=get('herWorldStyle');assert.equal(herSelect.options.length,4);
-for(const option of [...herSelect.options].slice(1)){
- herSelect.value=option.value;herSelect.dispatchEvent(new w.Event('change'));
- assert.equal(herCards.filter(card=>!card.hidden).length,3);
- assert(herCards.filter(card=>!card.hidden).every(card=>card.dataset.style===option.value));
-}
-herSelect.value='';herSelect.dispatchEvent(new w.Event('change'));
-get('catalogCollection').value='Her World';get('catalogCollection').dispatchEvent(new w.Event('change'));assert.equal(visible(),9);
 get('catalogSearch').value='Minimal chic';get('catalogSearch').dispatchEvent(new w.Event('input'));assert.equal(visible(),3);
-get('catalogSearch').value='';get('catalogSearch').dispatchEvent(new w.Event('input'));
-for(const card of herCards){
- const id=card.querySelector('[data-her-design]').dataset.herDesign;
- const small=card.dataset.style==='Minimal chic';
- d.querySelector('[data-product=tshirt]').click();card.querySelector('[data-her-design]').click();
- for(const key of ['hoodie','tshirt']){
-  d.querySelector('[data-product="'+key+'"]').click();assert.equal(get('productPlacement').value,small?'Poitrine / petit logo':'Dos');
-  assert.equal(form.dataset.designId,id);
-  for(const color of ['Noir','Blanc','Beige']){
-   d.querySelector('[name=color][value="'+color+'"]').checked=true;change();
-   assert(get('primaryArtwork').src.endsWith(id+'.webp'));
-   assert.equal(get('primaryFrame').dataset.placement,small?'chest':'back');
-   assert.equal(get('primaryFrame').style.getPropertyValue('--panel-offset'),(-100*['Noir','Blanc','Beige'].indexOf(color))+'%');
-  }
- }
- card.querySelector('.dark-manga-art').click();assert(get('designDialog').open);assert(get('designDialogImage').src.endsWith(id+'.webp'));get('chooseDialogDesign').click();
- assert.equal(d.querySelector('[data-choose-design="'+id+'"]').closest('.design-card').querySelector('.catalog-stage').dataset.placement,small?'chest':'standard');
-}
-console.log('PASS: Her World styles, search, modal, color changes and placement retained between T-shirt and hoodie.');
+console.log('PASS: both collections remain in the existing catalogue; selection, modal and textile placement preserved.');
 w.close();

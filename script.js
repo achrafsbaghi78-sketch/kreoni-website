@@ -268,34 +268,6 @@ if (catalogGrid) {
     info.append(choose);card.append(view,info);catalogGrid.append(card);
     view.addEventListener('click',()=>openDesign(design,view));
   });
-  function renderCollectionGallery(config) {
-    const grid = document.getElementById(config.grid);
-    if (!grid) return;
-    const designs = catalogDesigns.filter(design => design.collection === config.collection);
-    const filter = document.getElementById(config.filter);
-    const groups = [...new Set(designs.map(design => design[config.field]))];
-    filter.replaceChildren(new Option(config.allLabel, ''), ...groups.map(group => new Option(group, group)));
-    designs.forEach(design => {
-      const card = document.createElement('article'); card.className = config.cardClass;
-      card.dataset.filter = design[config.field]; card.dataset.series = design.series || ''; card.dataset.style = design.style || '';
-      const view = document.createElement('button'); view.type = 'button'; view.className = 'dark-manga-art'; view.setAttribute('aria-label', 'Agrandir ' + design.name);
-      const img = document.createElement('img'); img.src = design.image; img.alt = design.name; img.loading = 'lazy'; img.decoding = 'async'; img.width = 1024; img.height = 1536;
-      view.append(img); view.addEventListener('click', () => openDesign(design, view));
-      const info = document.createElement('div'); info.className = 'dark-manga-info';
-      const group = document.createElement('p'); group.className = 'dark-manga-series'; group.textContent = design[config.field] + ' · ' + design.id;
-      const title = document.createElement('h3'); title.textContent = design.name;
-      const choose = document.createElement('button'); choose.type = 'button'; choose.className = 'btn btn-gold'; choose.textContent = 'Essayer sur un textile'; choose.dataset[config.dataKey] = design.id; choose.addEventListener('click', () => chooseDesign(design.id));
-      info.append(group, title, choose); card.append(view, info); grid.append(card);
-    });
-    const update = () => {
-      let count = 0;
-      [...grid.children].forEach(card => { card.hidden = !!filter.value && card.dataset.filter !== filter.value; if (!card.hidden) count++; });
-      document.getElementById(config.count).textContent = filter.value ? count + (count === 1 ? ' design · ' : ' designs · ') + filter.value : designs.length + ' designs · ' + groups.length + ' ' + config.groupLabel;
-    };
-    filter.addEventListener('change', update); update();
-  }
-  renderCollectionGallery({collection:'Dark Manga',grid:'darkMangaGrid',filter:'darkMangaSeries',count:'darkMangaCount',field:'series',cardClass:'dark-manga-card',dataKey:'darkDesign',allLabel:'Tous les animes',groupLabel:'animes'});
-  renderCollectionGallery({collection:'Her World',grid:'herWorldGrid',filter:'herWorldStyle',count:'herWorldCount',field:'style',cardClass:'her-world-card',dataKey:'herDesign',allLabel:'Tous les styles',groupLabel:'styles'});
   document.querySelectorAll('.catalog-filters [data-category]').forEach(button=>button.addEventListener('click',()=>{
     document.querySelectorAll('.catalog-filters [data-category]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
     activeCategory=button.dataset.category;collection.value='';visibleLimit=12;filterCatalogue();
