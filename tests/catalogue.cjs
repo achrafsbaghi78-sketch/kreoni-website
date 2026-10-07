@@ -8,9 +8,9 @@ w.eval(fs.readFileSync(root+'catalogue.js','utf8')+'\n'+fs.readFileSync(root+'sc
 const get=id=>d.getElementById(id),form=get('productConfigurator');
 const change=()=>form.dispatchEvent(new w.Event('change',{bubbles:true}));
 const visible=()=>[...d.querySelectorAll('.design-card')].filter(x=>!x.hidden).length;
-const cards=[...d.querySelectorAll('.design-card')];assert.equal(cards.length,146);assert.equal(visible(),12);
+const cards=[...d.querySelectorAll('.design-card')];assert.equal(cards.length,158);assert.equal(visible(),12);
 get('catalogMore').click();assert.equal(visible(),24);
-for(const [category,count] of Object.entries({Anime:87,Féminin:6,Fantasy:12,Illustrations:15,Streetwear:13,Maroc:13})){
+for(const [category,count] of Object.entries({Anime:94,Féminin:7,Fantasy:12,Illustrations:17,Streetwear:14,Maroc:14})){
  d.querySelector('.catalog-filters [data-category="'+category+'"]').click();assert.equal(visible(),Math.min(count,12));assert.equal(get('catalogMore').hidden,count<=12);
 }
 d.querySelector('.catalog-filters [data-category=Tous]').click();assert.equal(visible(),12);
@@ -28,9 +28,9 @@ get('catalogSearch').value='kois';get('catalogSearch').dispatchEvent(new w.Event
 get('catalogSearch').value='not-a-design';get('catalogSearch').dispatchEvent(new w.Event('input'));assert.equal(visible(),0);assert(!get('catalogEmpty').hidden);
 get('catalogSearch').value='DTF-050';get('catalogSearch').dispatchEvent(new w.Event('input'));assert.equal(visible(),1);
 get('catalogSearch').value='';get('catalogSearch').dispatchEvent(new w.Event('input'));
-while(!get('catalogMore').hidden)get('catalogMore').click();assert.equal(visible(),146);
+while(!get('catalogMore').hidden)get('catalogMore').click();assert.equal(visible(),158);
 let combinations=0;
-for(let i=1;i<=146;i++){
+for(let i=1;i<=158;i++){
  const id='DTF-'+String(i).padStart(3,'0');
  const paired=i>=114&&i<=128;
  if(paired)assert(fs.existsSync(root+'assets/'+id+'-FRONT.webp'));
@@ -72,7 +72,7 @@ d.querySelector('[data-product=tshirt]').click();get('designSource').value='Mon 
 get('designSource').value='Modèle DTF KREONI';change();assert(!get('primaryArtwork').hidden);get('clearDesign').click();assert(get('primaryArtwork').hidden);assert(get('selectedDesignPanel').hidden);
 for(const key of ['hoodie','tote','tshirt']){d.querySelector('[data-hero-product="'+key+'"]').click();assert.equal(get('heroCustomize').dataset.product,key);get('heroCustomize').click();assert.equal(d.querySelector('[name=product]:checked').value,key);}
 assert(html.indexOf('src="catalogue.js"')<html.indexOf('src="script.js"'));
-console.log('PASS: 146 unique designs; '+combinations+' design/product/color/placement combinations; front/back/chest overlays; synchronized catalogue colors; filters/search/pagination; order references; B2B; removal; hero links.');
+console.log('PASS: 158 unique designs; '+combinations+' design/product/color/placement combinations; front/back/chest overlays; synchronized catalogue colors; filters/search/pagination; order references; B2B; removal; hero links.');
 
 d.querySelector('[data-choose-design="DTF-051"]').click();assert(get('selectedDesignStory').textContent.includes('loup'));assert(!get('selectedDesignStory').hidden);assert.equal(d.querySelectorAll('.design-message').length,3);console.log('PASS: story collection retained and selected story displayed.');
 
@@ -100,4 +100,16 @@ for(const collection of ['Dark Manga','Her World']){
 }
 get('catalogSearch').value='Minimal chic';get('catalogSearch').dispatchEvent(new w.Event('input'));assert.equal(visible(),3);
 console.log('PASS: both collections remain in the existing catalogue; selection, modal and textile placement preserved.');
+get('catalogSearch').value='';get('catalogSearch').dispatchEvent(new w.Event('input'));
+get('catalogCollection').value='Mini Prints';get('catalogCollection').dispatchEvent(new w.Event('change'));
+assert.equal(visible(),12);assert(!get('miniThemeField').hidden);assert.equal(get('miniTheme').options.length,13);
+for(const option of [...get('miniTheme').options].slice(1)){
+ get('miniTheme').value=option.value;get('miniTheme').dispatchEvent(new w.Event('change'));assert.equal(visible(),1);
+ const card=cards.find(c=>!c.hidden);assert.equal(card.dataset.theme,option.value);card.querySelector('[data-choose-design]').click();
+ for(const product of ['tshirt','hoodie']){
+  d.querySelector('[data-product="'+product+'"]').click();assert.equal(get('productPlacement').value,'Poitrine / petit logo');assert.equal(get('primaryFrame').dataset.placement,'chest');
+ }
+}
+d.querySelector('.catalog-filters [data-category=Tous]').click();assert(get('miniThemeField').hidden);assert.equal(get('miniTheme').value,'');assert.equal(visible(),12);
+console.log('PASS: Mini Prints, 12 universes, chest defaults and filter reset.');
 w.close();
