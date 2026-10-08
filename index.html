@@ -63,7 +63,7 @@
       <a href="#b2b">Professionnels</a>
       <a href="#personnalisation">À propos</a>
       <a href="#contact">Contact</a>
-      <span class="nav-search" aria-hidden="true">⌕</span>
+      <a href="#panier" class="nav-cart">Panier <span id="cartBadge">0</span></a>
       <a class="nav-cta" href="https://wa.me/212664521613?text=Bonjour%20KREONI%2C%20je%20souhaite%20passer%20une%20commande." target="_blank" rel="noopener noreferrer">◉ Commander</a>
     </nav>
   </div>
@@ -231,11 +231,26 @@
             <p class="simple-hint" id="designHelp">Choisissez un design dans le catalogue, ou demandez conseil sur WhatsApp.</p>
             <label class="simple-field"><span>Détails <small>(facultatif)</small></span><textarea id="productNotes" rows="3" maxlength="2000" placeholder="Votre idée, prénom, tailles ou délai souhaité…"></textarea></label>
             <div class="simple-recap" aria-live="polite"><strong id="productRecap"></strong><span>Prix et disponibilité sur devis</span></div>
-            <button class="btn btn-gold" type="submit" id="sendProductConfig">Demander mon devis sur WhatsApp</button>
+            <div id="cartAddControls" class="cart-add-controls"><button class="btn btn-gold" type="button" id="addToCart">Ajouter au panier</button><button type="button" id="cancelCartEdit" hidden>Annuler la modification</button><a href="#panier">Voir mon panier</a></div>
+            <button class="btn btn-outline" type="submit" id="sendProductConfig">Demander mon devis sur WhatsApp</button>
             <p class="simple-hint" id="productHelp" role="status">Vérifiez votre sélection, puis envoyez votre demande sur WhatsApp.</p>
           </div>
         </div>
       </form>
+    </div>
+  </section>
+
+  <section class="section cart-section" id="panier" aria-labelledby="cartTitle">
+    <div class="container cart-container">
+      <div class="cart-heading"><div><p class="eyebrow">VOTRE SÉLECTION</p><h2 id="cartTitle">Votre panier, votre création.</h2><p>Réunissez vos modèles et demandez un devis en une seule fois.</p></div><a class="btn btn-outline" href="#catalogue">Continuer mes choix ↗</a></div>
+      <p id="cartStatus" class="cart-status" role="status" aria-live="polite"></p>
+      <div id="cartEmpty" class="cart-empty"><span aria-hidden="true">＋</span><h3>Votre première création vous attend.</h3><p>Choisissez un design, personnalisez votre textile et ajoutez-le ici.</p><a class="btn btn-gold" href="#catalogue">Découvrir les designs</a></div>
+      <div class="cart-layout" id="cartContent" hidden>
+        <div id="cartItems" class="cart-items" aria-label="Articles du panier"></div>
+        <aside class="cart-summary"><p class="eyebrow">RÉCAPITULATIF</p><h3 id="cartTotal"></h3><p id="cartModels"></p><div class="cart-price-note"><strong>Prix sur devis</strong><p>Prix, disponibilité, livraison et délai confirmés avant validation.</p></div><button id="prepareCartQuote" type="button" class="btn btn-gold">Préparer mon devis</button><p class="cart-small">Vous vérifiez le message avant de l’envoyer. Aucun paiement sur le site.</p></aside>
+      </div>
+      <div id="cartQuote" class="cart-quote" hidden><h3>Votre demande est prête.</h3><label for="cartQuoteText">Vérifiez le récapitulatif</label><textarea id="cartQuoteText" rows="10" readonly></textarea><p id="cartQuoteHint" role="status">WhatsApp ouvrira votre demande. Vous choisissez ensuite de l’envoyer.</p><div class="cart-quote-actions"><button id="openCartWhatsApp" type="button" class="btn btn-gold">Ouvrir WhatsApp</button><button id="copyCartQuote" type="button" class="btn btn-outline">Copier le message</button></div></div>
+      <p id="cartStorageNote" class="cart-small">Votre panier est conservé sur ce navigateur.</p>
     </div>
   </section>
 
@@ -287,6 +302,7 @@
 <footer><div class="container footer-wrap"><div class="brand"><img class="brand-logo" src="assets/brand-mark.svg" alt="" aria-hidden="true"><span>KREONI</span></div><p>© 2026 KREONI. Personnalisation & Print — Maroc.</p><a href="https://www.instagram.com/kreoni.ma/" target="_blank" rel="noopener noreferrer">@kreoni.ma</a></div></footer>
 <script src="catalogue.js" defer></script>
 <script src="script.js" defer></script>
+<script src="cart.js" defer></script>
 </body>
 </html>
 
