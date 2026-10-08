@@ -162,14 +162,39 @@
         </fieldset>
         <div class="catalog-view" role="group" aria-label="Affichage du catalogue"><button type="button" data-catalog-view="shirt" aria-pressed="true">Sur T-shirt</button><button type="button" data-catalog-view="art" aria-pressed="false">Design seul</button></div>
       </div>
-      <p id="catalogCount" role="status" class="catalog-count"></p>
+      <div class="catalog-results"><p id="catalogCount" role="status" class="catalog-count"></p><button id="catalogReset" type="button">Effacer les filtres</button></div>
       <div id="catalogGrid" class="catalog-grid" data-view="shirt"></div>
       <p id="catalogEmpty" hidden>Aucun design trouvé. Essayez un autre mot ou une autre catégorie.</p>
       <button id="catalogMore" type="button" class="btn btn-gold">Voir plus de designs</button>
       <noscript><p>Activez JavaScript pour parcourir et sélectionner les designs du catalogue.</p></noscript>
     </div>
   </section>
-  <dialog id="designDialog" aria-labelledby="designDialogTitle"><button id="closeDesignDialog" type="button" aria-label="Fermer l’aperçu">Fermer ×</button><img id="designDialogImage" alt=""><figure id="designDialogFront" hidden><img id="designDialogFrontImage" alt=""><figcaption>Petit emblème devant · illustration principale au dos</figcaption></figure><h3 id="designDialogTitle"></h3><p id="designDialogCategory"></p><p id="designDialogStory" hidden></p><button type="button" id="chooseDialogDesign" class="btn btn-gold">Choisir ce design</button></dialog>
+  <dialog id="designDialog" aria-labelledby="designDialogTitle">
+    <div class="detail-topbar"><span>KREONI · STUDIO</span><button id="closeDesignDialog" type="button" autofocus aria-label="Fermer et revenir au catalogue">Fermer ×</button></div>
+    <div class="detail-layout">
+      <div class="detail-media">
+        <div class="detail-view-switch" role="group" aria-label="Type d’aperçu"><button type="button" data-detail-view="textile" aria-pressed="true">Sur textile</button><button type="button" data-detail-view="art" aria-pressed="false">Design seul</button></div>
+        <div id="detailViewport" class="detail-viewport" tabindex="0" aria-label="Aperçu. Après agrandissement, faites défiler pour explorer les détails.">
+          <div id="detailCanvas" class="detail-canvas">
+            <div class="product-example" id="detailTextile"><div id="detailFrame" class="preview-frame color-strip"><img id="detailGarment" class="garment-base" alt=""><img id="detailArtwork" class="print-artwork" alt=""></div></div>
+            <img id="designDialogImage" alt="" hidden>
+          </div>
+        </div>
+        <div class="detail-zoom"><button type="button" id="detailZoomOut" aria-label="Réduire l’aperçu">−</button><label for="detailZoom">Zoom <output id="detailZoomValue" for="detailZoom">100 %</output></label><input id="detailZoom" type="range" min="100" max="250" step="25" value="100" aria-label="Niveau de zoom"><button type="button" id="detailZoomIn" aria-label="Agrandir l’aperçu">+</button><button type="button" id="detailZoomReset">Réinitialiser</button></div>
+        <p id="detailPreviewStatus" role="status"></p>
+      </div>
+      <div class="detail-options">
+        <p id="designDialogCategory"></p><h3 id="designDialogTitle"></h3><p id="designDialogStory" hidden></p>
+        <p class="detail-intro">Essayez votre design. Choisissez le textile, sa couleur et votre vue.</p>
+        <label class="detail-field">Votre textile<select id="detailProduct"><option value="tshirt">T-shirt</option><option value="hoodie">Hoodie</option><option value="tote">Sac / Tote bag</option></select></label>
+        <fieldset class="detail-colors"><legend>Couleur</legend><label><input type="radio" name="detailColor" value="Noir" checked><span><i style="background:#161616"></i>Noir</span></label><label><input type="radio" name="detailColor" value="Blanc"><span><i style="background:#fff"></i>Blanc</span></label><label><input type="radio" name="detailColor" value="Beige"><span><i style="background:#d9c5a3"></i>Beige</span></label></fieldset>
+        <label class="detail-field">Vue / emplacement<select id="detailPlacement"></select></label>
+        <figure id="designDialogFront" hidden><img id="designDialogFrontImage" alt=""><figcaption>Ce duo comprend un petit emblème devant et une grande illustration au dos.</figcaption></figure>
+        <button type="button" id="chooseDialogDesign" class="btn btn-gold">Personnaliser ce modèle ↗</button>
+        <p class="detail-note">Aperçu indicatif. Taille, quantité et détails à préciser à l’étape suivante.</p>
+      </div>
+    </div>
+  </dialog>
 
   <section class="section configurator-section" id="configurateur">
     <div class="container">
@@ -264,4 +289,5 @@
 <script src="script.js" defer></script>
 </body>
 </html>
+
 

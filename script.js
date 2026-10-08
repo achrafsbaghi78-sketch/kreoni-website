@@ -199,10 +199,60 @@ if (heroButtons.length) {
 const catalogGrid = document.getElementById('catalogGrid');
 if (catalogGrid) {
   const dialog = document.getElementById('designDialog');
-  let lastDesignButton;
-  function chooseDesign(id) {
+  let lastDesignButton, detailDesign, dialogScroll = 0, acceptedDetail = false, pageLocked = false;
+  const detailProduct = document.getElementById('detailProduct');
+  const detailPlacement = document.getElementById('detailPlacement');
+  const detailViewport = document.getElementById('detailViewport');
+  const zoom = document.getElementById('detailZoom');
+  let detailView = 'textile';
+  function setDetailZoom(value) {
+    zoom.value = Math.max(100, Math.min(250, Number(value)));
+    document.getElementById('detailZoomValue').textContent = zoom.value + ' %';
+    document.getElementById('detailCanvas').style.width = zoom.value + '%';
+    document.getElementById('detailZoomOut').disabled = Number(zoom.value) === 100;
+    document.getElementById('detailZoomIn').disabled = Number(zoom.value) === 250;
+    if (Number(zoom.value) === 100) { detailViewport.scrollTop = 0; detailViewport.scrollLeft = 0; }
+  }
+  function setDetailPlacements() {
+    const old = detailPlacement.value;
+    const values = detailProduct.value === 'tote' ? ['Recto','Verso'] : ['Devant','Dos','Poitrine / petit logo'];
+    detailPlacement.replaceChildren(...values.map(value => new Option(value, value)));
+    detailPlacement.value = values.includes(old) ? old : values.includes(detailDesign.defaultPlacement) ? detailDesign.defaultPlacement : detailDesign.frontImage && detailProduct.value !== 'tote' ? 'Dos' : values[0];
+  }
+  function renderDetail() {
+    if (!detailDesign) return;
+    const product = detailProduct.value;
+    const color = dialog.querySelector('[name="detailColor"]:checked').value;
+    const rear = ['Dos','Verso'].includes(detailPlacement.value);
+    const emblem = !!detailDesign.frontImage && product !== 'tote' && !rear;
+    const frame = document.getElementById('detailFrame');
+    frame.dataset.product = product;
+    frame.dataset.placement = rear ? 'back' : emblem || detailPlacement.value.startsWith('Poitrine') ? 'chest' : 'front';
+    frame.style.setProperty('--panel-offset', (-100 * ['Noir','Blanc','Beige'].indexOf(color)) + '%');
+    const garment = document.getElementById('detailGarment');
+    garment.src = 'assets/' + product + '-blank-' + (rear ? 'back' : 'front') + '.webp';
+    garment.alt = detailProduct.selectedOptions[0].textContent + ' · ' + color;
+    const art = document.getElementById('detailArtwork');
+    art.src = emblem ? detailDesign.frontImage : detailDesign.image; art.alt = detailDesign.name;
+    document.getElementById('detailTextile').hidden = detailView !== 'textile';
+    document.getElementById('designDialogImage').hidden = detailView !== 'art';
+    document.getElementById('detailPreviewStatus').textContent = detailView === 'art' ? 'Illustration principale · faites défiler l’aperçu après le zoom.' : garment.alt + ' · ' + (emblem ? 'Petit emblème devant' : detailPlacement.value);
+  }
+  function releaseDetailPage() {
+    if (!pageLocked) return;
+    pageLocked = false;
+    document.documentElement.classList.remove('detail-open');
+    window.scrollTo({top:dialogScroll,behavior:'instant'});
+    if (acceptedDetail) requestAnimationFrame(() => document.getElementById('configurateur').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'}));
+    else lastDesignButton?.focus({preventScroll:true});
+  }
+  function chooseDesign(id, options) {
     const design = catalogDesigns.find(item => item.id === id);
     if (!design) return;
+    if (options) {
+      productForm.querySelector('[name="product"][value="'+options.product+'"]').checked = true;
+      productForm.querySelector('[name="color"][value="'+options.color+'"]').checked = true;
+    }
     productForm.dataset.designId = id;
     document.getElementById('designSource').value = 'Modèle DTF KREONI';
     productForm.dispatchEvent(new Event('change', {bubbles:true}));
@@ -214,11 +264,23 @@ if (catalogGrid) {
       document.getElementById('productPlacement').value = design.defaultPlacement;
       productForm.dispatchEvent(new Event('change', {bubbles:true}));
     }
-    if (dialog.open) dialog.close();
+    if (options && !(design.frontImage && ['tshirt','hoodie'].includes(options.product))) {
+      document.getElementById('productPlacement').value = options.placement;
+      productForm.dispatchEvent(new Event('change', {bubbles:true}));
+    }
+    if (dialog.open) { acceptedDetail = true; dialog.close(); releaseDetailPage(); }
     document.getElementById('configurateur').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
   }
   function openDesign(design,trigger) {
       lastDesignButton=trigger;
+      detailDesign = design; acceptedDetail = false;
+      const selectedProduct = productForm.querySelector('[name="product"]:checked').value;
+      detailProduct.value = selectedProduct === 'b2b' ? 'tshirt' : selectedProduct;
+      dialog.querySelector('[name="detailColor"][value="'+productForm.querySelector('[name="color"]:checked').value+'"]').checked = true;
+      detailPlacement.replaceChildren(); setDetailPlacements();
+      detailView = 'textile';
+      dialog.querySelectorAll('[data-detail-view]').forEach(button => button.setAttribute('aria-pressed',String(button.dataset.detailView === detailView)));
+      setDetailZoom(100); renderDetail();
       document.getElementById('designDialogImage').src=design.image;
       document.getElementById('designDialogImage').alt=design.name;
       document.getElementById('designDialogTitle').textContent=design.name;
@@ -230,7 +292,9 @@ if (catalogGrid) {
       const frontImage=document.getElementById('designDialogFrontImage');
       if(design.frontImage){frontImage.src=design.frontImage;frontImage.alt=design.name+' · petit emblème devant';}else{frontImage.removeAttribute('src');frontImage.alt='';}
       document.getElementById('chooseDialogDesign').dataset.designId=design.id;
+      dialogScroll = window.scrollY;
       dialog.showModal();
+      pageLocked = true; document.documentElement.classList.add('detail-open');
   }
   let activeCategory = 'Tous', visibleLimit = 12;
   const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
@@ -304,8 +368,26 @@ if (catalogGrid) {
   }));
   filterCatalogue();
   document.getElementById('closeDesignDialog').addEventListener('click',()=>dialog.close());
-  dialog.addEventListener('close',()=>lastDesignButton?.focus());
-  document.getElementById('chooseDialogDesign').addEventListener('click',event=>chooseDesign(event.currentTarget.dataset.designId));
+  dialog.addEventListener('close', releaseDetailPage);
+  document.getElementById('chooseDialogDesign').addEventListener('click',event=>chooseDesign(event.currentTarget.dataset.designId,{product:detailProduct.value,color:dialog.querySelector('[name="detailColor"]:checked').value,placement:detailPlacement.value}));
+  detailProduct.addEventListener('change',()=>{setDetailPlacements();renderDetail();});
+  detailPlacement.addEventListener('change',renderDetail);
+  dialog.querySelectorAll('[name="detailColor"]').forEach(input=>input.addEventListener('change',renderDetail));
+  dialog.querySelectorAll('[data-detail-view]').forEach(button=>button.addEventListener('click',()=>{
+    detailView=button.dataset.detailView;
+    dialog.querySelectorAll('[data-detail-view]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+    setDetailZoom(100);renderDetail();
+  }));
+  zoom.addEventListener('input',()=>setDetailZoom(zoom.value));
+  document.getElementById('detailZoomIn').addEventListener('click',()=>setDetailZoom(Number(zoom.value)+25));
+  document.getElementById('detailZoomOut').addEventListener('click',()=>setDetailZoom(Number(zoom.value)-25));
+  document.getElementById('detailZoomReset').addEventListener('click',()=>setDetailZoom(100));
+  document.getElementById('catalogReset').addEventListener('click',()=>{
+    search.value='';collection.value='';miniTheme.value='';activeCategory='Tous';visibleLimit=12;
+    document.querySelectorAll('.catalog-filters [data-category]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.category==='Tous')));
+    filterCatalogue();
+  });
   document.getElementById('clearDesign').addEventListener('click',()=>{delete productForm.dataset.designId;productForm.dispatchEvent(new Event('change',{bubbles:true}));});
 }
+
 
