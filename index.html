@@ -162,6 +162,7 @@
         </fieldset>
         <div class="catalog-view" role="group" aria-label="Affichage du catalogue"><button type="button" data-catalog-view="shirt" aria-pressed="true">Sur T-shirt</button><button type="button" data-catalog-view="art" aria-pressed="false">Design seul</button></div>
       </div>
+      <div class="catalog-saved-bar"><button type="button" id="catalogFavorites" aria-pressed="false">♡ Mes favoris <span id="favoritesCount">0</span></button><p id="favoritesStatus" role="status" aria-live="polite">Gardez vos coups de cœur sur ce navigateur.</p></div>
       <div class="catalog-results"><p id="catalogCount" role="status" class="catalog-count"></p><button id="catalogReset" type="button">Effacer les filtres</button></div>
       <div id="catalogGrid" class="catalog-grid" data-view="shirt"></div>
       <p id="catalogEmpty" hidden>Aucun design trouvé. Essayez un autre mot ou une autre catégorie.</p>
@@ -190,6 +191,7 @@
         <fieldset class="detail-colors"><legend>Couleur</legend><label><input type="radio" name="detailColor" value="Noir" checked><span><i style="background:#161616"></i>Noir</span></label><label><input type="radio" name="detailColor" value="Blanc"><span><i style="background:#fff"></i>Blanc</span></label><label><input type="radio" name="detailColor" value="Beige"><span><i style="background:#d9c5a3"></i>Beige</span></label></fieldset>
         <label class="detail-field">Vue / emplacement<select id="detailPlacement"></select></label>
         <figure id="designDialogFront" hidden><img id="designDialogFrontImage" alt=""><figcaption>Ce duo comprend un petit emblème devant et une grande illustration au dos.</figcaption></figure>
+        <button type="button" id="detailFavorite" class="detail-favorite" aria-pressed="false">♡ Ajouter aux favoris</button>
         <button type="button" id="chooseDialogDesign" class="btn btn-gold">Personnaliser ce modèle ↗</button>
         <p class="detail-note">Aperçu indicatif. Taille, quantité et détails à préciser à l’étape suivante.</p>
       </div>
@@ -305,5 +307,6 @@
 <script src="cart.js" defer></script>
 </body>
 </html>
+
 
 

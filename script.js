@@ -200,6 +200,41 @@ const catalogGrid = document.getElementById('catalogGrid');
 if (catalogGrid) {
   const dialog = document.getElementById('designDialog');
   let lastDesignButton, detailDesign, dialogScroll = 0, acceptedDetail = false, pageLocked = false;
+  const favoriteKey = 'kreoni.favorites.v1';
+  const favoriteToggle = document.getElementById('catalogFavorites');
+  const favoriteStatus = document.getElementById('favoritesStatus');
+  let favorites = new Set(), favoritesOnly = false;
+  function readFavorites(value) {
+    const saved = JSON.parse(value || 'null');
+    return new Set(Array.isArray(saved?.ids) && saved.version === 1 ? saved.ids.filter(id => catalogDesigns.some(design => design.id === id)) : []);
+  }
+  try { favorites = readFavorites(localStorage.getItem(favoriteKey)); }
+  catch (_) { favoriteStatus.textContent = 'Favoris disponibles pour cette visite uniquement.'; }
+  function syncFavorites() {
+    document.getElementById('favoritesCount').textContent = String(favorites.size);
+    favoriteToggle.setAttribute('aria-pressed', String(favoritesOnly));
+    catalogGrid.querySelectorAll('[data-favorite]').forEach(button => {
+      const saved = favorites.has(button.dataset.favorite);
+      button.setAttribute('aria-pressed', String(saved));
+      button.setAttribute('aria-label', (saved ? 'Retirer des favoris : ' : 'Ajouter aux favoris : ') + button.dataset.name);
+      button.textContent = saved ? '♥' : '♡';
+    });
+    if (detailDesign) {
+      const saved = favorites.has(detailDesign.id), button = document.getElementById('detailFavorite');
+      button.setAttribute('aria-pressed', String(saved));
+      button.textContent = saved ? '♥ Dans mes favoris' : '♡ Ajouter aux favoris';
+    }
+  }
+  function toggleFavorite(id) {
+    const saved = !favorites.has(id);
+    if (saved) favorites.add(id); else favorites.delete(id);
+    let persistent = true;
+    try { localStorage.setItem(favoriteKey, JSON.stringify({version:1, ids:[...favorites]})); }
+    catch (_) { persistent = false; }
+    favoriteStatus.textContent = (saved ? 'Design ajouté aux favoris.' : 'Design retiré des favoris.') + (persistent ? '' : ' Sauvegarde disponible pour cette visite uniquement.');
+    syncFavorites(); filterCatalogue();
+  }
+
   const detailProduct = document.getElementById('detailProduct');
   const detailPlacement = document.getElementById('detailPlacement');
   const detailViewport = document.getElementById('detailViewport');
@@ -244,7 +279,7 @@ if (catalogGrid) {
     document.documentElement.classList.remove('detail-open');
     window.scrollTo({top:dialogScroll,behavior:'instant'});
     if (acceptedDetail) requestAnimationFrame(() => document.getElementById('configurateur').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'}));
-    else lastDesignButton?.focus({preventScroll:true});
+    else (lastDesignButton?.closest('.design-card')?.hidden ? favoriteToggle : lastDesignButton)?.focus({preventScroll:true});
   }
   function chooseDesign(id, options) {
     const design = catalogDesigns.find(item => item.id === id);
@@ -273,7 +308,7 @@ if (catalogGrid) {
   }
   function openDesign(design,trigger) {
       lastDesignButton=trigger;
-      detailDesign = design; acceptedDetail = false;
+      detailDesign = design; acceptedDetail = false; syncFavorites();
       const selectedProduct = productForm.querySelector('[name="product"]:checked').value;
       detailProduct.value = selectedProduct === 'b2b' ? 'tshirt' : selectedProduct;
       dialog.querySelector('[name="detailColor"][value="'+productForm.querySelector('[name="color"]:checked').value+'"]').checked = true;
@@ -312,16 +347,19 @@ if (catalogGrid) {
     const query = normalize(search.value.trim());
     let matched = 0, shown = 0;
     catalogGrid.querySelectorAll('.design-card').forEach(card => {
-      const matches = (activeCategory === 'Tous' || card.dataset.category === activeCategory) && (!collection.value || card.dataset.collection === collection.value) && (!miniActive || !miniTheme.value || card.dataset.theme === miniTheme.value) && card.dataset.search.includes(query);
+      const matches = (!favoritesOnly || favorites.has(card.dataset.designId)) && (activeCategory === 'Tous' || card.dataset.category === activeCategory) && (!collection.value || card.dataset.collection === collection.value) && (!miniActive || !miniTheme.value || card.dataset.theme === miniTheme.value) && card.dataset.search.includes(query);
       card.hidden = !matches || matched >= visibleLimit;
       if (matches) { matched++; if (!card.hidden) shown++; }
     });
     document.getElementById('catalogCount').textContent = shown + ' / ' + matched + ' designs';
     document.getElementById('catalogEmpty').hidden = matched !== 0;
     more.hidden = shown >= matched;
+    document.getElementById('catalogEmpty').textContent = favoritesOnly && !favorites.size ? 'Aucun favori pour le moment. Appuyez sur le cœur d’un design pour le retrouver ici.' : favoritesOnly ? 'Aucun favori ne correspond à ces filtres. Effacez les filtres pour retrouver tous les designs.' : 'Aucun design trouvé. Essayez un autre mot ou une autre catégorie.';
   }
   catalogDesigns.forEach(design => {
-    const card = document.createElement('article'); card.className = 'design-card'; card.dataset.category = design.category;
+    const card = document.createElement('article'); card.className = 'design-card'; card.dataset.category = design.category; card.dataset.designId = design.id;
+    const favorite = document.createElement('button'); favorite.type = 'button'; favorite.className = 'design-favorite'; favorite.dataset.favorite = design.id; favorite.dataset.name = design.name;
+    favorite.addEventListener('click', () => { toggleFavorite(design.id); if (card.hidden) favoriteToggle.focus({preventScroll:true}); });
     card.dataset.collection = design.collection || '';
     card.dataset.theme = design.theme || '';
     card.dataset.search = normalize(design.id + ' ' + design.name + ' ' + design.category + ' ' + (design.collection || '') + ' ' + (design.series || '') + ' ' + (design.style || '') + ' ' + (design.theme || '') + ' ' + (design.message || ''));
@@ -337,7 +375,7 @@ if (catalogGrid) {
     info.append(ref,title);
     if(design.frontImage){const badge=document.createElement('p');badge.className='design-duo';badge.textContent='Duo · petit devant + grand dos';info.append(badge);}
     if(design.message){const message=document.createElement('p');message.className='design-message';message.textContent=design.message;info.append(message);}
-    info.append(choose);card.append(view,info);catalogGrid.append(card);
+    info.append(choose);card.append(favorite,view,info);catalogGrid.append(card);
     view.addEventListener('click',()=>openDesign(design,view));
   });
   document.querySelectorAll('.catalog-filters [data-category]').forEach(button=>button.addEventListener('click',()=>{
@@ -366,6 +404,20 @@ if (catalogGrid) {
     document.querySelectorAll('[data-catalog-view]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
     catalogGrid.dataset.view=button.dataset.catalogView;
   }));
+  syncFavorites();
+  favoriteToggle.addEventListener('click', () => {
+    favoritesOnly = !favoritesOnly; visibleLimit = 12;
+    if (favoritesOnly) {
+      search.value = ''; collection.value = ''; miniTheme.value = ''; activeCategory = 'Tous';
+      document.querySelectorAll('.catalog-filters [data-category]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.category === 'Tous')));
+    }
+    syncFavorites(); filterCatalogue();
+  });
+  document.getElementById('detailFavorite').addEventListener('click', () => toggleFavorite(detailDesign.id));
+  window.addEventListener('storage', event => {
+    if (event.key !== favoriteKey && event.key !== null) return;
+    try { favorites = readFavorites(event.newValue); syncFavorites(); filterCatalogue(); } catch (_) { /* Ignore invalid data from another tab. */ }
+  });
   filterCatalogue();
   document.getElementById('closeDesignDialog').addEventListener('click',()=>dialog.close());
   dialog.addEventListener('close', releaseDetailPage);
@@ -383,11 +435,12 @@ if (catalogGrid) {
   document.getElementById('detailZoomOut').addEventListener('click',()=>setDetailZoom(Number(zoom.value)-25));
   document.getElementById('detailZoomReset').addEventListener('click',()=>setDetailZoom(100));
   document.getElementById('catalogReset').addEventListener('click',()=>{
-    search.value='';collection.value='';miniTheme.value='';activeCategory='Tous';visibleLimit=12;
+    search.value='';collection.value='';miniTheme.value='';activeCategory='Tous';visibleLimit=12;favoritesOnly=false;syncFavorites();
     document.querySelectorAll('.catalog-filters [data-category]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.category==='Tous')));
     filterCatalogue();
   });
   document.getElementById('clearDesign').addEventListener('click',()=>{delete productForm.dataset.designId;productForm.dispatchEvent(new Event('change',{bubbles:true}));});
 }
+
 
 
