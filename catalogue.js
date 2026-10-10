@@ -1,5 +1,43 @@
-// Stable references shared by catalogue, preview and order.
 const catalogDesigns = [
+  {
+    "id": "DTF-159",
+    "name": "Keffiyeh Roots",
+    "category": "Palestine",
+    "collection": "Palestine",
+    "theme": "Keffiyeh",
+    "style": "Duo héritage",
+    "story": "La géométrie de la keffiyeh et les branches d’olivier réunies dans un duo héritage.",
+    "image": "assets/DTF-159.webp",
+    "thumbnail": "assets/thumbs/DTF-159.webp",
+    "frontImage": "assets/DTF-159-FRONT.webp",
+    "defaultPlacement": "Dos"
+  },
+  {
+    "id": "DTF-160",
+    "name": "Falastin — Racines & espoir",
+    "category": "Palestine",
+    "collection": "Palestine",
+    "theme": "Calligraphie",
+    "style": "Duo héritage",
+    "story": "La calligraphie فلسطين, les oliviers et la colombe composent un hommage à la culture palestinienne.",
+    "image": "assets/DTF-160.webp",
+    "thumbnail": "assets/thumbs/DTF-160.webp",
+    "frontImage": "assets/DTF-160-FRONT.webp",
+    "defaultPlacement": "Dos"
+  },
+  {
+    "id": "DTF-161",
+    "name": "Return Ticket — Palestine",
+    "category": "Palestine",
+    "collection": "Palestine",
+    "theme": "Return Ticket",
+    "style": "Duo héritage",
+    "story": "Un billet illustré, une porte de pierre et une branche d’oranger : mémoire et espoir de retour.",
+    "image": "assets/DTF-161.webp",
+    "thumbnail": "assets/thumbs/DTF-161.webp",
+    "frontImage": "assets/DTF-161-FRONT.webp",
+    "defaultPlacement": "Dos"
+  },
   {
     "id": "DTF-147",
     "name": "Sakura & katana",
