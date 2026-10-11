@@ -16,3 +16,6 @@ The user confirmed downloading the full archive. Future deliveries are increment
 
 
 - Dark Bloom batch: DTF-165 through DTF-180, 16 designs with 16 transparent PNGs; total catalogue 180. DTF-165 adapts the user-provided illustration; preserve the original supplied EPS and JPG privately with the incremental archive.
+
+
+- Gorilla Street batch: DTF-181 through DTF-196, 16 monochrome designs and 16 original transparent PNGs. Total catalogue: 196. Deliver its incremental ZIP separately, preserve native source pixels and keep print-size validation explicit.
