@@ -1,3 +1,9 @@
+// Optional ink variants keep typographic designs legible on light textiles.
+function designArtwork(design, color, front = false) {
+  const light = color === 'Blanc' || color === 'Beige';
+  return front ? (light && design.lightFrontImage ? design.lightFrontImage : design.frontImage)
+    : (light && design.lightImage ? design.lightImage : design.image);
+}
 const b=document.querySelector('.menu-toggle'),n=document.querySelector('.nav');
 if(b&&n){b.addEventListener('click',()=>{const o=n.classList.toggle('open');b.setAttribute('aria-expanded',String(o))});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');b.setAttribute('aria-expanded','false')}))}
 const p=document.getElementById('copyRequest'),m=document.getElementById('formNote');
@@ -113,7 +119,7 @@ if (productForm) {
     byId('selectedDesignPanel').hidden = !selectedDesign;
     byId('previewNote').textContent = 'Aperçu indicatif de la couleur et de l’emplacement. Dimensions et visuel final validés avant production.';
     if (selectedDesign) {
-      byId('selectedDesignImage').src = selectedDesign.image;
+      byId('selectedDesignImage').src = designArtwork(selectedDesign, selectedColor);
       byId('selectedDesignImage').alt = selectedDesign.name;
       byId('selectedDesignName').textContent = selectedDesign.id + ' · ' + selectedDesign.name;
       byId('selectedDesignStory').textContent = selectedDesign.story || '';
@@ -123,7 +129,7 @@ if (productForm) {
     [byId('primaryArtwork'), byId('secondaryArtwork')].forEach((art, index) => {
       art.hidden = !selectedDesign || business || (index === 1 && !both);
       if (selectedDesign && !business) {
-        art.src = index === 0 && pairedFront ? selectedDesign.frontImage : selectedDesign.image;
+        art.src = designArtwork(selectedDesign, selectedColor, index === 0 && pairedFront);
         art.alt = selectedDesign.name + ' · ' + selectedDesign.id;
       } else {
         art.removeAttribute('src');
@@ -268,7 +274,9 @@ if (catalogGrid) {
     garment.src = 'assets/' + product + '-blank-' + (rear ? 'back' : 'front') + '.webp';
     garment.alt = detailProduct.selectedOptions[0].textContent + ' · ' + color;
     const art = document.getElementById('detailArtwork');
-    art.src = emblem ? detailDesign.frontImage : detailDesign.image; art.alt = detailDesign.name;
+    art.src = designArtwork(detailDesign, color, emblem); art.alt = detailDesign.name;
+    document.getElementById('designDialogImage').src = designArtwork(detailDesign, color);
+    if (detailDesign.frontImage) document.getElementById('designDialogFrontImage').src = designArtwork(detailDesign, color, true);
     document.getElementById('detailTextile').hidden = detailView !== 'textile';
     document.getElementById('designDialogImage').hidden = detailView !== 'art';
     document.getElementById('detailPreviewStatus').textContent = detailView === 'art' ? 'Illustration principale · faites défiler l’aperçu après le zoom.' : garment.alt + ' · ' + (emblem ? 'Petit emblème devant' : detailPlacement.value);
@@ -316,7 +324,7 @@ if (catalogGrid) {
       detailView = 'textile';
       dialog.querySelectorAll('[data-detail-view]').forEach(button => button.setAttribute('aria-pressed',String(button.dataset.detailView === detailView)));
       setDetailZoom(100); renderDetail();
-      document.getElementById('designDialogImage').src=design.image;
+      document.getElementById('designDialogImage').src=designArtwork(design, dialog.querySelector('[name="detailColor"]:checked').value);
       document.getElementById('designDialogImage').alt=design.name;
       document.getElementById('designDialogTitle').textContent=design.name;
       document.getElementById('designDialogCategory').textContent=(design.collection || design.category)+((design.theme || design.series)?' · '+(design.theme || design.series):'')+' · '+design.id;
@@ -325,7 +333,7 @@ if (catalogGrid) {
       const frontPreview=document.getElementById('designDialogFront');
       frontPreview.hidden=!design.frontImage;
       const frontImage=document.getElementById('designDialogFrontImage');
-      if(design.frontImage){frontImage.src=design.frontImage;frontImage.alt=design.name+' · petit emblème devant';}else{frontImage.removeAttribute('src');frontImage.alt='';}
+      if(design.frontImage){frontImage.src=designArtwork(design, dialog.querySelector('[name="detailColor"]:checked').value, true);frontImage.alt=design.name+' · petit emblème devant';}else{frontImage.removeAttribute('src');frontImage.alt='';}
       document.getElementById('chooseDialogDesign').dataset.designId=design.id;
       dialogScroll = window.scrollY;
       dialog.showModal();
@@ -441,6 +449,7 @@ if (catalogGrid) {
   });
   document.getElementById('clearDesign').addEventListener('click',()=>{delete productForm.dataset.designId;productForm.dispatchEvent(new Event('change',{bubbles:true}));});
 }
+
 
 
 

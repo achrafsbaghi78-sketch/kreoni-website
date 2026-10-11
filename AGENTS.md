@@ -19,3 +19,6 @@ The user confirmed downloading the full archive. Future deliveries are increment
 
 
 - Gorilla Street batch: DTF-181 through DTF-196, 16 monochrome designs and 16 original transparent PNGs. Total catalogue: 196. Deliver its incremental ZIP separately, preserve native source pixels and keep print-size validation explicit.
+
+
+- Mindset batch: DTF-197 through DTF-208, 12 typographic duos. Total 208 designs. Outlined SVG masters and PNG sources are private in the incremental ZIP. Each has front/back and light-textile ink variants; lightImage/lightFrontImage select dark ink for Blanc/Beige. Never replace original vectors with WebP.
