@@ -13,3 +13,6 @@ The user confirmed downloading the full archive. Future deliveries are increment
 
 
 - Palestine second batch: DTF-162 to DTF-164, three single-print designs. Total catalogue 164 designs; Palestine 6 designs. Deliver only the new three PNGs in their incremental ZIP.
+
+
+- Dark Bloom batch: DTF-165 through DTF-180, 16 designs with 16 transparent PNGs; total catalogue 180. DTF-165 adapts the user-provided illustration; preserve the original supplied EPS and JPG privately with the incremental archive.
