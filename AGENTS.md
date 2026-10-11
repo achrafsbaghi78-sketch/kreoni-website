@@ -10,3 +10,6 @@ The user confirmed downloading the full archive. Future deliveries are increment
 - Save the new incremental ZIP persistently and deliver it in the same task as the website update. Source archives stay private, never in the public repo.
 - Confirm physical print dimensions, effective resolution and printer requirements before claiming print readiness. Sources are not automatically oversized print-ready files.
 - Do not merge the feature branch into main without the user's request.
+
+
+- Palestine second batch: DTF-162 to DTF-164, three single-print designs. Total catalogue 164 designs; Palestine 6 designs. Deliver only the new three PNGs in their incremental ZIP.

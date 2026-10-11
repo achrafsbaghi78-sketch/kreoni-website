@@ -1,5 +1,41 @@
 const catalogDesigns = [
   {
+    "id": "DTF-162",
+    "name": "Olive Roots — Racines de Palestine",
+    "category": "Palestine",
+    "collection": "Palestine",
+    "theme": "Olive Roots",
+    "style": "Illustration héritage",
+    "story": "Un olivier aux racines entrelacées avec des motifs patrimoniaux, symbole de mémoire et de transmission.",
+    "image": "assets/DTF-162.webp",
+    "thumbnail": "assets/thumbs/DTF-162.webp",
+    "defaultPlacement": "Devant"
+  },
+  {
+    "id": "DTF-163",
+    "name": "Watermelon Peace — Palestine Social Club",
+    "category": "Palestine",
+    "collection": "Palestine",
+    "theme": "Watermelon Club",
+    "style": "Illustration héritage",
+    "story": "Une colombe et une tranche de pastèque réunies dans un signe de paix aux couleurs de la Palestine.",
+    "image": "assets/DTF-163.webp",
+    "thumbnail": "assets/thumbs/DTF-163.webp",
+    "defaultPlacement": "Devant"
+  },
+  {
+    "id": "DTF-164",
+    "name": "Tatreez — Héritage vivant",
+    "category": "Palestine",
+    "collection": "Palestine",
+    "theme": "Tatreez",
+    "style": "Illustration héritage",
+    "story": "Une illustration inspirée du tatreez palestinien : cyprès, oiseaux et fleurs géométriques. Motif imprimé, non brodé.",
+    "image": "assets/DTF-164.webp",
+    "thumbnail": "assets/thumbs/DTF-164.webp",
+    "defaultPlacement": "Dos"
+  },
+  {
     "id": "DTF-159",
     "name": "Keffiyeh Roots",
     "category": "Palestine",
