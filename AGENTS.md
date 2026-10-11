@@ -22,3 +22,6 @@ The user confirmed downloading the full archive. Future deliveries are increment
 
 
 - Mindset batch: DTF-197 through DTF-208, 12 typographic duos. Total 208 designs. Outlined SVG masters and PNG sources are private in the incremental ZIP. Each has front/back and light-textile ink variants; lightImage/lightFrontImage select dark ink for Blanc/Beige. Never replace original vectors with WebP.
+
+
+- Mindset EN/AR batch: DTF-209 through DTF-232, 24 new duos (12 English, 12 Arabic adaptations), 96 PNG and 96 outlined SVG masters in incremental ZIP. Catalogue total 232; Mindset 36. Same lightImage/lightFrontImage behavior.
