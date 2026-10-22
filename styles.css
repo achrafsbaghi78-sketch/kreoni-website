@@ -558,3 +558,22 @@ img[src$="#white-ink"]{filter:brightness(0) invert(1)}
 .product-example .preview-frame[data-product=hoodie][data-placement=shoulder] .print-artwork{left:63%;top:27%;width:18%;height:24%}
 .catalog-stage[data-placement=shoulder] .catalog-artwork{left:63%;top:20%;width:20%;height:28%}
 .catalog-grid[data-view=art] .catalog-stage[data-placement=shoulder] .catalog-artwork{left:5%;top:5%;width:90%;height:90%}
+
+/* A concise catalogue introduction, with readable mobile spacing. */
+#catalogue .catalog-intro{max-width:none;display:flex;align-items:flex-end;justify-content:space-between;gap:48px;text-align:left;margin:0 0 32px;padding:0 0 34px;border-bottom:1px solid rgba(255,255,255,.12)}
+#catalogue .catalog-intro-copy{max-width:650px;min-width:0}
+#catalogue .catalog-intro .eyebrow{color:var(--gold2);font-size:.72rem;letter-spacing:.2em;margin:0 0 18px}
+#catalogue .catalog-intro h2{font-size:clamp(2.2rem,4.5vw,3.7rem);line-height:1.06;letter-spacing:-.045em;margin:0 0 20px}
+#catalogue .catalog-intro h2 span{color:var(--gold2)}
+#catalogue .catalog-intro .catalog-intro-lead{max-width:470px;color:#bfc0c7;font-size:1rem;line-height:1.65;margin:0}
+#catalogue .catalog-intro-stats{display:flex;gap:32px;flex-shrink:0;margin:0 0 4px;padding:0 0 0 30px;border-left:1px solid rgba(255,255,255,.16)}
+#catalogue .catalog-intro-stats>div{display:flex;flex-direction:column;gap:8px}
+#catalogue .catalog-intro-stats dt{font-size:.72rem;line-height:1.5;color:#bfc0c7}
+#catalogue .catalog-intro-stats dd{order:-1;margin:0;font-size:2.1rem;font-weight:700;line-height:1;letter-spacing:-.04em;color:#fff}
+@media(max-width:760px){
+ #catalogue .catalog-intro{display:block;padding-bottom:26px;margin-bottom:24px}
+ #catalogue .catalog-intro h2{font-size:clamp(2.15rem,8vw,3rem)}
+ #catalogue .catalog-intro .catalog-intro-lead{font-size:.95rem}
+ #catalogue .catalog-intro-stats{margin:26px 0 0;padding:0;border-left:0;gap:32px}
+ #catalogue .catalog-intro-stats dd{font-size:1.65rem}
+}
