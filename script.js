@@ -1,6 +1,7 @@
 // Optional ink variants keep typographic designs legible on light textiles.
 function designArtwork(design, color, front = false) {
   const light = color === 'Blanc' || color === 'Beige';
+  if (design.monochromeSeal) return design.image + (light ? '' : '#white-ink');
   return front ? (light && design.lightFrontImage ? design.lightFrontImage : design.frontImage)
     : (light && design.lightImage ? design.lightImage : design.image);
 }
@@ -30,8 +31,8 @@ const productForm = document.getElementById('productConfigurator');
 if (productForm) {
   const byId = id => document.getElementById(id);
   const products = {
-    tshirt: {label: 'T-shirt personnalisé', image: 'assets/tshirt-dtf.webp', placements: ['Devant', 'Dos', 'Devant + dos', 'Poitrine / petit logo']},
-    hoodie: {label: 'Hoodie personnalisé', image: 'assets/hoodie-dtf.webp', placements: ['Devant', 'Dos', 'Devant + dos', 'Poitrine / petit logo']},
+    tshirt: {label: 'T-shirt personnalisé', image: 'assets/tshirt-dtf.webp', placements: ['Devant', 'Dos', 'Devant + dos', 'Poitrine / petit logo', 'Épaule / haut de manche']},
+    hoodie: {label: 'Hoodie personnalisé', image: 'assets/hoodie-dtf.webp', placements: ['Devant', 'Dos', 'Devant + dos', 'Poitrine / petit logo', 'Épaule / haut de manche']},
     tote: {label: 'Sac / Tote bag personnalisé', image: 'assets/tote-dtf.webp', placements: ['Recto', 'Verso', 'Recto + verso']},
     b2b: {label: 'Devis professionnels / B2B', image: 'assets/polo-studio.webp', placements: []}
   };
@@ -83,15 +84,16 @@ if (productForm) {
     const placement = byId('productPlacement').value;
     const both = !business && (placement === 'Devant + dos' || placement === 'Recto + verso');
     const rear = !business && (placement === 'Dos' || placement === 'Verso');
+    const shoulder = !business && placement === 'Épaule / haut de manche';
     const chest = !business && placement === 'Poitrine / petit logo';
     const frontLabel = key === 'tote' ? 'Recto' : 'Devant';
     const backLabel = key === 'tote' ? 'Verso' : 'Dos';
-    const viewLabel = business ? 'Exemple professionnel' : rear ? backLabel : chest ? 'Poitrine / petit logo' : frontLabel;
+    const viewLabel = business ? 'Exemple professionnel' : rear ? backLabel : shoulder ? 'Épaule / haut de manche' : chest ? 'Poitrine / petit logo' : frontLabel;
     const primarySrc = business ? product.image : 'assets/' + key + '-blank-' + (rear ? 'back' : 'front') + '.webp';
     const previewLabel = product.label + (business ? '' : ' · ' + selectedColor);
     setView(preview, byId('primaryFrame'), primarySrc, !business, selectedColor, previewLabel + ' · ' + viewLabel);
     byId('primaryFrame').dataset.product = key;
-    byId('primaryFrame').dataset.placement = rear ? 'back' : chest ? 'chest' : 'front';
+    byId('primaryFrame').dataset.placement = rear ? 'back' : shoulder ? 'shoulder' : chest ? 'chest' : 'front';
     byId('primaryCaption').textContent = viewLabel;
     byId('secondaryView').hidden = !both;
     byId('previewViews').classList.toggle('two-views', both);
@@ -256,7 +258,7 @@ if (catalogGrid) {
   }
   function setDetailPlacements() {
     const old = detailPlacement.value;
-    const values = detailProduct.value === 'tote' ? ['Recto','Verso'] : ['Devant','Dos','Poitrine / petit logo'];
+    const values = detailProduct.value === 'tote' ? ['Recto','Verso'] : ['Devant','Dos','Poitrine / petit logo','Épaule / haut de manche'];
     detailPlacement.replaceChildren(...values.map(value => new Option(value, value)));
     detailPlacement.value = values.includes(old) ? old : values.includes(detailDesign.defaultPlacement) ? detailDesign.defaultPlacement : detailDesign.frontImage && detailProduct.value !== 'tote' ? 'Dos' : values[0];
   }
@@ -268,14 +270,15 @@ if (catalogGrid) {
     const emblem = !!detailDesign.frontImage && product !== 'tote' && !rear;
     const frame = document.getElementById('detailFrame');
     frame.dataset.product = product;
-    frame.dataset.placement = rear ? 'back' : emblem || detailPlacement.value.startsWith('Poitrine') ? 'chest' : 'front';
+    frame.dataset.placement = rear ? 'back' : detailPlacement.value === 'Épaule / haut de manche' ? 'shoulder' : emblem || detailPlacement.value.startsWith('Poitrine') ? 'chest' : 'front';
     frame.style.setProperty('--panel-offset', (-100 * ['Noir','Blanc','Beige'].indexOf(color)) + '%');
     const garment = document.getElementById('detailGarment');
     garment.src = 'assets/' + product + '-blank-' + (rear ? 'back' : 'front') + '.webp';
     garment.alt = detailProduct.selectedOptions[0].textContent + ' · ' + color;
     const art = document.getElementById('detailArtwork');
     art.src = designArtwork(detailDesign, color, emblem); art.alt = detailDesign.name;
-    document.getElementById('designDialogImage').src = designArtwork(detailDesign, color);
+    document.getElementById('designDialogImage').src = detailDesign.monochromeSeal ? detailDesign.image : designArtwork(detailDesign, color);
+    document.getElementById('designDialogImage').style.background = detailDesign.monochromeSeal ? '#eee' : '';
     if (detailDesign.frontImage) document.getElementById('designDialogFrontImage').src = designArtwork(detailDesign, color, true);
     document.getElementById('detailTextile').hidden = detailView !== 'textile';
     document.getElementById('designDialogImage').hidden = detailView !== 'art';
@@ -324,7 +327,7 @@ if (catalogGrid) {
       detailView = 'textile';
       dialog.querySelectorAll('[data-detail-view]').forEach(button => button.setAttribute('aria-pressed',String(button.dataset.detailView === detailView)));
       setDetailZoom(100); renderDetail();
-      document.getElementById('designDialogImage').src=designArtwork(design, dialog.querySelector('[name="detailColor"]:checked').value);
+      document.getElementById('designDialogImage').src=design.monochromeSeal ? design.image : designArtwork(design, dialog.querySelector('[name="detailColor"]:checked').value);
       document.getElementById('designDialogImage').alt=design.name;
       document.getElementById('designDialogTitle').textContent=design.name;
       document.getElementById('designDialogCategory').textContent=(design.collection || design.category)+((design.theme || design.series)?' · '+(design.theme || design.series):'')+' · '+design.id;
@@ -372,7 +375,7 @@ if (catalogGrid) {
     card.dataset.theme = design.theme || '';
     card.dataset.search = normalize(design.id + ' ' + design.name + ' ' + design.category + ' ' + (design.collection || '') + ' ' + (design.series || '') + ' ' + (design.style || '') + ' ' + (design.theme || '') + ' ' + (design.message || ''));
     const view = document.createElement('button'); view.type='button'; view.className='design-art'; view.setAttribute('aria-label','Agrandir '+design.name);
-    const stage = document.createElement('span'); stage.className = 'catalog-stage'; stage.dataset.placement = design.defaultPlacement === 'Poitrine / petit logo' ? 'chest' : 'standard';
+    const stage = document.createElement('span'); stage.className = 'catalog-stage'; stage.dataset.placement = design.defaultPlacement === 'Épaule / haut de manche' ? 'shoulder' : design.defaultPlacement === 'Poitrine / petit logo' ? 'chest' : 'standard';
     const shirt = document.createElement('img'); shirt.className='catalog-shirt'; shirt.src=(design.frontImage || design.defaultPlacement === 'Dos') ? 'assets/tshirt-blank-back.webp' : 'assets/tshirt-blank-front.webp'; shirt.alt=''; shirt.loading='lazy'; shirt.decoding='async';
     const img=document.createElement('img');img.className='catalog-artwork';img.src=design.thumbnail;img.alt=design.name;img.loading='lazy';img.decoding='async';
     stage.append(shirt,img);view.append(stage);
@@ -449,6 +452,7 @@ if (catalogGrid) {
   });
   document.getElementById('clearDesign').addEventListener('click',()=>{delete productForm.dataset.designId;productForm.dispatchEvent(new Event('change',{bubbles:true}));});
 }
+
 
 
 

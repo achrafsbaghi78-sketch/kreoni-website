@@ -25,3 +25,6 @@ The user confirmed downloading the full archive. Future deliveries are increment
 
 
 - Mindset EN/AR batch: DTF-209 through DTF-232, 24 new duos (12 English, 12 Arabic adaptations), 96 PNG and 96 outlined SVG masters in incremental ZIP. Catalogue total 232; Mindset 36. Same lightImage/lightFrontImage behavior.
+
+
+- Sceaux & Symboles: DTF-233 through DTF-248, 16 monochrome seals. Total 248 designs. Native PNG crops and untouched source sheet retained privately in incremental ZIP. monochromeSeal enables contrasting preview ink; Épaule / haut de manche is an indicative front-view placement, not a wraparound production proof. Validate source resolution and physical size before printing.

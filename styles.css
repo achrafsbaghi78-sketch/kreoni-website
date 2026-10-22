@@ -550,3 +550,11 @@ html.detail-open{overflow:hidden;scrollbar-gutter:stable}
  .footer-wrap{flex-direction:column;align-items:center;text-align:center;font-size:.875rem}
 }
 @media(max-width:380px){.catalog-grid{grid-template-columns:minmax(0,1fr)}.hero-features{grid-template-columns:minmax(0,1fr)}.hero-product-caption>span:first-child{display:none}}
+
+
+/* Monochrome seals: ink contrast and indicative outer shoulder placement. */
+img[src$="#white-ink"]{filter:brightness(0) invert(1)}
+.product-example .preview-frame[data-placement=shoulder] .print-artwork{left:63%;top:20%;width:20%;height:28%;object-fit:contain}
+.product-example .preview-frame[data-product=hoodie][data-placement=shoulder] .print-artwork{left:63%;top:27%;width:18%;height:24%}
+.catalog-stage[data-placement=shoulder] .catalog-artwork{left:63%;top:20%;width:20%;height:28%}
+.catalog-grid[data-view=art] .catalog-stage[data-placement=shoulder] .catalog-artwork{left:5%;top:5%;width:90%;height:90%}
