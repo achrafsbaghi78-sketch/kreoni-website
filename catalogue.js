@@ -6,11 +6,11 @@ const catalogDesigns = [
     "collection": "Sceaux & Symboles",
     "theme": "Tribal & flammes",
     "style": "Sceau monochrome",
-    "story": "Sceau à ramifications, proposé sur le côté de l’épaule et le haut de la manche. Placement indicatif à ajuster au vêtement avant production.",
+    "story": "Sceau à ramifications, centré sur le devant du textile. Placement indicatif à ajuster au vêtement avant production.",
     "image": "assets/DTF-233.webp",
     "thumbnail": "assets/thumbs/DTF-233.webp#white-ink",
     "monochromeSeal": true,
-    "defaultPlacement": "Épaule / haut de manche"
+    "defaultPlacement": "Devant"
   },
   {
     "id": "DTF-234",
@@ -19,11 +19,11 @@ const catalogDesigns = [
     "collection": "Sceaux & Symboles",
     "theme": "Tribal & flammes",
     "style": "Sceau monochrome",
-    "story": "Sceau à ramifications, proposé sur le côté de l’épaule et le haut de la manche. Placement indicatif à ajuster au vêtement avant production.",
+    "story": "Sceau à ramifications, centré sur le devant du textile. Placement indicatif à ajuster au vêtement avant production.",
     "image": "assets/DTF-234.webp",
     "thumbnail": "assets/thumbs/DTF-234.webp#white-ink",
     "monochromeSeal": true,
-    "defaultPlacement": "Épaule / haut de manche"
+    "defaultPlacement": "Devant"
   },
   {
     "id": "DTF-235",
@@ -32,11 +32,11 @@ const catalogDesigns = [
     "collection": "Sceaux & Symboles",
     "theme": "Tribal & flammes",
     "style": "Sceau monochrome",
-    "story": "Sceau à ramifications, proposé sur le côté de l’épaule et le haut de la manche. Placement indicatif à ajuster au vêtement avant production.",
+    "story": "Sceau à ramifications, centré sur le devant du textile. Placement indicatif à ajuster au vêtement avant production.",
     "image": "assets/DTF-235.webp",
     "thumbnail": "assets/thumbs/DTF-235.webp#white-ink",
     "monochromeSeal": true,
-    "defaultPlacement": "Épaule / haut de manche"
+    "defaultPlacement": "Devant"
   },
   {
     "id": "DTF-236",
@@ -45,11 +45,11 @@ const catalogDesigns = [
     "collection": "Sceaux & Symboles",
     "theme": "Tribal & flammes",
     "style": "Sceau monochrome",
-    "story": "Sceau à ramifications, proposé sur le côté de l’épaule et le haut de la manche. Placement indicatif à ajuster au vêtement avant production.",
+    "story": "Sceau à ramifications, centré sur le devant du textile. Placement indicatif à ajuster au vêtement avant production.",
     "image": "assets/DTF-236.webp",
     "thumbnail": "assets/thumbs/DTF-236.webp#white-ink",
     "monochromeSeal": true,
-    "defaultPlacement": "Épaule / haut de manche"
+    "defaultPlacement": "Devant"
   },
   {
     "id": "DTF-237",
@@ -58,11 +58,11 @@ const catalogDesigns = [
     "collection": "Sceaux & Symboles",
     "theme": "Tribal & flammes",
     "style": "Sceau monochrome",
-    "story": "Sceau à ramifications, proposé sur le côté de l’épaule et le haut de la manche. Placement indicatif à ajuster au vêtement avant production.",
+    "story": "Sceau à ramifications, centré sur le devant du textile. Placement indicatif à ajuster au vêtement avant production.",
     "image": "assets/DTF-237.webp",
     "thumbnail": "assets/thumbs/DTF-237.webp#white-ink",
     "monochromeSeal": true,
-    "defaultPlacement": "Épaule / haut de manche"
+    "defaultPlacement": "Devant"
   },
   {
     "id": "DTF-238",
@@ -71,11 +71,11 @@ const catalogDesigns = [
     "collection": "Sceaux & Symboles",
     "theme": "Tribal & flammes",
     "style": "Sceau monochrome",
-    "story": "Sceau à ramifications, proposé sur le côté de l’épaule et le haut de la manche. Placement indicatif à ajuster au vêtement avant production.",
+    "story": "Sceau à ramifications, centré sur le devant du textile. Placement indicatif à ajuster au vêtement avant production.",
     "image": "assets/DTF-238.webp",
     "thumbnail": "assets/thumbs/DTF-238.webp#white-ink",
     "monochromeSeal": true,
-    "defaultPlacement": "Épaule / haut de manche"
+    "defaultPlacement": "Devant"
   },
   {
     "id": "DTF-239",
@@ -84,11 +84,11 @@ const catalogDesigns = [
     "collection": "Sceaux & Symboles",
     "theme": "Tribal & flammes",
     "style": "Sceau monochrome",
-    "story": "Sceau à ramifications, proposé sur le côté de l’épaule et le haut de la manche. Placement indicatif à ajuster au vêtement avant production.",
+    "story": "Sceau à ramifications, centré sur le devant du textile. Placement indicatif à ajuster au vêtement avant production.",
     "image": "assets/DTF-239.webp",
     "thumbnail": "assets/thumbs/DTF-239.webp#white-ink",
     "monochromeSeal": true,
-    "defaultPlacement": "Épaule / haut de manche"
+    "defaultPlacement": "Devant"
   },
   {
     "id": "DTF-240",
@@ -97,11 +97,11 @@ const catalogDesigns = [
     "collection": "Sceaux & Symboles",
     "theme": "Tribal & flammes",
     "style": "Sceau monochrome",
-    "story": "Sceau à ramifications, proposé sur le côté de l’épaule et le haut de la manche. Placement indicatif à ajuster au vêtement avant production.",
+    "story": "Sceau à ramifications, centré sur le devant du textile. Placement indicatif à ajuster au vêtement avant production.",
     "image": "assets/DTF-240.webp",
     "thumbnail": "assets/thumbs/DTF-240.webp#white-ink",
     "monochromeSeal": true,
-    "defaultPlacement": "Épaule / haut de manche"
+    "defaultPlacement": "Devant"
   },
   {
     "id": "DTF-241",
@@ -110,11 +110,11 @@ const catalogDesigns = [
     "collection": "Sceaux & Symboles",
     "theme": "Tribal & flammes",
     "style": "Sceau monochrome",
-    "story": "Sceau à ramifications, proposé sur le côté de l’épaule et le haut de la manche. Placement indicatif à ajuster au vêtement avant production.",
+    "story": "Sceau à ramifications, centré sur le devant du textile. Placement indicatif à ajuster au vêtement avant production.",
     "image": "assets/DTF-241.webp",
     "thumbnail": "assets/thumbs/DTF-241.webp#white-ink",
     "monochromeSeal": true,
-    "defaultPlacement": "Épaule / haut de manche"
+    "defaultPlacement": "Devant"
   },
   {
     "id": "DTF-242",
@@ -123,11 +123,11 @@ const catalogDesigns = [
     "collection": "Sceaux & Symboles",
     "theme": "Tribal & flammes",
     "style": "Sceau monochrome",
-    "story": "Sceau à ramifications, proposé sur le côté de l’épaule et le haut de la manche. Placement indicatif à ajuster au vêtement avant production.",
+    "story": "Sceau à ramifications, centré sur le devant du textile. Placement indicatif à ajuster au vêtement avant production.",
     "image": "assets/DTF-242.webp",
     "thumbnail": "assets/thumbs/DTF-242.webp#white-ink",
     "monochromeSeal": true,
-    "defaultPlacement": "Épaule / haut de manche"
+    "defaultPlacement": "Devant"
   },
   {
     "id": "DTF-243",
@@ -136,11 +136,11 @@ const catalogDesigns = [
     "collection": "Sceaux & Symboles",
     "theme": "Tribal & flammes",
     "style": "Sceau monochrome",
-    "story": "Sceau à ramifications, proposé sur le côté de l’épaule et le haut de la manche. Placement indicatif à ajuster au vêtement avant production.",
+    "story": "Sceau à ramifications, centré sur le devant du textile. Placement indicatif à ajuster au vêtement avant production.",
     "image": "assets/DTF-243.webp",
     "thumbnail": "assets/thumbs/DTF-243.webp#white-ink",
     "monochromeSeal": true,
-    "defaultPlacement": "Épaule / haut de manche"
+    "defaultPlacement": "Devant"
   },
   {
     "id": "DTF-244",
@@ -149,11 +149,11 @@ const catalogDesigns = [
     "collection": "Sceaux & Symboles",
     "theme": "Tribal & flammes",
     "style": "Sceau monochrome",
-    "story": "Sceau à ramifications, proposé sur le côté de l’épaule et le haut de la manche. Placement indicatif à ajuster au vêtement avant production.",
+    "story": "Sceau à ramifications, centré sur le devant du textile. Placement indicatif à ajuster au vêtement avant production.",
     "image": "assets/DTF-244.webp",
     "thumbnail": "assets/thumbs/DTF-244.webp#white-ink",
     "monochromeSeal": true,
-    "defaultPlacement": "Épaule / haut de manche"
+    "defaultPlacement": "Devant"
   },
   {
     "id": "DTF-245",
@@ -162,11 +162,11 @@ const catalogDesigns = [
     "collection": "Sceaux & Symboles",
     "theme": "Tribal & flammes",
     "style": "Sceau monochrome",
-    "story": "Sceau à ramifications, proposé sur le côté de l’épaule et le haut de la manche. Placement indicatif à ajuster au vêtement avant production.",
+    "story": "Sceau à ramifications, centré sur le devant du textile. Placement indicatif à ajuster au vêtement avant production.",
     "image": "assets/DTF-245.webp",
     "thumbnail": "assets/thumbs/DTF-245.webp#white-ink",
     "monochromeSeal": true,
-    "defaultPlacement": "Épaule / haut de manche"
+    "defaultPlacement": "Devant"
   },
   {
     "id": "DTF-246",
@@ -175,11 +175,11 @@ const catalogDesigns = [
     "collection": "Sceaux & Symboles",
     "theme": "Tribal & flammes",
     "style": "Sceau monochrome",
-    "story": "Sceau à ramifications, proposé sur le côté de l’épaule et le haut de la manche. Placement indicatif à ajuster au vêtement avant production.",
+    "story": "Sceau à ramifications, centré sur le devant du textile. Placement indicatif à ajuster au vêtement avant production.",
     "image": "assets/DTF-246.webp",
     "thumbnail": "assets/thumbs/DTF-246.webp#white-ink",
     "monochromeSeal": true,
-    "defaultPlacement": "Épaule / haut de manche"
+    "defaultPlacement": "Devant"
   },
   {
     "id": "DTF-247",
@@ -188,11 +188,11 @@ const catalogDesigns = [
     "collection": "Sceaux & Symboles",
     "theme": "Tribal & flammes",
     "style": "Sceau monochrome",
-    "story": "Sceau à ramifications, proposé sur le côté de l’épaule et le haut de la manche. Placement indicatif à ajuster au vêtement avant production.",
+    "story": "Sceau à ramifications, centré sur le devant du textile. Placement indicatif à ajuster au vêtement avant production.",
     "image": "assets/DTF-247.webp",
     "thumbnail": "assets/thumbs/DTF-247.webp#white-ink",
     "monochromeSeal": true,
-    "defaultPlacement": "Épaule / haut de manche"
+    "defaultPlacement": "Devant"
   },
   {
     "id": "DTF-248",
@@ -201,11 +201,11 @@ const catalogDesigns = [
     "collection": "Sceaux & Symboles",
     "theme": "Tribal & flammes",
     "style": "Sceau monochrome",
-    "story": "Sceau à ramifications, proposé sur le côté de l’épaule et le haut de la manche. Placement indicatif à ajuster au vêtement avant production.",
+    "story": "Sceau à ramifications, centré sur le devant du textile. Placement indicatif à ajuster au vêtement avant production.",
     "image": "assets/DTF-248.webp",
     "thumbnail": "assets/thumbs/DTF-248.webp#white-ink",
     "monochromeSeal": true,
-    "defaultPlacement": "Épaule / haut de manche"
+    "defaultPlacement": "Devant"
   },
   {
     "id": "DTF-209",
