@@ -28,3 +28,6 @@ The user confirmed downloading the full archive. Future deliveries are increment
 
 
 - Sceaux & Symboles: DTF-233 through DTF-248, 16 monochrome seals. Total 248 designs. Native PNG crops and untouched source sheet retained privately in incremental ZIP. monochromeSeal enables contrasting preview ink. User requested these 16 seals centered on the front: defaultPlacement is Devant, including catalogue cards and garment previews. Validate source resolution and physical size before printing.
+
+
+- À Deux: DTF-249 through DTF-272, 24 separate print designs grouped into 12 couple models (COUPLE-01 through COUPLE-12). Catalogue cards use side A and partnerId; side B remains addressable for orders. couples.js configures each garment independently and adds one or both atomically through kreoni:add-couple. Personalization is captured in quote notes; previews use sample names/dates. Keep native transparent PNGs and generated pair sheets private in incremental ZIP. Current total: 272 designs, 260 catalogue models. Run NODE_PATH=<jsdom modules> node tests/couples.cjs for pair/cart flow checks.

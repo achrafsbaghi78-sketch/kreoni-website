@@ -577,3 +577,36 @@ img[src$="#white-ink"]{filter:brightness(0) invert(1)}
  #catalogue .catalog-intro-stats{margin:26px 0 0;padding:0;border-left:0;gap:32px}
  #catalogue .catalog-intro-stats dd{font-size:1.65rem}
 }
+
+
+/* À Deux pairs remain two independently configurable garments. */
+.couple-filter-defs{position:absolute;pointer-events:none}
+img[src$="#couple-light"]{filter:url(#couple-white-ink)}
+.design-art.couple-card-art{display:flex;align-items:center;aspect-ratio:1;background:#eeece7}
+.couple-card-art .catalog-stage{width:50%;height:70%;flex:none}
+.catalog-grid[data-view=art] .couple-card-art .catalog-stage{height:100%}
+.catalog-grid[data-view=art] .couple-card-art .catalog-artwork{filter:none}
+.catalog-grid[data-view=art] .design-art.couple-card-art{background:#eee}
+html.couple-open{overflow:hidden}
+#coupleDialog{width:min(960px,calc(100% - 24px));max-height:92dvh;overflow:auto;border:1px solid #3c3c42;border-radius:20px;padding:28px;background:#141519;color:#fff}
+#coupleDialog::backdrop{background:rgba(0,0,0,.78)}
+#coupleDialog h2{font-size:clamp(1.6rem,4vw,2.4rem);margin:24px 0 8px}
+#coupleDialog p{font-size:.9rem;color:#c0c0c6;line-height:1.6}
+#coupleDialog .couple-refs{color:#e2bf72;font-size:.75rem;margin:0}
+.couple-topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#e2bf72;font-size:.75rem;letter-spacing:.08em}
+.couple-topbar button{padding:10px 16px;border:1px solid #777;border-radius:8px;background:transparent;color:white;cursor:pointer;font:inherit;min-height:44px}
+.couple-panels{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0}
+.couple-panel{min-width:0;border:1px solid #3d3e44;border-radius:14px;overflow:hidden;background:#1c1d22;padding:16px}
+.couple-panel h3{font-size:1.1rem;margin:0 0 14px}
+.couple-panel.couple-excluded{opacity:.5}
+#coupleDialog .couple-preview{padding:0;border:0;background:transparent;box-shadow:none}
+#coupleDialog .couple-preview .preview-frame{width:100%;max-width:none;aspect-ratio:1;margin:0 0 18px;border-radius:10px}
+.couple-fields,.couple-order-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#coupleDialog label{display:flex;flex-direction:column;gap:7px;font-size:.85rem;color:#ddd}
+#coupleDialog input,#coupleDialog select,#coupleDialog textarea{width:100%;min-width:0;min-height:44px;border:1px solid #666;background:#111216;color:white;border-radius:8px;padding:10px;font:inherit;font-size:1rem}
+#coupleDialog input:focus-visible,#coupleDialog select:focus-visible,#coupleDialog textarea:focus-visible,#coupleDialog button:focus-visible{outline:3px solid #e2bf72;outline-offset:2px}
+#coupleDialog [hidden]{display:none!important}
+.couple-order-fields>label:last-child{grid-column:1/-1}
+#coupleAdd{width:100%;min-height:50px;margin-top:8px;cursor:pointer}
+#coupleDialog .couple-note,#couplePersonalizationNote{font-size:.8rem}
+@media(max-width:600px){#coupleDialog{padding:18px}.couple-panels{grid-template-columns:1fr;gap:16px}.couple-panel{padding:14px}#coupleDialog .couple-preview .preview-frame{max-width:330px;margin:0 auto 18px}.couple-order-fields{grid-template-columns:1fr}.couple-topbar{letter-spacing:0}}

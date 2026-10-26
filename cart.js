@@ -59,7 +59,7 @@
     frame.dataset.product = item.product; frame.dataset.placement = rear ? 'back' : emblem || item.placement.startsWith('Poitrine') ? 'chest' : 'front';
     frame.style.setProperty('--panel-offset',(-100*colors.indexOf(item.color))+'%');
     const base = document.createElement('img');base.className='garment-base';base.src='assets/'+item.product+'-blank-'+(rear?'back':'front')+'.webp';base.alt=labels[item.product]+' · '+item.color;base.loading='lazy';frame.append(base);
-    if (design) { const art=document.createElement('img');art.className='print-artwork';art.src=emblem?design.frontImage:design.image;art.alt=design.name;art.loading='lazy';frame.append(art); }
+    if (design) { const art=document.createElement('img');art.className='print-artwork';art.src=designArtwork(design,item.color,emblem);art.alt=design.name;art.loading='lazy';frame.append(art); }
     box.append(frame);return box;
   }
   function updateEditingUI() {
@@ -116,6 +116,14 @@
     save();render();get('productHelp').textContent='Votre sélection est enregistrée dans le panier. Vous pouvez ajouter un autre modèle.';status('Panier mis à jour.');
     get('panier').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
   });
+  document.addEventListener('kreoni:add-couple',event=>{
+    const detail=event.detail;
+    if(!detail || !Array.isArray(detail.drafts) || detail.drafts.length<1 || detail.drafts.length>2)return;
+    const drafts=detail.drafts.map(d=>clean({...d,id:makeId()}));
+    if(drafts.some(d=>!d || !designFor(d)?.coupleId)){detail.error='Vérifiez les options des deux pièces.';return;}
+    if(items.length+drafts.length>20){detail.error='Le panier est limité à 20 configurations. Retirez un article ou préparez votre devis avant d’ajouter ce duo.';return;}
+    items.push(...drafts);save();render();detail.accepted=true;status(drafts.length===2?'Les deux pièces ont été ajoutées au panier.':'Votre cadeau a été ajouté au panier.');
+  });
   get('cancelCartEdit').addEventListener('click',()=>{editingId=null;updateEditingUI();get('productHelp').textContent='Modification annulée. L’article du panier reste inchangé.';});
   form.addEventListener('change',updateEditingUI);
   get('prepareCartQuote').addEventListener('click',()=>{if(!items.length)return;get('cartQuote').hidden=false;syncQuote();get('cartQuote').scrollIntoView({behavior:'smooth',block:'start'});get('cartQuoteText').focus({preventScroll:true});});
@@ -133,3 +141,4 @@
   });
   render();
 })();
+

@@ -28,7 +28,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=catalog-intro-20261022">
+  <link rel="stylesheet" href="styles.css?v=couple-20261026">
 
   <script type="application/ld+json">
   {
@@ -148,7 +148,7 @@
           <p class="catalog-intro-lead">Trouvez le design qui vous ressemble, puis personnalisez votre textile.</p>
         </div>
         <dl class="catalog-intro-stats" aria-label="Le catalogue en chiffres">
-          <div><dt>Designs à explorer</dt><dd>248</dd></div>
+          <div><dt>Designs à explorer</dt><dd>272</dd></div>
           <div><dt>Univers créatifs</dt><dd>7</dd></div>
         </dl>
       </header>
@@ -164,7 +164,7 @@
       </div>
       <div class="catalog-tools">
         <label class="catalog-search">Rechercher un design<input type="search" id="catalogSearch" placeholder="Nom, univers ou référence…" autocomplete="off"></label>
-        <label class="catalog-search">Collection<select id="catalogCollection"><option value="">Toutes les collections</option><option>Sceaux &amp; Symboles</option><option>Mindset</option><option>Gorilla Street</option><option>Dark Bloom</option><option>Palestine</option><option>Mini Prints</option><option>Dark Manga</option><option>Her World</option><option>Japan Street</option><option>Morocco Street</option><option>Wild Spirit</option><option>Naruto</option><option>Bleach</option><option>Solo Leveling</option><option>Demon Slayer</option><option>One Piece</option><option>Jujutsu Kaisen</option><option>Histoires &amp; émotions</option></select></label>
+        <label class="catalog-search">Collection<select id="catalogCollection"><option value="">Toutes les collections</option><option>À Deux</option><option>Sceaux &amp; Symboles</option><option>Mindset</option><option>Gorilla Street</option><option>Dark Bloom</option><option>Palestine</option><option>Mini Prints</option><option>Dark Manga</option><option>Her World</option><option>Japan Street</option><option>Morocco Street</option><option>Wild Spirit</option><option>Naruto</option><option>Bleach</option><option>Solo Leveling</option><option>Demon Slayer</option><option>One Piece</option><option>Jujutsu Kaisen</option><option>Histoires &amp; émotions</option></select></label>
         <label class="catalog-search" id="miniThemeField" hidden>Univers Mini Prints<select id="miniTheme"><option value="">Tous les univers</option></select></label>
         <fieldset class="catalog-colors"><legend>Couleur du T-shirt</legend>
           <label><input type="radio" name="catalogColor" value="Noir" checked><span><i style="background:#161616"></i>Noir</span></label>
@@ -181,6 +181,30 @@
       <noscript><p>Activez JavaScript pour parcourir et sélectionner les designs du catalogue.</p></noscript>
     </div>
   </section>
+<svg width="0" height="0" aria-hidden="true" class="couple-filter-defs"><defs><filter id="couple-white-ink" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="-0.25 0 0 0 1 -1.25 1 0 0 1 -1.25 0 1 0 1 0 0 0 1 0"/></filter></defs></svg>
+<dialog id="coupleDialog" aria-labelledby="coupleTitle">
+ <div class="couple-topbar"><span>KREONI · À DEUX</span><button type="button" id="closeCoupleDialog" aria-label="Fermer le duo">Fermer ×</button></div>
+ <h2 id="coupleTitle"></h2><p id="coupleRefs" class="couple-refs"></p><p>À porter ensemble. À offrir aussi.</p>
+ <form id="coupleForm"><label class="couple-purchase">Votre sélection<select id="couplePurchase"><option value="both">Le duo · 2 pièces</option><option value="A">Pièce A uniquement</option><option value="B">Pièce B uniquement</option></select></label>
+ <div class="couple-panels"><section class="couple-panel" id="couplePanelA" aria-labelledby="coupleHeadingA">
+ <h3 id="coupleHeadingA">Pièce A</h3>
+ <div class="product-example couple-preview"><div class="preview-frame color-strip" data-placement="front" id="coupleFrameA"><img class="garment-base" id="coupleGarmentA" alt=""><img class="print-artwork" id="coupleArtA" alt=""></div></div>
+ <div class="couple-fields"><label>Textile<select id="coupleProductA"><option value="tshirt">T-shirt</option><option value="hoodie">Hoodie</option></select></label>
+ <label>Couleur<select id="coupleColorA"><option selected>Noir</option><option>Blanc</option></select></label>
+ <label>Taille<select id="coupleSizeA"><option>S</option><option selected>M</option><option>L</option><option>XL</option><option>XXL</option></select></label>
+ <label id="coupleNameLabelA" hidden><span id="coupleNameCaptionA">Prénom</span><input id="coupleNameA" type="text" maxlength="30" autocomplete="off"></label></div></section><section class="couple-panel" id="couplePanelB" aria-labelledby="coupleHeadingB">
+ <h3 id="coupleHeadingB">Pièce B</h3>
+ <div class="product-example couple-preview"><div class="preview-frame color-strip" data-placement="front" id="coupleFrameB"><img class="garment-base" id="coupleGarmentB" alt=""><img class="print-artwork" id="coupleArtB" alt=""></div></div>
+ <div class="couple-fields"><label>Textile<select id="coupleProductB"><option value="tshirt">T-shirt</option><option value="hoodie">Hoodie</option></select></label>
+ <label>Couleur<select id="coupleColorB"><option>Noir</option><option selected>Blanc</option></select></label>
+ <label>Taille<select id="coupleSizeB"><option>S</option><option selected>M</option><option>L</option><option>XL</option><option>XXL</option></select></label>
+ <label id="coupleNameLabelB" hidden><span id="coupleNameCaptionB">Prénom</span><input id="coupleNameB" type="text" maxlength="30" autocomplete="off"></label></div></section></div>
+ <div class="couple-order-fields"><label id="coupleDateLabel" hidden>Date à imprimer<input id="coupleDate" type="date"></label><label>Quantité de chaque pièce sélectionnée<input id="coupleQty" type="number" min="1" max="9999" step="1" value="1" required inputmode="numeric"></label>
+ <label>Vos précisions<textarea id="coupleNotes" rows="2" maxlength="1000" placeholder="Un détail pour votre cadeau…"></textarea></label></div>
+ <p id="couplePersonalizationNote" hidden>L’aperçu présente des exemples de prénoms, d’initiales et de date. Vos textes sont enregistrés avec la demande ; le visuel personnalisé sera confirmé avant production.</p>
+ <p class="couple-note">Aperçu indicatif. Prix, disponibilité et délai confirmés avec votre devis.</p>
+ <p id="coupleStatus" role="status" aria-live="polite"></p><button id="coupleAdd" class="btn btn-gold" type="submit">Ajouter les 2 pièces au panier</button>
+ </form></dialog>
   <dialog id="designDialog" aria-labelledby="designDialogTitle">
     <div class="detail-topbar"><span>KREONI · STUDIO</span><button id="closeDesignDialog" type="button" autofocus aria-label="Fermer et revenir au catalogue">Fermer ×</button></div>
     <div class="detail-layout">
@@ -256,7 +280,7 @@
   <section class="section cart-section" id="panier" aria-labelledby="cartTitle">
     <div class="container cart-container">
       <div class="cart-heading"><div><p class="eyebrow">VOTRE SÉLECTION</p><h2 id="cartTitle">Votre panier, votre création.</h2><p>Réunissez vos modèles et demandez un devis en une seule fois.</p></div><a class="btn btn-outline" href="#catalogue">Continuer mes choix ↗</a></div>
-      <p id="cartStatus" class="cart-status" role="status" aria-live="polite"></p>
+      <p id="cartStatus" tabindex="-1" class="cart-status" role="status" aria-live="polite"></p>
       <div id="cartEmpty" class="cart-empty"><span aria-hidden="true">＋</span><h3>Votre première création vous attend.</h3><p>Choisissez un design, personnalisez votre textile et ajoutez-le ici.</p><a class="btn btn-gold" href="#catalogue">Découvrir les designs</a></div>
       <div class="cart-layout" id="cartContent" hidden>
         <div id="cartItems" class="cart-items" aria-label="Articles du panier"></div>
@@ -313,12 +337,14 @@
 </main>
 
 <footer><div class="container footer-wrap"><div class="brand"><img class="brand-logo" src="assets/brand-mark.svg" alt="" aria-hidden="true"><span>KREONI</span></div><p>© 2026 KREONI. Personnalisation & Print — Maroc.</p><a href="https://www.instagram.com/kreoni.ma/" target="_blank" rel="noopener noreferrer">@kreoni.ma</a></div></footer>
-<script src="catalogue.js?v=seals-center-20261022" defer></script>
-<script src="script.js?v=seals-center-20261022" defer></script>
-<script src="cart.js" defer></script>
+<script src="catalogue.js?v=couple-20261026" defer></script>
+<script src="script.js?v=couple-20261026" defer></script>
+<script src="couples.js?v=couple-20261026" defer></script>
+<script src="cart.js?v=couple-20261026" defer></script>
 
 </body>
 </html>
+
 
 
 

@@ -1,6 +1,7 @@
 // Optional ink variants keep typographic designs legible on light textiles.
 function designArtwork(design, color, front = false) {
   const light = color === 'Blanc' || color === 'Beige';
+  if (design.coupleId) return design.image + (light ? '' : '#couple-light');
   if (design.monochromeSeal) return design.image + (light ? '' : '#white-ink');
   return front ? (light && design.lightFrontImage ? design.lightFrontImage : design.frontImage)
     : (light && design.lightImage ? design.lightImage : design.image);
@@ -295,6 +296,7 @@ if (catalogGrid) {
   function chooseDesign(id, options) {
     const design = catalogDesigns.find(item => item.id === id);
     if (!design) return;
+    if (design.coupleId) { window.openCoupleDesigner(id); return; }
     if (options) {
       productForm.querySelector('[name="product"][value="'+options.product+'"]').checked = true;
       productForm.querySelector('[name="color"][value="'+options.color+'"]').checked = true;
@@ -318,6 +320,7 @@ if (catalogGrid) {
     document.getElementById('configurateur').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
   }
   function openDesign(design,trigger) {
+      if (design.coupleId) { window.openCoupleDesigner(design.id,trigger); return; }
       lastDesignButton=trigger;
       detailDesign = design; acceptedDetail = false; syncFavorites();
       const selectedProduct = productForm.querySelector('[name="product"]:checked').value;
@@ -362,12 +365,13 @@ if (catalogGrid) {
       card.hidden = !matches || matched >= visibleLimit;
       if (matches) { matched++; if (!card.hidden) shown++; }
     });
-    document.getElementById('catalogCount').textContent = shown + ' / ' + matched + ' designs';
+    document.getElementById('catalogCount').textContent = shown + ' / ' + matched + ' modèles';
     document.getElementById('catalogEmpty').hidden = matched !== 0;
     more.hidden = shown >= matched;
     document.getElementById('catalogEmpty').textContent = favoritesOnly && !favorites.size ? 'Aucun favori pour le moment. Appuyez sur le cœur d’un design pour le retrouver ici.' : favoritesOnly ? 'Aucun favori ne correspond à ces filtres. Effacez les filtres pour retrouver tous les designs.' : 'Aucun design trouvé. Essayez un autre mot ou une autre catégorie.';
   }
   catalogDesigns.forEach(design => {
+    if (design.coupleSide === 'B') return;
     const card = document.createElement('article'); card.className = 'design-card'; card.dataset.category = design.category; card.dataset.designId = design.id;
     const favorite = document.createElement('button'); favorite.type = 'button'; favorite.className = 'design-favorite'; favorite.dataset.favorite = design.id; favorite.dataset.name = design.name;
     favorite.addEventListener('click', () => { toggleFavorite(design.id); if (card.hidden) favoriteToggle.focus({preventScroll:true}); });
@@ -379,11 +383,20 @@ if (catalogGrid) {
     const shirt = document.createElement('img'); shirt.className='catalog-shirt'; shirt.src=(design.frontImage || design.defaultPlacement === 'Dos') ? 'assets/tshirt-blank-back.webp' : 'assets/tshirt-blank-front.webp'; shirt.alt=''; shirt.loading='lazy'; shirt.decoding='async';
     const img=document.createElement('img');img.className='catalog-artwork';img.src=design.thumbnail;img.alt=design.name;img.loading='lazy';img.decoding='async';
     stage.append(shirt,img);view.append(stage);
+    if (design.coupleId) {
+      const partner = catalogDesigns.find(d => d.id === design.partnerId);
+      view.classList.add('couple-card-art');stage.style.setProperty('--catalog-offset','0%');
+      img.src=designArtwork(design,'Noir');
+      const second=stage.cloneNode(true);second.style.setProperty('--catalog-offset','-100%');
+      const partnerArt=second.querySelector('.catalog-artwork');partnerArt.src=designArtwork(partner,'Blanc');partnerArt.alt=partner.name;
+      view.append(second);card.dataset.search += ' '+normalize(partner.id+' '+partner.name+' '+design.coupleName+' couple duo cadeau amoureux');
+    }
     const info=document.createElement('div');info.className='design-info';
     const ref=document.createElement('p');ref.className='design-ref';ref.textContent=(design.collection || design.category)+(design.theme?' · '+design.theme:'')+' / '+design.id;
-    const title=document.createElement('h3');title.textContent=design.name;
-    const choose=document.createElement('button');choose.type='button';choose.className='btn btn-gold';choose.textContent='Essayer ce design';choose.dataset.chooseDesign=design.id;choose.addEventListener('click',()=>chooseDesign(design.id));
+    const title=document.createElement('h3');title.textContent=design.coupleName || design.name;
+    const choose=document.createElement('button');choose.type='button';choose.className='btn btn-gold';choose.textContent=design.coupleId?'Composer mon duo':'Essayer ce design';choose.dataset.chooseDesign=design.id;choose.addEventListener('click',()=>chooseDesign(design.id));
     info.append(ref,title);
+    if(design.coupleId){const badge=document.createElement('p');badge.className='design-duo';badge.textContent='2 pièces assorties · disponibles aussi à l’unité';info.append(badge);}
     if(design.frontImage){const badge=document.createElement('p');badge.className='design-duo';badge.textContent='Duo · petit devant + grand dos';info.append(badge);}
     if(design.message){const message=document.createElement('p');message.className='design-message';message.textContent=design.message;info.append(message);}
     info.append(choose);card.append(favorite,view,info);catalogGrid.append(card);
@@ -452,6 +465,7 @@ if (catalogGrid) {
   });
   document.getElementById('clearDesign').addEventListener('click',()=>{delete productForm.dataset.designId;productForm.dispatchEvent(new Event('change',{bubbles:true}));});
 }
+
 
 
 
